@@ -1,0 +1,2 @@
+# maguaethics
+webiste
