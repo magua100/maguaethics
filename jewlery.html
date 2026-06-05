@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="logos/favicon.png">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MAGUA ETHNICS - Sarees</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+html,
+body{
+    width:100%;
+
+    min-height:100%;
+
+    background:#5e3984;
+
+    overflow-x:hidden !important;
+
+    overflow-y:auto;
+}
+
+/* Left Design */
+
+.left-design{
+        position:absolute;
+    top:10px;
+
+    left:-10px;
+
+    z-index:10;
+}
+
+.left-design img{
+    height:320px;
+
+    width:auto;
+
+    display:block;
+}
+
+/* Right Design */
+
+.right-design{
+        position:absolute;
+    top:10px;
+
+    right:-10px;
+
+    z-index:10;
+}
+
+.right-design img{
+    height:320px;
+
+    width:auto;
+
+    display:block;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .left-design{
+        left:-25px;
+    }
+
+    .right-design{
+        right:-25px;
+    }
+
+    .left-design img,
+    .right-design img{
+        height:180px;
+        
+        object-fit:contain;
+    }
+
+}
+html,
+body{
+    overflow-x:hidden !important;
+}
+
+body{
+    position:relative;
+    width:100vw;
+}
+
+.left-design,
+.right-design{
+    overflow:hidden;
+}
+.center-logo{
+       position:absolute;
+    top:40px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    z-index:20;
+}
+
+.center-logo img{
+
+    width:180px;
+
+    height:auto;
+
+    display:block;
+}
+@media(max-width:768px){
+
+    .center-logo{
+
+        top:20px;
+    }
+
+    .center-logo img{
+
+        width:110px;
+    }
+
+}
+.page-heading{
+
+        position:absolute;
+    top:230px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    font-family:'Azonix', sans-serif;
+
+    font-size:32px;
+
+    letter-spacing:5px;
+
+    color:white;
+
+    text-transform:uppercase;
+
+    text-align:center;
+
+    z-index:20;
+
+    text-shadow:
+      0 4px 12px rgba(0,0,0,0.35),
+      0 0 18px rgba(255,255,255,0.12);
+}
+
+@media(max-width:768px){
+
+    .page-heading{
+
+        top:140px;
+
+        font-size:18px;
+
+        letter-spacing:2px;
+    }
+
+}
+.saree-grid{
+
+    position:absolute;
+
+    top:290px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:95%;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:12px;
+
+    z-index:20;
+}
+
+.saree-card{
+
+    text-align:center;
+}
+
+.saree-card img{
+
+    width:100%;
+
+    max-width:110px;
+
+    height:140px;
+
+    object-fit:cover;
+
+    border-radius:16px;
+
+    display:block;
+
+    margin:auto;
+}
+
+.saree-card p{
+
+    margin-top:8px;
+
+    color:white;
+
+    font-family:'Cormorant Garamond', serif;
+
+    font-size:14px;
+
+    line-height:1.3;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .saree-grid{
+
+        top:200px;
+
+        width:94%;
+
+        grid-template-columns:repeat(2,1fr);
+
+        gap:15px;
+    }
+
+    .saree-card img{
+
+        width:100%;
+
+        max-width:120px;
+
+        height:150px;
+    }
+
+    .saree-card p{
+
+        font-size:13px;
+    }
+
+    .saree-card span{
+
+        font-size:11px;
+    }
+
+}
+.saree-card span{
+
+    display:block;
+
+    margin-top:3px;
+
+    color:#f8e7ff;
+
+    font-size:11px;
+
+    font-family:'Noto Sans Telugu', sans-serif;
+}
+.store-note{
+
+    text-align:center;
+
+       margin:1130px 20px 40px;
+
+}
+
+.store-title{
+
+    font-family:'Azonix', sans-serif;
+
+    font-size:16px;
+
+    letter-spacing:3px;
+
+    color:white;
+
+    margin-bottom:10px;
+}
+
+.store-location{
+
+    font-family:'Cormorant Garamond', serif;
+
+    font-size:22px;
+
+    color:#f8e7ff;
+}
+
+.store-place{
+
+    font-family:'Azonix', sans-serif;
+
+    font-size:20px;
+
+    letter-spacing:2px;
+
+    color:white;
+
+    margin:8px 0 12px;
+}
+
+.store-telugu{
+
+    color:#f8e7ff;
+
+    font-size:14px;
+
+    line-height:1.6;
+}
+
+@media(max-width:768px){
+.store-note{
+
+        margin:1500px 20px 30px;
+    }
+    .store-title{
+        font-size:12px;
+    }
+
+    .store-location{
+        font-size:18px;
+    }
+
+    .store-place{
+        font-size:15px;
+    }
+
+    .store-telugu{
+        font-size:12px;
+    }
+
+}
+.bottom-bar{
+
+    position:fixed;
+
+    bottom:10px;
+
+    left:10px;
+
+    right:10px;
+
+    height:68px;
+
+    display:flex;
+
+    justify-content:space-evenly;
+
+    align-items:center;
+
+    background:rgba(255,255,255,0.06);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,0.10);
+
+    border-radius:22px;
+
+    z-index:9999;
+}
+
+.nav-item{
+
+    flex:1;
+
+    min-width:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-decoration:none;
+
+    color:#f8e7ff;
+}
+
+.nav-item img{
+
+    width:22px;
+
+    height:22px;
+
+    object-fit:contain;
+}
+
+.nav-item span{
+
+    margin-top:4px;
+
+    font-size:9px;
+
+    color:white;
+
+    font-family:'Cormorant Garamond', serif;
+
+    white-space:nowrap;
+}
+
+.nav-item.active img{
+
+    transform:scale(1.15);
+}
+
+body{
+
+    padding-bottom:90px;
+}
+
+@media(max-width:768px){
+
+    .bottom-bar{
+
+        left:8px;
+
+        right:8px;
+
+        bottom:8px;
+
+        height:62px;
+
+        border-radius:18px;
+    }
+
+    .nav-item img{
+
+        width:18px;
+
+        height:18px;
+    }
+
+    .nav-item span{
+
+        font-size:8px;
+    }
+
+}
+.nav-item{
+
+    position:relative;
+}
+.nav-item.active span{
+
+    color:#ffffff;
+}
+.nav-item.active span::after{
+
+    content:"";
+
+    display:block;
+
+    width:18px;
+
+    height:2px;
+
+    background:white;
+
+    border-radius:10px;
+
+    margin:4px auto 0;
+}
+#imageViewer{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(10px);
+
+    -webkit-backdrop-filter:blur(10px);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:999999;
+}
+
+#imageViewer img{
+
+    object-fit:contain;
+}
+
+/* Desktop */
+@media(min-width:769px){
+
+    #imageViewer img{
+
+        max-width:80vw;
+
+        max-height:85vh;
+
+        border-radius:12px;
+    }
+
+}
+
+/* Mobile Fullscreen */
+@media(max-width:768px){
+
+    #imageViewer img{
+
+        width:100vw;
+
+        height:100vh;
+
+        object-fit:contain;
+    }
+
+}
+
+#closeViewer{
+
+    position:absolute;
+
+    top:20px;
+
+    right:20px;
+
+    color:white;
+
+    font-size:40px;
+
+    cursor:pointer;
+
+    z-index:9999999;
+}
+.saree-card{
+
+    text-align:center;
+
+    opacity:0;
+
+    transform:translateY(40px) scale(.9);
+
+    animation:cardUp .8s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+@keyframes cardUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px) scale(.9);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0) scale(1);
+    }
+
+}
+.saree-card:nth-child(1){animation-delay:.1s;}
+.saree-card:nth-child(2){animation-delay:.2s;}
+.saree-card:nth-child(3){animation-delay:.3s;}
+.saree-card:nth-child(4){animation-delay:.4s;}
+.saree-card:nth-child(5){animation-delay:.5s;}
+.saree-card:nth-child(6){animation-delay:.6s;}
+
+.left-design,
+.right-design{
+
+    opacity:0;
+
+    animation:lampDrop .9s ease forwards;
+}
+
+@keyframes lampDrop{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(-80px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+    }
+
+}
+.skeleton{
+    position:absolute;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:110px;
+    height:140px;
+    border-radius:16px;
+    overflow:hidden;
+    background:#ffffff15;
+}
+
+.skeleton::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-150%;
+    width:60%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.4),
+        transparent
+    );
+    animation:shimmer 1s linear infinite;
+}
+
+@keyframes shimmer{
+    to{
+        left:150%;
+    }
+}
+
+.saree-card img{
+    opacity:0;
+    transition:opacity .3s;
+}
+
+@media(max-width:768px){
+    .skeleton{
+        width:120px;
+        height:150px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="left-design">
+    <img src="icons/lamp.webp" alt="Left Design">
+</div>
+
+<div class="right-design">
+    <img src="icons/lamp.webp" alt="Right Design">
+</div>
+<div class="center-logo">
+    <img src="logo2.png" alt="MAGUA ETHNICS">
+</div>
+<div class="page-heading">
+    Jewellery
+</div>
+<div class="saree-grid">
+
+    <div class="saree-card">
+        <img src="Fine Jewllery/Necklace (1).webp" alt="Necklace" class="zoom-img">
+        <p>Necklace</p>
+        <span>నెక్లెస్</span>
+    </div>
+
+    <div class="saree-card">
+        <img src="Fine Jewllery/earrings (2).webp" alt="Necklace" class="zoom-img">
+        <p>Earrings</p>
+        <span>చెవిపోగులు</span>
+    </div>
+
+    <div class="saree-card">
+        <img src="Fine Jewllery/bangles.webp" alt="Necklace" class="zoom-img">
+        <p>Bangles</p>
+        <span>గాజులు</span>
+    </div>
+ <div class="saree-card">
+        <img src="Fine Jewllery/hipchain.webp" alt="Necklace" class="zoom-img">
+        <p>Vaddanam</p>
+        <span>వడ్డానం</span>
+    </div>
+    <div class="saree-card">
+        <img src="Fine Jewllery/maangtikka.webp" alt="Necklace" class="zoom-img">
+        <p>Maang Tikka</p>
+        <span>మాంగ్ టిక్కా</span>
+    </div>
+
+    <div class="saree-card">
+        <img src="Fine Jewllery/long necklace.webp" alt="Necklace" class="zoom-img">
+        <p>Long Necklace</p>
+        <span>పొడవైన నెక్లెస్</span>
+    </div>
+
+    <div class="saree-card">
+        <img src="Fine Jewllery/haaram (1).webp" alt="Necklace" class="zoom-img">
+        <p>Haaram</p>
+        <span>హారం</span>
+    </div>
+
+    <div class="saree-card">
+        <img src="Fine Jewllery/jadavkundhan sets.webp" alt="Necklace" class="zoom-img">
+        <p>Jadau Kundan Sets</p>
+        <span>జడావు కుందన్ సెట్స్</span>
+    </div>
+
+    <div class="saree-card">
+        <img src="Fine Jewllery/polki sets.webp" alt="Necklace" class="zoom-img">
+        <p>Polki Sets</p>
+        <span>పోల్కీ సెట్స్</span>
+    </div>
+
+    <div class="saree-card">
+        <img src="Fine Jewllery/rajwadi sets.webp" alt="Necklace" class="zoom-img">
+        <p>Rajwadi Sets</p>
+        <span>రాజ్వాడి సెట్స్</span>
+    </div>
+
+    <div class="saree-card">
+        <img src="Fine Jewllery/Mojo night Polli.webp" alt="Necklace" class="zoom-img">
+        <p>Temple Jewelry</p>
+        <span>టెంపుల్ జ్యువెలరీ</span>
+    </div>
+
+    <div class="saree-card">
+        <img src="Fine Jewllery/AD jewellery.webp" alt="Necklace" class="zoom-img">
+        <p>AD Jewelry</p>
+        <span>ఏడి జ్యువెలరీ</span>
+    </div>
+
+   
+
+</div>
+<div class="store-note">
+
+    <div class="store-title">
+        FOR MORE SHOPPING
+    </div>
+
+    <div class="store-location">
+        Visit Our Store At
+    </div>
+
+    <div class="store-place">
+        Pedatadepalligudem, Andhra Pradesh
+    </div>
+
+    <div class="store-telugu">
+        మరిన్ని షాపింగ్ కలెక్షన్ల కోసం మా పెదతాడేపల్లిగూడెం స్టోర్‌ను సందర్శించండి
+<div>
+
+</div>
+<div class="bottom-bar">
+
+    <a href="saree.html" class="nav-item">
+        <img src="icons/saree.webp" alt="">
+        <span>Sarees</span>
+    </a>
+
+    <a href="materials.html" class="nav-item">
+        <img src="icons/2.webp" alt="">
+        <span>Materials</span>
+    </a>
+
+    <a href="readmade.html" class="nav-item">
+        <img src="icons/1.webp" alt="">
+        <span>Dresses</span>
+    </a>
+
+    <a href="lehengas.html" class="nav-item">
+        <img src="icons/9.webp" alt="">
+        <span>Lehengas</span>
+    </a>
+
+     <a href="jewlery.html" class="nav-item active">
+        <img src="icons/4.webp" alt="">
+        <span>Jewellery</span>
+    </a>
+
+</div>
+<div id="imageViewer">
+
+    <span id="closeViewer">&times;</span>
+
+    <img id="viewerImg" src="">
+
+</div>
+
+<script>
+
+const viewer = document.getElementById("imageViewer");
+const viewerImg = document.getElementById("viewerImg");
+
+document.querySelectorAll(".zoom-img").forEach(img=>{
+
+    img.addEventListener("click",()=>{
+
+        viewer.style.display="flex";
+
+        viewerImg.src=img.src;
+    });
+
+});
+
+document.getElementById("closeViewer").onclick=()=>{
+
+    viewer.style.display="none";
+};
+
+viewer.addEventListener("click",(e)=>{
+
+    if(e.target===viewer){
+
+        viewer.style.display="none";
+    }
+
+});
+
+
+document.querySelectorAll('.saree-card img').forEach((img, index) => {
+
+    if(index > 5) return;
+
+    const skeleton = document.createElement('div');
+    skeleton.className = 'skeleton';
+
+    img.parentElement.style.position = 'relative';
+    img.parentElement.appendChild(skeleton);
+
+    img.style.opacity = '0';
+
+    console.log('Shimmer shown for image', index + 1);
+
+    if(img.complete){
+        console.log('Loaded instantly:', index + 1);
+        skeleton.remove();
+        img.style.opacity = '1';
+    }else{
+        img.addEventListener('load', () => {
+            console.log('Loaded:', index + 1);
+            skeleton.remove();
+            img.style.opacity = '1';
+        });
+    }
+
+});
+
+</script>
+
+
+
+</body>
+</html>
