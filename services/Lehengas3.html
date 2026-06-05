@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Magua Sarees</title>
+
+<link href="https://fonts.cdnfonts.com/css/azonix" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    min-height:100vh;
+
+    overflow-x:hidden;
+    overflow-y:auto;
+
+    background:#5e3984;
+
+    font-family:Arial,sans-serif;
+}
+/* NAVBAR */
+
+.top-bar{
+    position:fixed;
+    top:15px;
+    left:15px;
+    right:15px;
+
+    height:70px;
+
+    background:rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,0.12);
+
+    border-radius:18px;
+
+    z-index:1000;
+}
+
+.top-left{
+    position:absolute;
+    top:50%;
+    left:20px;
+    transform:translateY(-50%);
+}
+
+.nav-logo-video{
+    width:60px;
+    height:60px;
+    object-fit:contain;
+}
+
+.top-right{
+    position:absolute;
+    top:50%;
+    right:20px;
+    transform:translateY(-50%);
+}
+
+.switch{
+    position:relative;
+
+    width:98px;
+    height:36px;
+
+    background:rgba(255,255,255,0.12);
+
+    border-radius:50px;
+
+    display:flex;
+    align-items:center;
+
+    padding:3px;
+
+    cursor:pointer;
+}
+
+.switch-circle{
+    position:absolute;
+
+    width:42px;
+    height:30px;
+
+    background:white;
+
+    border-radius:50px;
+
+    left:3px;
+
+    transition:.3s ease;
+}
+
+.switch-text{
+    position:relative;
+
+    width:100%;
+
+    display:flex;
+
+    z-index:2;
+}
+
+.switch-text span{
+    width:50%;
+
+    text-align:center;
+
+    line-height:30px;
+
+    font-size:10px;
+
+    font-weight:600;
+}
+
+#englishBtn{
+    color:#5e3984;
+}
+
+#teluguBtn{
+    color:white;
+}
+
+/* PAGE CONTENT */
+
+.hero{
+    width:100%;
+    height:100vh;
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:100px 20px 20px;
+}
+
+.hero h1{
+    color:white;
+
+    font-family:'Azonix',sans-serif;
+
+    font-size:52px;
+
+    letter-spacing:6px;
+
+    margin-bottom:25px;
+
+    text-align:center;
+}
+
+.hero p{
+    max-width:900px;
+
+    text-align:center;
+
+    color:#f8e7ff;
+
+    font-size:18px;
+
+    line-height:2;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .top-bar{
+        height:60px;
+    }
+
+    .nav-logo-video{
+        width:50px;
+        height:50px;
+    }
+
+    .hero h1{
+        font-size:22px;
+        letter-spacing:2px;
+    }
+
+    .hero p{
+        font-size:13px;
+        line-height:1.8;
+    }
+
+    .switch{
+        width:90px;
+        height:34px;
+    }
+}
+.hero-title{
+
+    margin-top:110px; /* below navbar */
+
+    text-align:center;
+
+    color:white;
+
+    font-family:'Azonix',sans-serif;
+
+    font-size:52px;
+
+    letter-spacing:6px;
+
+    width:100%;
+}
+
+@media(max-width:768px){
+
+    .hero-title{
+
+        margin-top:90px;
+
+        font-size:24px;
+
+        letter-spacing:2px;
+    }
+}
+.typing-paragraph{
+
+    width:90%;
+    max-width:1000px;
+
+    margin:35px auto 60px;
+
+    color:#f8e7ff;
+
+    font-size:18px;
+
+    line-height:2.1;
+
+    text-align:justify;
+
+    text-indent:40px;
+}
+
+
+@media(max-width:768px){
+
+    .typing-paragraph{
+
+        width:92%;
+
+        font-size:13px;
+
+        line-height:1.9;
+
+        text-indent:25px;
+    }
+}
+.typing-paragraph{
+    white-space:pre-wrap;
+}
+.switch-text{
+    position:relative;
+    z-index:5;
+}
+
+.switch-text span{
+    cursor:pointer;
+    user-select:none;
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+
+<div class="top-bar">
+
+    <div class="top-left">
+
+        <video class="nav-logo-video" autoplay muted loop playsinline>
+            <source src="video2.webm" type="video/webm">
+        </video>
+
+    </div>
+
+    <div class="top-right">
+
+        <div class="switch" id="langSwitch">
+
+            <div class="switch-circle"></div>
+
+            <div class="switch-text">
+                <span id="englishBtn">ENG</span>
+                <span id="teluguBtn">తెలుగు</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="hero-title">
+    LEHENGAS
+</div>
+<div class="typing-paragraph">
+    <span id="typingText"></span>
+</div>
+<script>
+const englishText = `Magua Ethnics presents an exclusive collection of designer lehengas crafted to bring elegance, beauty, and sophistication to every special occasion. Our carefully curated collections feature Bandhani with Modal Silk Lehengas, Chikankari Lehengas, Georgette Lehengas, Kota Silk Lehengas, Bridal Lehengas, and Party Wear Lehengas designed for modern women who appreciate timeless fashion.
+
+Our Bandhani with Modal Silk Lehengas combine traditional craftsmanship with luxurious fabrics, creating graceful outfits perfect for festive celebrations and family gatherings. Chikankari Lehengas showcase intricate hand embroidery and delicate artistry that reflect elegance and heritage.
+
+The Georgette Lehenga collection offers lightweight comfort with stylish silhouettes, making them ideal for parties, receptions, and contemporary celebrations. Our Kota Silk Lehengas feature premium weaving techniques and rich textures that add sophistication to every look.
+
+For brides, our Bridal Lehenga collection is designed with exquisite embroidery, intricate embellishments, luxurious fabrics, and regal craftsmanship to create unforgettable wedding ensembles. Every bridal design is carefully selected to make your special day even more memorable.
+
+Our Party Wear Lehengas blend modern trends with traditional elegance, offering fashionable styles suitable for engagements, receptions, festive occasions, and grand celebrations. From vibrant colours to elegant detailing, every lehenga is designed to make a lasting impression.
+
+At Magua Ethnics, we focus on quality, comfort, craftsmanship, and style. Every lehenga reflects our passion for fashion and our commitment to helping every woman look confident, graceful, and beautiful on every occasion.`;
+const teluguText = `మగువ ఎథ్నిక్స్‌లో ప్రత్యేకంగా రూపొందించిన లెహంగా కలెక్షన్లు అందుబాటులో ఉన్నాయి. మా కలెక్షన్లలో బంధనీ విత్ మోడల్ సిల్క్ లెహంగాలు, చికన్‌కారి లెహంగాలు, జార్జెట్ లెహంగాలు, కోటా సిల్క్ లెహంగాలు, బ్రైడల్ లెహంగాలు మరియు పార్టీ వేర్ లెహంగాలు ఉన్నాయి. ప్రతి డిజైన్ సంప్రదాయం, అందం మరియు ఆధునిక ఫ్యాషన్ కలయికగా రూపొందించబడింది.
+
+బంధనీ విత్ మోడల్ సిల్క్ లెహంగాలు సంప్రదాయ కళాత్మకతను విలాసవంతమైన ఫ్యాబ్రిక్స్‌తో మేళవించి ప్రత్యేకమైన రూపాన్ని అందిస్తాయి. చికన్‌కారి లెహంగాలు సున్నితమైన చేతి ఎంబ్రాయిడరీ మరియు కళాత్మక నైపుణ్యానికి ప్రతీకగా నిలుస్తాయి.
+
+జార్జెట్ లెహంగాలు తేలికైన సౌకర్యం మరియు ఆధునిక స్టైల్‌ను అందిస్తాయి. కోటా సిల్క్ లెహంగాలు ప్రీమియం నేసిన ఫ్యాబ్రిక్స్‌తో రూపొందించబడి ప్రతి వేడుకలో ప్రత్యేకమైన అందాన్ని అందిస్తాయి.
+
+మా బ్రైడల్ లెహంగా కలెక్షన్లు అద్భుతమైన ఎంబ్రాయిడరీ, అందమైన అలంకరణలు మరియు విలాసవంతమైన డిజైన్లతో రూపొందించబడి ప్రతి వధువుకు రాజసంగా కనిపించేలా చేస్తాయి.
+
+పార్టీ వేర్ లెహంగాలు ఆధునిక ఫ్యాషన్ ట్రెండ్స్ మరియు సంప్రదాయ శోభను కలిపి రూపొందించబడ్డాయి. ఎంగేజ్‌మెంట్లు, రిసెప్షన్లు, పండుగలు మరియు ప్రత్యేక వేడుకలలో అందంగా కనిపించేందుకు ఇవి ఉత్తమ ఎంపిక.
+
+నాణ్యత, సౌకర్యం మరియు ప్రత్యేకమైన డిజైన్లను అందించడం మగువ ఎథ్నిక్స్ లక్ష్యం. ప్రతి లెహంగా ప్రతి మహిళ ఆత్మవిశ్వాసంగా, అందంగా మరియు ప్రత్యేకంగా కనిపించేలా రూపొందించబడింది.`;
+let typingTimer;
+
+function startTyping(text){
+
+    clearTimeout(typingTimer);
+
+    const typingBox = document.getElementById("typingText");
+
+    typingBox.innerHTML = "";
+
+    let i = 0;
+
+    function type(){
+
+        if(i < text.length){
+
+            typingBox.innerHTML += text.charAt(i);
+
+            i++;
+
+            typingTimer = setTimeout(type,12);
+        }
+
+    }
+
+    type();
+}
+
+/* Page Load */
+
+window.onload = function(){
+
+    startTyping(englishText);
+
+};
+
+/* Language Switch */
+
+const englishBtn = document.getElementById("englishBtn");
+const teluguBtn = document.getElementById("teluguBtn");
+const circle = document.querySelector(".switch-circle");
+
+let isEnglish = true;
+
+document.getElementById("langSwitch").addEventListener("click",function(){
+
+    const typingBox = document.getElementById("typingText");
+
+    typingBox.innerHTML = "";
+
+    if(isEnglish){
+
+        circle.style.left = "48px";
+
+        englishBtn.style.color = "white";
+        teluguBtn.style.color = "#5e3984";
+
+        startTyping(teluguText);
+
+    }else{
+
+        circle.style.left = "3px";
+
+        englishBtn.style.color = "#5e3984";
+        teluguBtn.style.color = "white";
+
+        startTyping(englishText);
+    }
+
+    isEnglish = !isEnglish;
+
+});
+
+</script>
+</body>
+</html>

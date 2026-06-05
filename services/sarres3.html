@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Magua Sarees</title>
+
+<link href="https://fonts.cdnfonts.com/css/azonix" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    min-height:100vh;
+
+    overflow-x:hidden;
+    overflow-y:auto;
+
+    background:#5e3984;
+
+    font-family:Arial,sans-serif;
+}
+/* NAVBAR */
+
+.top-bar{
+    position:fixed;
+    top:15px;
+    left:15px;
+    right:15px;
+
+    height:70px;
+
+    background:rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,0.12);
+
+    border-radius:18px;
+
+    z-index:1000;
+}
+
+.top-left{
+    position:absolute;
+    top:50%;
+    left:20px;
+    transform:translateY(-50%);
+}
+
+.nav-logo-video{
+    width:60px;
+    height:60px;
+    object-fit:contain;
+}
+
+.top-right{
+    position:absolute;
+    top:50%;
+    right:20px;
+    transform:translateY(-50%);
+}
+
+.switch{
+    position:relative;
+
+    width:98px;
+    height:36px;
+
+    background:rgba(255,255,255,0.12);
+
+    border-radius:50px;
+
+    display:flex;
+    align-items:center;
+
+    padding:3px;
+
+    cursor:pointer;
+}
+
+.switch-circle{
+    position:absolute;
+
+    width:42px;
+    height:30px;
+
+    background:white;
+
+    border-radius:50px;
+
+    left:3px;
+
+    transition:.3s ease;
+}
+
+.switch-text{
+    position:relative;
+
+    width:100%;
+
+    display:flex;
+
+    z-index:2;
+}
+
+.switch-text span{
+    width:50%;
+
+    text-align:center;
+
+    line-height:30px;
+
+    font-size:10px;
+
+    font-weight:600;
+}
+
+#englishBtn{
+    color:#5e3984;
+}
+
+#teluguBtn{
+    color:white;
+}
+
+/* PAGE CONTENT */
+
+.hero{
+    width:100%;
+    height:100vh;
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:100px 20px 20px;
+}
+
+.hero h1{
+    color:white;
+
+    font-family:'Azonix',sans-serif;
+
+    font-size:52px;
+
+    letter-spacing:6px;
+
+    margin-bottom:25px;
+
+    text-align:center;
+}
+
+.hero p{
+    max-width:900px;
+
+    text-align:center;
+
+    color:#f8e7ff;
+
+    font-size:18px;
+
+    line-height:2;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .top-bar{
+        height:60px;
+    }
+
+    .nav-logo-video{
+        width:50px;
+        height:50px;
+    }
+
+    .hero h1{
+        font-size:22px;
+        letter-spacing:2px;
+    }
+
+    .hero p{
+        font-size:13px;
+        line-height:1.8;
+    }
+
+    .switch{
+        width:90px;
+        height:34px;
+    }
+}
+.hero-title{
+
+    margin-top:110px; /* below navbar */
+
+    text-align:center;
+
+    color:white;
+
+    font-family:'Azonix',sans-serif;
+
+    font-size:52px;
+
+    letter-spacing:6px;
+
+    width:100%;
+}
+
+@media(max-width:768px){
+
+    .hero-title{
+
+        margin-top:90px;
+
+        font-size:24px;
+
+        letter-spacing:2px;
+    }
+}
+.typing-paragraph{
+
+    width:90%;
+    max-width:1000px;
+
+    margin:35px auto 60px;
+
+    color:#f8e7ff;
+
+    font-size:18px;
+
+    line-height:2.1;
+
+    text-align:justify;
+
+    text-indent:40px;
+}
+
+
+@media(max-width:768px){
+
+    .typing-paragraph{
+
+        width:92%;
+
+        font-size:13px;
+
+        line-height:1.9;
+
+        text-indent:25px;
+    }
+}
+.typing-paragraph{
+    white-space:pre-wrap;
+}
+.switch-text{
+    position:relative;
+    z-index:5;
+}
+
+.switch-text span{
+    cursor:pointer;
+    user-select:none;
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+
+<div class="top-bar">
+
+    <div class="top-left">
+
+        <video class="nav-logo-video" autoplay muted loop playsinline>
+            <source src="video2.webm" type="video/webm">
+        </video>
+
+    </div>
+
+    <div class="top-right">
+
+        <div class="switch" id="langSwitch">
+
+            <div class="switch-circle"></div>
+
+            <div class="switch-text">
+                <span id="englishBtn">ENG</span>
+                <span id="teluguBtn">తెలుగు</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="hero-title">
+    SAREES
+</div>
+<div class="typing-paragraph">
+    <span id="typingText"></span>
+</div>
+<script>
+
+const englishText = `Sarees are among the most graceful and timeless garments in the world, representing tradition, elegance, and cultural heritage. For centuries, women have adorned themselves in beautiful sarees for celebrations, weddings, festivals, and everyday occasions. Every saree reflects the artistry of skilled weavers who dedicate countless hours to creating intricate patterns, luxurious textures, and vibrant colour combinations.
+
+At Magua Ethnics, we believe that a saree is more than just clothing. It is a symbol of confidence, beauty, and individuality. Our collections are carefully curated to bring together classic craftsmanship and modern fashion sensibilities. From rich Banarasi masterpieces woven with exquisite zari work to luxurious Kanchipuram silks known for their regal appeal, each collection is designed to celebrate timeless elegance.
+
+The beauty of a saree lies in its versatility. It can be styled traditionally for grand ceremonies or draped in contemporary ways for modern occasions. Whether it is a festive celebration, a wedding ceremony, a family gathering, or a cultural event, a saree always creates a lasting impression. The graceful flow of the fabric enhances natural beauty while offering unmatched sophistication and charm.
+
+Our collection features a diverse range of fabrics including silk, organza, tissue, linen, georgette, chiffon, cotton, and designer blends. Every piece is selected with attention to quality, comfort, and aesthetic appeal. Intricate embroidery, handcrafted embellishments, delicate motifs, and artistic detailing add character to every saree, making each one unique and memorable.
+
+Colours play a significant role in expressing personality and style. From vibrant reds and royal blues to elegant pastels and earthy tones, our sarees are available in a wide spectrum of shades to suit every preference. Whether you prefer bold statement pieces or subtle understated elegance, there is a perfect saree waiting to complement your individuality.
+
+At Magua Ethnics, our mission is to celebrate the beauty of tradition while embracing contemporary fashion trends. Every saree in our collection is chosen to inspire confidence, grace, and sophistication. We invite you to explore a world of timeless elegance where heritage craftsmanship meets modern design, creating unforgettable styles for every occasion and every woman.`;
+
+
+const teluguText = `చీరలు భారతీయ సంస్కృతి, సంప్రదాయం, అందం మరియు మహిళల వ్యక్తిత్వానికి ప్రతీకగా నిలుస్తాయి. శతాబ్దాలుగా చీరలు భారతీయ మహిళల జీవితంలో ప్రత్యేక స్థానం సంపాదించాయి. వివాహాలు, పండుగలు, కుటుంబ వేడుకలు మరియు ప్రత్యేక సందర్భాలలో చీర ధరించడం గౌరవం, సంప్రదాయం మరియు అందాన్ని ప్రతిబింబిస్తుంది.
+
+మగువ ఎథ్నిక్స్‌లో ప్రతి చీరను ప్రత్యేక శ్రద్ధతో ఎంపిక చేస్తాము. బనారసీ, కంచిపట్టు, ఆర్గంజా, టిష్యూ, లినెన్, జార్జెట్, కాటన్ మరియు డిజైనర్ చీరల వరకు విభిన్న రకాల కలెక్షన్లు అందుబాటులో ఉన్నాయి. ప్రతి చీర నైపుణ్యం కలిగిన కళాకారుల చేతుల మీదుగా రూపుదిద్దుకొని ప్రత్యేకతను సంతరించుకుంటుంది.
+
+చీర యొక్క అందం దాని వైవిధ్యంలో ఉంటుంది. సంప్రదాయ శైలిలోనూ, ఆధునిక శైలిలోనూ ధరించవచ్చు. ప్రతి రంగు, ప్రతి డిజైన్, ప్రతి నేసిన అల్లిక ఒక ప్రత్యేక కథను చెబుతుంది. అందం, ఆత్మవిశ్వాసం, సౌకర్యం మరియు సంప్రదాయాన్ని కలిపే ఉత్తమ వస్త్రధారణ చీరే.
+
+మగువ ఎథ్నిక్స్ లక్ష్యం సంప్రదాయాన్ని కాపాడుతూ ఆధునిక ఫ్యాషన్‌ను అందించడం. ప్రతి మహిళ తన ప్రత్యేకతను వెలికితీయడానికి, ప్రతి సందర్భాన్ని మరింత అందంగా మార్చడానికి మా చీరల కలెక్షన్లు సహాయపడతాయి.`;
+
+let typingTimer;
+
+function startTyping(text){
+
+    clearTimeout(typingTimer);
+
+    const typingBox = document.getElementById("typingText");
+
+    typingBox.innerHTML = "";
+
+    let i = 0;
+
+    function type(){
+
+        if(i < text.length){
+
+            typingBox.innerHTML += text.charAt(i);
+
+            i++;
+
+            typingTimer = setTimeout(type,12);
+        }
+
+    }
+
+    type();
+}
+
+/* Page Load */
+
+window.onload = function(){
+
+    startTyping(englishText);
+
+};
+
+/* Language Switch */
+
+const englishBtn = document.getElementById("englishBtn");
+const teluguBtn = document.getElementById("teluguBtn");
+const circle = document.querySelector(".switch-circle");
+
+let isEnglish = true;
+
+document.getElementById("langSwitch").addEventListener("click",function(){
+
+    const typingBox = document.getElementById("typingText");
+
+    typingBox.innerHTML = "";
+
+    if(isEnglish){
+
+        circle.style.left = "48px";
+
+        englishBtn.style.color = "white";
+        teluguBtn.style.color = "#5e3984";
+
+        startTyping(teluguText);
+
+    }else{
+
+        circle.style.left = "3px";
+
+        englishBtn.style.color = "#5e3984";
+        teluguBtn.style.color = "white";
+
+        startTyping(englishText);
+    }
+
+    isEnglish = !isEnglish;
+
+});
+
+</script>
+</body>
+</html>

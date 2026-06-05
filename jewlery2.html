@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Magua Jewellery</title>
+
+<link href="https://fonts.cdnfonts.com/css/azonix" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#5e3984;
+    min-height:100vh;
+    padding:30px 15px;
+    font-family:Arial,sans-serif;
+}
+
+/* Heading */
+
+.page-title{
+    text-align:center;
+    color:white;
+    font-family:'Azonix',sans-serif;
+    font-size:26px;
+    letter-spacing:4px;
+    margin-bottom:20px;
+}
+
+.page-subtitle{
+    text-align:center;
+    color:#f8e7ff;
+    margin-bottom:40px;
+    font-size:15px;
+}
+
+/* Showcase */
+
+.jewellery-showcase{
+    width:100%;
+    max-width:950px;
+    margin:auto;
+}
+
+/* Cards */
+
+.big-card,
+.small-card{
+    position:relative;
+    overflow:hidden;
+    border-radius:24px;
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.18);
+
+    opacity:0;
+
+    transform:
+    translateY(60px)
+    scale(.92);
+
+    transition:
+    opacity .9s ease,
+    transform .9s cubic-bezier(.22,1,.36,1);
+}
+
+.big-card.show,
+.small-card.show{
+    opacity:1;
+    transform:
+    translateY(0)
+    scale(1);
+}
+
+/* Sizes */
+
+.big-card{
+    height:380px;
+    margin-bottom:20px;
+}
+
+.small-card{
+    height:240px;
+}
+
+/* Grid */
+
+.two-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    margin-bottom:20px;
+}
+
+/* Images */
+
+.big-card img,
+.small-card img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+    object-position:center top;
+
+    transform:scale(1.12);
+
+    transition:
+    transform 1.4s ease;
+}
+
+.big-card.show img,
+.small-card.show img{
+    transform:scale(1);
+}
+
+/* Overlay */
+
+.overlay{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    align-items:flex-end;
+
+    padding:22px;
+
+    background:
+    linear-gradient(
+    to top,
+    rgba(0,0,0,.75),
+    rgba(0,0,0,.15),
+    transparent);
+}
+
+.overlay h3{
+    color:white;
+    font-family:'Azonix',sans-serif;
+    font-size:14px;
+    letter-spacing:1px;
+}
+
+/* Hover */
+
+.big-card:hover img,
+.small-card:hover img{
+    transform:scale(1.08);
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .page-title{
+        font-size:16px;
+        letter-spacing:2px;
+    }
+
+    .page-subtitle{
+        font-size:12px;
+    }
+
+    .big-card{
+        height:220px;
+    }
+
+    .small-card{
+        height:180px;
+    }
+
+    .two-grid{
+        gap:12px;
+    }
+
+    .overlay{
+        padding:14px;
+    }
+
+    .overlay h3{
+        font-size:10px;
+    }
+}
+
+</style>
+
+</head>
+<body>
+
+<h1 class="page-title">MAGUA JEWELLERY</h1>
+
+<div class="page-subtitle">
+Timeless Elegance • Premium Craftsmanship
+</div>
+
+<div class="jewellery-showcase">
+
+<div class="big-card">
+    <img src="jewellery/necklace.jpg">
+    <div class="overlay">
+        <h3>NECKLACE</h3>
+    </div>
+</div>
+
+<div class="two-grid">
+
+    <div class="small-card">
+        <img src="jewellery/earrings.jpg">
+        <div class="overlay">
+            <h3>EARRINGS</h3>
+        </div>
+    </div>
+
+    <div class="small-card">
+        <img src="jewellery/bangles.jpg">
+        <div class="overlay">
+            <h3>BANGLES</h3>
+        </div>
+    </div>
+
+</div>
+
+<div class="big-card">
+    <img src="jewellery/long-necklace.jpg">
+    <div class="overlay">
+        <h3>LONG NECKLACE</h3>
+    </div>
+</div>
+
+<div class="two-grid">
+
+    <div class="small-card">
+        <img src="jewellery/maang-tikka.jpg">
+        <div class="overlay">
+            <h3>MAANG TIKKA</h3>
+        </div>
+    </div>
+
+    <div class="small-card">
+        <img src="jewellery/haaram.jpg">
+        <div class="overlay">
+            <h3>HAARAM</h3>
+        </div>
+    </div>
+
+</div>
+
+<div class="big-card">
+    <img src="jewellery/jadau-kundan.jpg">
+    <div class="overlay">
+        <h3>JADAU KUNDAN SETS</h3>
+    </div>
+</div>
+
+<div class="two-grid">
+
+    <div class="small-card">
+        <img src="jewellery/polki.jpg">
+        <div class="overlay">
+            <h3>POLKI SETS</h3>
+        </div>
+    </div>
+
+    <div class="small-card">
+        <img src="jewellery/rajwadi.jpg">
+        <div class="overlay">
+            <h3>RAJWADI SETS</h3>
+        </div>
+    </div>
+
+</div>
+
+<div class="big-card">
+    <img src="jewellery/temple-jewellery.jpg">
+    <div class="overlay">
+        <h3>TEMPLE JEWELLERY</h3>
+    </div>
+</div>
+
+<div class="two-grid">
+
+    <div class="small-card">
+        <img src="jewellery/ad-jewellery.jpg">
+        <div class="overlay">
+            <h3>AD JEWELLERY</h3>
+        </div>
+    </div>
+
+    <div class="small-card">
+        <img src="jewellery/vaddanam.jpg">
+        <div class="overlay">
+            <h3>VADDANAM</h3>
+        </div>
+    </div>
+
+</div>
+```
+
+</div>
+
+<script>
+
+const cards = document.querySelectorAll(
+".big-card,.small-card"
+);
+
+const observer = new IntersectionObserver(
+
+(entries)=>{
+
+entries.forEach((entry)=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("show");
+
+observer.unobserve(entry.target);
+
+}
+
+});
+
+},
+
+{
+threshold:0.15
+}
+
+);
+
+cards.forEach((card)=>{
+
+observer.observe(card);
+
+});
+
+</script>
+
+</body>
+</html>
