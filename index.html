@@ -7,7 +7,7 @@
 <link rel="icon" type="image/png" href="logos/favicon.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://fonts.cdnfonts.com/css/azonix" rel="stylesheet">
-<title>magua Ethnics</title>
+<title>Magua Ethnics</title>
 
 <style>
 
@@ -27,11 +27,30 @@ html,body{
   background:#5e3984;
 }
 .splash{
+    position:fixed;
+
+    top:0;
+    left:0;
+
     width:100vw;
     height:100vh;
+
     display:flex;
     justify-content:center;
     align-items:center;
+
+    overflow:hidden;
+
+    touch-action:none;
+
+    overscroll-behavior:none;
+
+    background:#5e3984;
+
+    z-index:999999;
+}
+body{
+    overflow:hidden;
 }
 
 .brand{
@@ -3425,6 +3444,26 @@ html,body{
     transform:scale(1.2);
 
     border-radius:10px;
+
+    background:transparent !important;
+
+    border:none;
+
+    box-shadow:none;
+
+    pointer-events:none;
+
+    mix-blend-mode:screen;
+
+    isolation:isolate;
+
+    display:block;
+
+    -webkit-transform:translateZ(0) scale(1.2);
+
+    backface-visibility:hidden;
+
+    -webkit-backface-visibility:hidden;
 }
 @media(max-width:768px){
 
@@ -4146,6 +4185,78 @@ html,body{
         height:45px;
     }
 }
+.feature-img-wrap{
+    position:relative;
+}
+
+.feature-img-shimmer{
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    overflow:hidden;
+    background:#ffffff15;
+}
+
+.feature-img-shimmer::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-150%;
+    width:60%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.4),
+        transparent
+    );
+    animation:featureShimmer 1s linear infinite;
+}
+
+@keyframes featureShimmer{
+    to{
+        left:150%;
+    }
+}
+.grid-img{
+    position:relative;
+}
+
+.collage-shimmer{
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    overflow:hidden;
+    background:#ffffff15;
+    z-index:1;
+}
+
+.collage-shimmer::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-150%;
+    width:60%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.4),
+        transparent
+    );
+    animation:collageShimmer 1s linear infinite;
+}
+
+@keyframes collageShimmer{
+    to{
+        left:150%;
+    }
+}
+
+.grid-img img{
+    position:relative;
+    z-index:2;
+}
 </style>
 </head>
 <body>
@@ -4354,9 +4465,11 @@ html,body{
    <span></span>
 </div>
 <div class="feature-box">
+    <div class="feature-img-wrap">
+        <div class="feature-img-shimmer"></div>
 
     <img src="features/saree3.webp" alt="">
-
+    </div>
     <div class="feature-content">
 
         <h3>DESIGNER SAREES</h3>
@@ -4371,9 +4484,10 @@ html,body{
 </div>
 
 <div class="feature-box">
-
+ <div class="feature-img-wrap">
+        <div class="feature-img-shimmer"></div>
     <img src="features/dresses33.webp" alt="">
-
+ </div>
     <div class="feature-content">
 
         <h3>READY MADE DRESSES</h3>
@@ -4388,9 +4502,10 @@ html,body{
 </div>
 
 <div class="feature-box">
-
+ <div class="feature-img-wrap">
+        <div class="feature-img-shimmer"></div>
     <img src="features/dressmat.webp" alt="">
-
+ </div>
     <div class="feature-content">
 
         <h3>DRESS MATERIALS</h3>
@@ -4405,8 +4520,10 @@ html,body{
 </div>
 
 <div class="feature-box">
-
+ <div class="feature-img-wrap">
+        <div class="feature-img-shimmer"></div>
     <img src="features/10000.webp" alt="">
+</div>
 
     <div class="feature-content">
 
@@ -4422,8 +4539,10 @@ html,body{
 </div>
 
 <div class="feature-box">
-
+ <div class="feature-img-wrap">
+        <div class="feature-img-shimmer"></div>
     <img src="features/5njw.webp" alt="">
+</div>
 
     <div class="feature-content">
 
@@ -4447,28 +4566,28 @@ html,body{
 
     <div class="video-wrap">
         <div class="video-shimmer"></div>
-        <video autoplay muted loop playsinline>
+        <video muted loop playsinline preload="metadata">
             <source src="videos/1.mp4" type="video/mp4">
         </video>
     </div>
 
     <div class="video-wrap">
         <div class="video-shimmer"></div>
-        <video autoplay muted loop playsinline>
+      <video muted loop playsinline preload="metadata">
             <source src="videos/2.mp4" type="video/mp4">
         </video>
     </div>
 
     <div class="video-wrap">
         <div class="video-shimmer"></div>
-        <video autoplay muted loop playsinline>
+        <video muted loop playsinline preload="metadata">
             <source src="videos/3.mp4" type="video/mp4">
         </video>
     </div>
 
     <div class="video-wrap">
         <div class="video-shimmer"></div>
-        <video autoplay muted loop playsinline>
+    <video muted loop playsinline preload="metadata">
             <source src="videos/4.mp4" type="video/mp4">
         </video>
     </div>
@@ -4652,10 +4771,14 @@ html,body{
   <div class="left-grid">
 
     <div class="grid-img big">
+          <div class="collage-shimmer"></div>
+
       <img src="office/off1.webp" alt="">
     </div>
 
     <div class="grid-img small">
+          <div class="collage-shimmer"></div>
+
       <img src="office/off2.webp" alt="">
     </div>
 
@@ -4664,10 +4787,14 @@ html,body{
   <div class="right-grid">
 
     <div class="grid-img small">
+          <div class="collage-shimmer"></div>
+
       <img src="office/off3.webp" alt="">
     </div>
 
     <div class="grid-img big">
+          <div class="collage-shimmer"></div>
+
       <img src="office/off4.webp" alt="">
     </div>
 
@@ -4870,12 +4997,15 @@ html,body{
 
 <script>
 
-/* Splash Delay */
 window.addEventListener("load", function(){
+
+    document.body.style.overflow = "hidden";
 
     setTimeout(function(){
 
         document.querySelector(".splash").style.display = "none";
+
+        document.body.style.overflow = "auto";
 
         document.getElementById("main-content").style.display = "flex";
 
@@ -4984,18 +5114,75 @@ document.querySelectorAll(".journey-card").forEach((card) => {
 });
 
 
-document.querySelectorAll('.video-wrap video').forEach(video=>{
+
+window.addEventListener("load",()=>{
+
+    setTimeout(()=>{
+
+        document.querySelectorAll('.video-wrap video')
+        .forEach(video=>{
+
+            const shimmer =
+            video.parentElement.querySelector('.video-shimmer');
+
+            video.load();
+
+            video.addEventListener('canplay',()=>{
+
+                shimmer.style.display='none';
+
+                video.play();
+
+            },{once:true});
+
+        });
+
+    },2200);
+
+});
+
+document.querySelectorAll('.feature-img-wrap img')
+.forEach(img=>{
 
     const shimmer =
-    video.parentElement.querySelector('.video-shimmer');
+    img.parentElement.querySelector('.feature-img-shimmer');
+
+    const hideShimmer = ()=>{
+
+        shimmer.style.display='none';
+
+    };
+
+    if(img.complete){
+
+        hideShimmer();
+
+    }else{
+
+        img.addEventListener('load',hideShimmer);
+
+        img.addEventListener('error',hideShimmer);
+
+    }
+
+});
+
+document.querySelectorAll('.grid-img img')
+.forEach(img=>{
+
+    const shimmer =
+    img.parentElement.querySelector('.collage-shimmer');
 
     const hideShimmer = ()=>{
         shimmer.style.display='none';
     };
 
-    video.addEventListener('loadeddata',hideShimmer);
-
-    video.addEventListener('canplay',hideShimmer);
+    if(img.complete){
+        hideShimmer();
+    }else{
+        img.addEventListener('load',hideShimmer);
+        img.addEventListener('error',hideShimmer);
+    }
 
 });
 
