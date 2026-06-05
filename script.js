@@ -916,3 +916,140 @@ setInterval(()=>{
     }
 
 },1000);
+
+
+
+const viewer =
+document.getElementById("galleryViewer");
+
+const viewerImg =
+document.getElementById("galleryImage");
+
+let scale = 1;
+
+document
+.querySelectorAll('.grid-img img')
+.forEach(img=>{
+
+    img.addEventListener('click',()=>{
+
+        viewer.style.display='flex';
+
+        viewerImg.src=img.src;
+
+        scale=1;
+
+        viewerImg.style.transform=
+        `scale(${scale})`;
+
+    });
+
+});
+
+document
+.getElementById("galleryClose")
+.onclick=()=>{
+
+    viewer.style.display='none';
+
+};
+
+viewer.addEventListener('click',(e)=>{
+
+    if(e.target===viewer){
+
+        viewer.style.display='none';
+
+    }
+
+});
+
+let startDistance = 0;
+
+viewer.addEventListener(
+'touchstart',
+(e)=>{
+
+    if(e.touches.length===2){
+
+        startDistance =
+        Math.hypot(
+            e.touches[0].clientX -
+            e.touches[1].clientX,
+
+            e.touches[0].clientY -
+            e.touches[1].clientY
+        );
+
+    }
+
+},
+{passive:false}
+);
+
+viewer.addEventListener(
+'touchmove',
+(e)=>{
+
+    if(e.touches.length===2){
+
+        e.preventDefault();
+
+        const newDistance =
+        Math.hypot(
+            e.touches[0].clientX -
+            e.touches[1].clientX,
+
+            e.touches[0].clientY -
+            e.touches[1].clientY
+        );
+
+        scale *=
+        newDistance /
+        startDistance;
+
+        scale =
+        Math.min(
+            Math.max(scale,1),
+            5
+        );
+
+        viewerImg.style.transform =
+        `scale(${scale})`;
+
+        startDistance =
+        newDistance;
+
+    }
+
+},
+{passive:false}
+);
+
+let startY = 0;
+
+viewer.addEventListener(
+'touchstart',
+e=>{
+
+    startY =
+    e.touches[0].clientY;
+
+}
+);
+
+viewer.addEventListener(
+'touchend',
+e=>{
+
+    const endY =
+    e.changedTouches[0].clientY;
+
+    if(endY - startY > 120){
+
+        viewer.style.display='none';
+
+    }
+
+}
+);
