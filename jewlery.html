@@ -648,7 +648,7 @@ body{
 }
 
 .saree-card img{
-    opacity:0;
+    opacity:1;
     transition:opacity .3s;
 }
 
@@ -766,9 +766,8 @@ body{
     </div>
 
     <div class="store-telugu">
-        మరిన్ని షాపింగ్ కలెక్షన్ల కోసం మా పెదతాడేపల్లిగూడెం స్టోర్‌ను సందర్శించండి
-<div>
-
+    మరిన్ని షాపింగ్ కలెక్షన్ల కోసం మా పెదతాడేపల్లిగూడెం స్టోర్‌ను సందర్శించండి
+</div>
 </div>
 <div class="bottom-bar">
 
@@ -835,36 +834,36 @@ viewer.addEventListener("click",(e)=>{
     }
 
 });
-
-
-document.querySelectorAll('.saree-card img').forEach((img, index) => {
+document.querySelectorAll('.saree-card img').forEach((img,index)=>{
 
     if(index > 5) return;
 
-    const skeleton = document.createElement('div');
-    skeleton.className = 'skeleton';
+    img.style.opacity='0';
 
-    img.parentElement.style.position = 'relative';
+    const skeleton=document.createElement('div');
+    skeleton.className='skeleton';
+
+    img.parentElement.style.position='relative';
     img.parentElement.appendChild(skeleton);
 
-    img.style.opacity = '0';
-
-    console.log('Shimmer shown for image', index + 1);
+    function imageLoaded(){
+        skeleton.remove();
+        img.style.opacity='1';
+    }
 
     if(img.complete){
-        console.log('Loaded instantly:', index + 1);
-        skeleton.remove();
-        img.style.opacity = '1';
+        imageLoaded();
     }else{
-        img.addEventListener('load', () => {
-            console.log('Loaded:', index + 1);
+        img.addEventListener('load', imageLoaded);
+
+        img.addEventListener('error', ()=>{
+            console.log('Failed:', img.src);
             skeleton.remove();
-            img.style.opacity = '1';
+            img.style.opacity='1';
         });
     }
 
 });
-
 </script>
 
 
