@@ -469,10 +469,7 @@ btn.addEventListener("click", async () => {
     const name = document.getElementById("nameInput").value.trim();
     const mobile = document.getElementById("mobileInput").value.trim();
 
-    if(!name || !mobile){
-        alert("Please enter name and mobile number");
-        return;
-    }
+   if(!name || !mobile) return;
 
     await window.supabaseClient
     .from("contacts")
@@ -621,3 +618,84 @@ joinBtn.addEventListener("click",async()=>{
     },5000);
 
 });
+
+
+
+
+// Desktop flower trail
+if(window.innerWidth > 768){
+
+    document.addEventListener('mousemove',(e)=>{
+
+        const flower =
+        document.createElement('span');
+
+        flower.innerHTML = '🌸';
+
+        flower.style.position='fixed';
+        flower.style.left=e.clientX+'px';
+        flower.style.top=e.clientY+'px';
+
+        flower.style.fontSize='18px';
+        flower.style.pointerEvents='none';
+        flower.style.zIndex='999999';
+
+        flower.style.animation=
+        'flowerTrail 1s linear forwards';
+
+        document.body.appendChild(flower);
+
+        setTimeout(()=>{
+            flower.remove();
+        },1000);
+
+    });
+
+}
+
+// Mobile sparkle tap
+if(window.innerWidth <= 768){
+
+    document.addEventListener('touchstart',(e)=>{
+
+        const touch = e.touches[0];
+
+        for(let i=0;i<10;i++){
+
+            const spark =
+            document.createElement('span');
+
+            spark.innerHTML = '✨';
+
+            spark.style.position='fixed';
+            spark.style.left=touch.clientX+'px';
+            spark.style.top=touch.clientY+'px';
+
+            spark.style.fontSize='20px';
+            spark.style.pointerEvents='none';
+            spark.style.zIndex='999999';
+
+            spark.style.setProperty(
+                '--x',
+                (Math.random()*160-80)+'px'
+            );
+
+            spark.style.setProperty(
+                '--y',
+                (Math.random()*160-80)+'px'
+            );
+
+            spark.style.animation=
+            'touchSpark 1s ease-out forwards';
+
+            document.body.appendChild(spark);
+
+            setTimeout(()=>{
+                spark.remove();
+            },1000);
+
+        }
+
+    });
+
+}
