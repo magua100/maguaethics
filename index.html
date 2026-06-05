@@ -4576,6 +4576,69 @@ body{
     }
 
 }
+#galleryViewer{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(10px);
+
+    -webkit-backdrop-filter:blur(10px);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:999999;
+}
+
+#galleryImage{
+
+    max-width:100vw;
+
+    max-height:100vh;
+
+    object-fit:contain;
+
+    transform-origin:center center;
+
+    transition:transform .15s ease;
+}
+
+#galleryClose{
+
+    position:absolute;
+
+    top:20px;
+
+    right:20px;
+
+    color:white;
+
+    font-size:42px;
+
+    cursor:pointer;
+
+    z-index:9999999;
+}
+
+@media(max-width:768px){
+
+    #galleryClose{
+
+        top:15px;
+
+        right:15px;
+
+        font-size:38px;
+    }
+
+}
 </style>
 </head>
 <body>
@@ -5313,6 +5376,14 @@ body{
 
 
 
+
+</div>
+
+<div id="galleryViewer">
+
+    <span id="galleryClose">&times;</span>
+
+    <img id="galleryImage" src="">
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
