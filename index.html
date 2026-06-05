@@ -7,7 +7,7 @@
 <link rel="icon" type="image/png" href="logos/favicon.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://fonts.cdnfonts.com/css/azonix" rel="stylesheet">
-<title>magua Ethnics</title>
+<title>Magua Ethnics</title>
 
 <style>
 
@@ -3812,8 +3812,11 @@ body{
 
     outline:none;
 }
-
 .newsletter-form button{
+
+    position:relative;
+
+    overflow:hidden;
 
     padding:12px 22px;
 
@@ -3821,13 +3824,39 @@ body{
 
     border-radius:50px;
 
-    background:white;
+    background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,0.18),
+      rgba(255,255,255,0.06)
+    );
 
-    color:#5e3984;
+    color:#ffffff;
 
     font-weight:600;
 
     cursor:pointer;
+
+    min-width:120px;
+}
+@keyframes sparkBurst{
+
+    0%{
+        transform:translate(-50%,-50%);
+        opacity:1;
+    }
+
+    100%{
+
+        transform:
+        translate(
+            calc(-50% + var(--x)),
+            calc(-50% + var(--y))
+        );
+
+        opacity:0;
+    }
+
 }
 .boutique-heading{
   width:100%;
@@ -4257,6 +4286,42 @@ body{
     position:relative;
     z-index:2;
 }
+.connect-btn{
+    position:relative;
+    overflow:hidden;
+}
+@keyframes sparkBurst{
+
+    0%{
+        transform:translate(-50%,-50%) scale(.3);
+        opacity:1;
+    }
+
+    100%{
+        transform:
+        translate(
+            calc(-50% + var(--x)),
+            calc(-50% + var(--y))
+        )
+        scale(1.5);
+
+        opacity:0;
+    }
+
+}
+@keyframes shake{
+
+    0%,100%{transform:translateX(0);}
+    20%{transform:translateX(-6px);}
+    40%{transform:translateX(6px);}
+    60%{transform:translateX(-6px);}
+    80%{transform:translateX(6px);}
+
+}
+
+.shake{
+    animation:shake .4s;
+}
 </style>
 </head>
 <body>
@@ -4388,14 +4453,16 @@ body{
     <a href="saree.html" style="text-decoration: none; color: inherit;">
     <div class="category-card">
         <img src="main/sarees.webp" alt="">
-        <p>Sarees</p>
+       <p id="cat1">Sarees</p>
+
     </div>
 </a>
 
     <a href="readmade.html" style="text-decoration: none; color: inherit;">
     <div class="category-card">
         <img src="main/readymade.webp" alt="">
-        <p>Dresses</p>
+        <p id="cat2">Dresses</p>
+
     </div>
 </a>
 
@@ -4403,7 +4470,8 @@ body{
 
     <div class="category-card">
         <img src="main/dressmat.webp" alt="">
-        <p>Materials</p>
+       <p id="cat3">Materials</p>
+
     </div>
 </a>
 
@@ -4411,7 +4479,8 @@ body{
 
     <div class="category-card">
         <img src="main/lehangas.webp" alt="">
-        <p>Lehangas</p>
+     <p id="cat4">Lehangas</p>
+
     </div>
 
    </a>
@@ -4419,7 +4488,8 @@ body{
 
     <div class="category-card">
         <img src="main/jewlery.webp" alt="">
-        <p>Fine Jewellery</p>
+       <p id="cat5">Fine Jewellery</p>
+
     </div>
 </a>
 
@@ -4427,7 +4497,7 @@ body{
 
      <div class="category-card">
         <img src="main/makeup.webp" alt="">
-        <p>MakeUp</p>
+       <p id="cat6">MakeUp</p>
     </div>
     </a>
 </div>
@@ -4933,7 +5003,10 @@ body{
 <div class="connect-heading">
   Connect With Us
 </div>
-<div class="connect-form">  <div class="input-line">    <input       type="text"      placeholder="Your Name"      id="nameInput"    >  </div>  <div class="input-line">    <input       type="tel"      placeholder="Mobile Number"      id="mobileInput"    >  </div>  <button class="connect-btn" id="connectBtn">    Connect Now  </button></div>
+<div class="connect-form">  <div class="input-line">
+      <input       type="text"      placeholder="Your Name"      id="nameInput"    >  </div>  <div class="input-line">    <input       type="tel"      placeholder="Mobile Number"      id="mobileInput"    >  </div> 
+      
+      <button class="connect-btn" id="connectBtn">    Connect Now  </button></div>
 <footer class="footer-section">
 
   <img src="logos/magualogo.webp" alt="" class="footer-logo-img">
@@ -4953,14 +5026,19 @@ body{
 
    
 
-    <div class="newsletter-form">
+  <div class="newsletter-form">
 
-        <input type="email" placeholder="Your Email Address">
+    <input
+        type="email"
+        placeholder="Your Email Address"
+        id="emailInput"
+    >
 
-        <button>Join Now</button>
+    <button id="joinBtn">
+        Join Now
+    </button>
 
-    </div>
-
+</div>
 </div>
   <div class="footer-phone">
     +91 98765 43210
@@ -4976,199 +5054,8 @@ body{
 
 
 </div>
-
-<script>
-
-window.addEventListener("load", function(){
-
-    document.body.style.overflow = "hidden";
-
-    setTimeout(function(){
-
-        document.querySelector(".splash").style.display = "none";
-
-        document.body.style.overflow = "auto";
-
-        document.getElementById("main-content").style.display = "flex";
-
-    },2050);
-
-});
-
-
-const connectBtn =
-  document.getElementById("connectBtn");
-
-connectBtn.onclick = () => {
-
-  const name =
-    document.getElementById("nameInput");
-
-  const mobile =
-    document.getElementById("mobileInput");
-
-  /* Empty Check */
-  if(
-    name.value.trim() === "" ||
-    mobile.value.trim() === ""
-  ){
-
-    /* Name Shake */
-    if(name.value.trim() === ""){
-
-      name.parentElement.classList.add("shake");
-
-      setTimeout(() => {
-
-        name.parentElement.classList.remove("shake");
-
-      }, 400);
-
-    }
-
-    /* Mobile Shake */
-    if(mobile.value.trim() === ""){
-
-      mobile.parentElement.classList.add("shake");
-
-      setTimeout(() => {
-
-        mobile.parentElement.classList.remove("shake");
-
-      }, 400);
-
-    }
-
-    return;
-
-  }
-
-  /* Connected */
-  connectBtn.innerText =
-    "Connected";
-
-  connectBtn.classList.add("connected");
-
-};
-
-
-const featureObserver = new IntersectionObserver((entries) => {
-
-    entries.forEach((entry) => {
-
-        if(entry.isIntersecting){
-
-            entry.target.classList.add("show");
-
-            featureObserver.unobserve(entry.target);
-        }
-
-    });
-
-}, {
-    threshold:0.15
-});
-
-document.querySelectorAll(".feature-box").forEach((box) => {
-    featureObserver.observe(box);
-});
-
-
-const journeyObserver = new IntersectionObserver((entries) => {
-
-    entries.forEach((entry) => {
-
-        if(entry.isIntersecting){
-
-            entry.target.classList.add("show");
-
-            journeyObserver.unobserve(entry.target);
-        }
-
-    });
-
-}, {
-    threshold:0.2
-});
-
-document.querySelectorAll(".journey-card").forEach((card) => {
-    journeyObserver.observe(card);
-});
-
-
-
-window.addEventListener("load",()=>{
-
-    setTimeout(()=>{
-
-        document.querySelectorAll('.video-wrap video')
-        .forEach(video=>{
-
-            const shimmer =
-            video.parentElement.querySelector('.video-shimmer');
-
-            video.load();
-
-            video.addEventListener('canplay',()=>{
-
-                shimmer.style.display='none';
-
-                video.play();
-
-            },{once:true});
-
-        });
-
-    },2200);
-
-});
-
-document.querySelectorAll('.feature-img-wrap img')
-.forEach(img=>{
-
-    const shimmer =
-    img.parentElement.querySelector('.feature-img-shimmer');
-
-    const hideShimmer = ()=>{
-
-        shimmer.style.display='none';
-
-    };
-
-    if(img.complete){
-
-        hideShimmer();
-
-    }else{
-
-        img.addEventListener('load',hideShimmer);
-
-        img.addEventListener('error',hideShimmer);
-
-    }
-
-});
-
-document.querySelectorAll('.grid-img img')
-.forEach(img=>{
-
-    const shimmer =
-    img.parentElement.querySelector('.collage-shimmer');
-
-    const hideShimmer = ()=>{
-        shimmer.style.display='none';
-    };
-
-    if(img.complete){
-        hideShimmer();
-    }else{
-        img.addEventListener('load',hideShimmer);
-        img.addEventListener('error',hideShimmer);
-    }
-
-});
-
-</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
