@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Magua Sarees</title>
+
+<link href="https://fonts.cdnfonts.com/css/azonix" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    min-height:100vh;
+
+    overflow-x:hidden;
+    overflow-y:auto;
+
+    background:#5e3984;
+
+    font-family:Arial,sans-serif;
+}
+/* NAVBAR */
+
+.top-bar{
+    position:fixed;
+    top:15px;
+    left:15px;
+    right:15px;
+
+    height:70px;
+
+    background:rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,0.12);
+
+    border-radius:18px;
+
+    z-index:1000;
+}
+
+.top-left{
+    position:absolute;
+    top:50%;
+    left:20px;
+    transform:translateY(-50%);
+}
+
+.nav-logo-video{
+    width:60px;
+    height:60px;
+    object-fit:contain;
+}
+
+.top-right{
+    position:absolute;
+    top:50%;
+    right:20px;
+    transform:translateY(-50%);
+}
+
+.switch{
+    position:relative;
+
+    width:98px;
+    height:36px;
+
+    background:rgba(255,255,255,0.12);
+
+    border-radius:50px;
+
+    display:flex;
+    align-items:center;
+
+    padding:3px;
+
+    cursor:pointer;
+}
+
+.switch-circle{
+    position:absolute;
+
+    width:42px;
+    height:30px;
+
+    background:white;
+
+    border-radius:50px;
+
+    left:3px;
+
+    transition:.3s ease;
+}
+
+.switch-text{
+    position:relative;
+
+    width:100%;
+
+    display:flex;
+
+    z-index:2;
+}
+
+.switch-text span{
+    width:50%;
+
+    text-align:center;
+
+    line-height:30px;
+
+    font-size:10px;
+
+    font-weight:600;
+}
+
+#englishBtn{
+    color:#5e3984;
+}
+
+#teluguBtn{
+    color:white;
+}
+
+/* PAGE CONTENT */
+
+.hero{
+    width:100%;
+    height:100vh;
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:100px 20px 20px;
+}
+
+.hero h1{
+    color:white;
+
+    font-family:'Azonix',sans-serif;
+
+    font-size:52px;
+
+    letter-spacing:6px;
+
+    margin-bottom:25px;
+
+    text-align:center;
+}
+
+.hero p{
+    max-width:900px;
+
+    text-align:center;
+
+    color:#f8e7ff;
+
+    font-size:18px;
+
+    line-height:2;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .top-bar{
+        height:60px;
+    }
+
+    .nav-logo-video{
+        width:50px;
+        height:50px;
+    }
+
+    .hero h1{
+        font-size:22px;
+        letter-spacing:2px;
+    }
+
+    .hero p{
+        font-size:13px;
+        line-height:1.8;
+    }
+
+    .switch{
+        width:90px;
+        height:34px;
+    }
+}
+.hero-title{
+
+    margin-top:110px; /* below navbar */
+
+    text-align:center;
+
+    color:white;
+
+    font-family:'Azonix',sans-serif;
+
+    font-size:52px;
+
+    letter-spacing:6px;
+
+    width:100%;
+}
+
+@media(max-width:768px){
+
+    .hero-title{
+
+        margin-top:90px;
+
+        font-size:24px;
+
+        letter-spacing:2px;
+    }
+}
+.typing-paragraph{
+
+    width:90%;
+    max-width:1000px;
+
+    margin:35px auto 60px;
+
+    color:#f8e7ff;
+
+    font-size:18px;
+
+    line-height:2.1;
+
+    text-align:justify;
+
+    text-indent:40px;
+}
+
+
+@media(max-width:768px){
+
+    .typing-paragraph{
+
+        width:92%;
+
+        font-size:13px;
+
+        line-height:1.9;
+
+        text-indent:25px;
+    }
+}
+.typing-paragraph{
+    white-space:pre-wrap;
+}
+.switch-text{
+    position:relative;
+    z-index:5;
+}
+
+.switch-text span{
+    cursor:pointer;
+    user-select:none;
+}
+.nav-logo-img{
+    width:60px;
+    height:60px;
+
+    object-fit:contain;
+
+    display:block;
+}
+
+@media(max-width:768px){
+
+    .nav-logo-img{
+        width:45px;
+        height:45px;
+    }
+
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+
+<div class="top-bar">
+
+    <div class="top-left">
+
+       <img
+    class="nav-logo-img"
+    src="magualogo.webp"
+    alt="MAGUA ETHNICS"
+>
+
+    </div>
+
+    <div class="top-right">
+
+        <div class="switch" id="langSwitch">
+
+            <div class="switch-circle"></div>
+
+            <div class="switch-text">
+                <span id="englishBtn">ENG</span>
+                <span id="teluguBtn">తెలుగు</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="hero-title">
+    DRESSES
+</div>
+<div class="typing-paragraph">
+    <span id="typingText"></span>
+</div>
+<script>
+
+const englishText = `Magua Ethnics offers a carefully curated collection of women's fashion designed to combine comfort, elegance, and contemporary style. Our collections feature a wide range of outfits including 2-Piece Suits, 3-Piece Suits, Co-Ord Sets, Indo-Western Dresses, Designer Wear, Party Wear Collections, Festive Outfits, and Exclusive Fashion Ensembles for every occasion.
+
+Our 2-Piece and 3-Piece Suit collections are crafted with premium fabrics, elegant prints, detailed embroidery, and modern silhouettes that provide both sophistication and comfort. Whether for casual outings, office wear, family gatherings, or festive celebrations, our suit collections offer versatile styling options for every woman.
+
+For those who love contemporary fashion, our Co-Ord Sets combine modern trends with effortless elegance. Designed for comfort and style, these outfits are perfect for travel, brunches, casual events, and everyday fashion.
+
+Our Indo-Western collections blend traditional Indian aesthetics with modern design elements, creating unique outfits that are stylish, fashionable, and timeless. From elegant fusion dresses to contemporary ethnic wear, each design reflects creativity and individuality.
+
+We also offer premium Party Wear and Designer Wear collections featuring luxurious fabrics, intricate embellishments, sophisticated cuts, and exclusive designs. These outfits are perfect for weddings, receptions, festive celebrations, corporate events, and special occasions where you want to make a lasting impression.
+
+At Magua Ethnics, every collection is selected with attention to quality, comfort, craftsmanship, and modern fashion trends. Our mission is to help every woman express her personality through elegant fashion while enjoying confidence, beauty, and timeless style.`;
+
+const teluguText = `మగువ ఎథ్నిక్స్‌లో మహిళల కోసం ప్రత్యేకంగా రూపొందించిన ఫ్యాషన్ కలెక్షన్లు అందుబాటులో ఉన్నాయి. మా కలెక్షన్లలో 2 పీస్ సూట్స్, 3 పీస్ సూట్స్, కో-ఆర్డ్ సెట్స్, ఇండో-వెస్ట్రన్ డ్రెస్సులు, డిజైనర్ వేర్, పార్టీ వేర్, ఫెస్టివ్ కలెక్షన్లు మరియు వివిధ ప్రత్యేక సందర్భాలకు అనువైన ఆధునిక దుస్తులు ఉన్నాయి.
+
+మా 2 పీస్ మరియు 3 పీస్ సూట్స్ ప్రీమియం ఫ్యాబ్రిక్స్, అందమైన ప్రింట్స్, సున్నితమైన ఎంబ్రాయిడరీ మరియు ఆధునిక డిజైన్లతో రూపొందించబడ్డాయి. రోజువారీ ఉపయోగం నుండి పండుగలు, కుటుంబ వేడుకలు మరియు ప్రత్యేక కార్యక్రమాల వరకు ప్రతి సందర్భానికి ఇవి సరైన ఎంపిక.
+
+ఆధునిక ఫ్యాషన్‌ను ఇష్టపడేవారికి మా కో-ఆర్డ్ సెట్స్ స్టైల్ మరియు సౌకర్యం రెండింటినీ అందిస్తాయి. ట్రావెల్, క్యాజువల్ అవుటింగ్స్, మీటింగ్స్ మరియు ప్రత్యేక సందర్భాలకు ఇవి ఎంతో అనుకూలంగా ఉంటాయి.
+
+ఇండో-వెస్ట్రన్ కలెక్షన్లు భారతీయ సంప్రదాయాన్ని ఆధునిక ఫ్యాషన్‌తో మేళవించి ప్రత్యేకమైన రూపాన్ని అందిస్తాయి. ఫ్యూజన్ డ్రెస్సులు, మోడ్రన్ ఎథ్నిక్ వేర్ మరియు ట్రెండీ డిజైన్లు ప్రతి మహిళ వ్యక్తిత్వాన్ని ప్రతిబింబించేలా రూపొందించబడ్డాయి.
+
+మా పార్టీ వేర్ మరియు డిజైనర్ వేర్ కలెక్షన్లు విలాసవంతమైన ఫ్యాబ్రిక్స్, అందమైన అలంకరణలు మరియు ప్రత్యేక డిజైన్లతో రూపొందించబడ్డాయి. వివాహాలు, రిసెప్షన్లు, పండుగలు, కార్పొరేట్ ఈవెంట్లు మరియు ప్రత్యేక వేడుకలలో అందంగా కనిపించేందుకు ఇవి ఉత్తమ ఎంపిక.
+
+నాణ్యత, సౌకర్యం మరియు ఆధునిక ఫ్యాషన్‌ను అందించడం మగువ ఎథ్నిక్స్ లక్ష్యం. ప్రతి మహిళ తన ప్రత్యేకతను స్టైల్‌తో వ్యక్తపరచుకునేలా మా కలెక్షన్లు రూపొందించబడ్డాయి.`;
+let typingTimer;
+
+function startTyping(text){
+
+    clearTimeout(typingTimer);
+
+    const typingBox = document.getElementById("typingText");
+
+    typingBox.innerHTML = "";
+
+    let i = 0;
+
+    function type(){
+
+        if(i < text.length){
+
+            typingBox.innerHTML += text.charAt(i);
+
+            i++;
+
+            typingTimer = setTimeout(type,12);
+        }
+
+    }
+
+    type();
+}
+
+/* Page Load */
+
+window.onload = function(){
+
+    startTyping(englishText);
+
+};
+
+/* Language Switch */
+
+const englishBtn = document.getElementById("englishBtn");
+const teluguBtn = document.getElementById("teluguBtn");
+const circle = document.querySelector(".switch-circle");
+
+let isEnglish = true;
+
+document.getElementById("langSwitch").addEventListener("click",function(){
+
+    const typingBox = document.getElementById("typingText");
+
+    typingBox.innerHTML = "";
+
+    if(isEnglish){
+
+        circle.style.left = "48px";
+
+        englishBtn.style.color = "white";
+        teluguBtn.style.color = "#5e3984";
+
+        startTyping(teluguText);
+
+    }else{
+
+        circle.style.left = "3px";
+
+        englishBtn.style.color = "#5e3984";
+        teluguBtn.style.color = "white";
+
+        startTyping(englishText);
+    }
+
+    isEnglish = !isEnglish;
+
+});
+
+</script>
+</body>
+</html>
