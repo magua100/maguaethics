@@ -4091,6 +4091,61 @@ html,body{
     }
 
 }
+.video-wrap{
+    position:relative;
+}
+
+.video-shimmer{
+    position:absolute;
+    inset:0;
+    border-radius:22px;
+    background:#ffffff15;
+    overflow:hidden;
+    z-index:2;
+}
+
+.video-shimmer::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-150%;
+    width:60%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.4),
+        transparent
+    );
+    animation:videoShimmer 1s infinite;
+}
+
+@keyframes videoShimmer{
+    to{
+        left:150%;
+    }
+}
+.nav-logo-video{
+    width:60px;
+    height:60px;
+
+    object-fit:contain;
+
+    background:transparent !important;
+
+    border:none;
+
+    mix-blend-mode:screen;
+
+    isolation:isolate;
+}
+
+@media(max-width:768px){
+    .nav-logo-video{
+        width:45px;
+        height:45px;
+    }
+}
 </style>
 </head>
 <body>
@@ -4120,10 +4175,29 @@ html,body{
     <!-- Left Logo -->
    <div class="top-left">
 
-    <video class="nav-logo-video" autoplay muted loop playsinline>
-        <source src="logos/magualogo.webm" type="video/webm">
-    </video>
+   <video
+    class="nav-logo-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    webkit-playsinline
+    preload="auto"
+>
 
+    <!-- Safari / iPhone -->
+    <source
+        src="logos/video2.mov"
+        type='video/mp4; codecs="hvc1"'
+    >
+
+    <!-- Chrome / Android -->
+    <source
+        src="logos/magualogo.webm"
+        type="video/webm"
+    >
+
+</video>
 </div>
 
     <!-- Right Switch -->
@@ -4371,21 +4445,33 @@ html,body{
 
 <div class="store-videos">
 
-    <video autoplay muted loop playsinline>
-        <source src="videos/1.mp4" type="video/mp4">
-    </video>
+    <div class="video-wrap">
+        <div class="video-shimmer"></div>
+        <video autoplay muted loop playsinline>
+            <source src="videos/1.mp4" type="video/mp4">
+        </video>
+    </div>
 
-    <video autoplay muted loop playsinline>
-        <source src="videos/2.mp4" type="video/mp4">
-    </video>
+    <div class="video-wrap">
+        <div class="video-shimmer"></div>
+        <video autoplay muted loop playsinline>
+            <source src="videos/2.mp4" type="video/mp4">
+        </video>
+    </div>
 
-    <video autoplay muted loop playsinline>
-        <source src="videos/3.mp4" type="video/mp4">
-    </video>
+    <div class="video-wrap">
+        <div class="video-shimmer"></div>
+        <video autoplay muted loop playsinline>
+            <source src="videos/3.mp4" type="video/mp4">
+        </video>
+    </div>
 
-    <video autoplay muted loop playsinline>
-        <source src="videos/4.mp4" type="video/mp4">
-    </video>
+    <div class="video-wrap">
+        <div class="video-shimmer"></div>
+        <video autoplay muted loop playsinline>
+            <source src="videos/4.mp4" type="video/mp4">
+        </video>
+    </div>
 
 </div>
 <div class="collections-heading">
@@ -4687,6 +4773,7 @@ html,body{
 </div>
 <div class="directors-scroll">
 
+
   <div class="director-card">
 
     <div class="director-inner">
@@ -4894,6 +4981,22 @@ const journeyObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll(".journey-card").forEach((card) => {
     journeyObserver.observe(card);
+});
+
+
+document.querySelectorAll('.video-wrap video').forEach(video=>{
+
+    const shimmer =
+    video.parentElement.querySelector('.video-shimmer');
+
+    const hideShimmer = ()=>{
+        shimmer.style.display='none';
+    };
+
+    video.addEventListener('loadeddata',hideShimmer);
+
+    video.addEventListener('canplay',hideShimmer);
+
 });
 
 </script>
