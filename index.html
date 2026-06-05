@@ -4,7 +4,6 @@
 <meta charset="UTF-8" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
 <link rel="icon" type="image/png" href="logos/favicon.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link href="https://fonts.cdnfonts.com/css/azonix" rel="stylesheet">
@@ -4322,6 +4321,43 @@ body{
 
 .shake{
     animation:shake .4s;
+}
+@keyframes flowerTrail{
+
+    from{
+        opacity:1;
+        transform:
+        translate(-50%,-50%)
+        scale(1);
+    }
+
+    to{
+        opacity:0;
+        transform:
+        translate(-50%,-80px)
+        rotate(180deg)
+        scale(.5);
+    }
+
+}
+
+@keyframes touchSpark{
+
+    from{
+        opacity:1;
+        transform:
+        translate(-50%,-50%);
+    }
+
+    to{
+        opacity:0;
+        transform:
+        translate(
+            calc(-50% + var(--x)),
+            calc(-50% + var(--y))
+        );
+    }
+
 }
 </style>
 </head>
