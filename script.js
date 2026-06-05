@@ -699,3 +699,220 @@ if(window.innerWidth <= 768){
     });
 
 }
+const heading =
+document.getElementById("changingHeading");
+
+const items = [
+
+    {
+        text:"FASHION",
+        font:"Azonix",
+        cls:"zoomAnim"
+    },
+
+    {
+        text:"ELEGANCE",
+        font:"Cinzel",
+        cls:"leftAnim"
+    },
+
+    {
+        text:"LUXURY",
+        font:"Cormorant Garamond",
+        cls:"rightAnim"
+    },
+
+    {
+        text:"STYLE",
+        font:"Playfair Display",
+        cls:"topAnim"
+    },
+
+    {
+        text:"MAGUA ETHNICS",
+        font:"Azonix",
+        cls:"bottomAnim"
+    }
+
+];
+
+let i = 0;
+
+setInterval(()=>{
+
+    i = (i + 1) % items.length;
+
+    heading.className =
+    "changing-heading";
+
+    heading.textContent =
+    items[i].text;
+
+    heading.style.fontFamily =
+    items[i].font;
+
+    heading.classList.add(
+        items[i].cls
+    );
+
+    // Sparkles on every word change
+
+    for(let s=0;s<12;s++){
+
+        const spark =
+        document.createElement("span");
+
+        spark.innerHTML = "✨";
+
+        spark.style.position = "absolute";
+
+        spark.style.left =
+        (40 + Math.random()*20) + "%";
+
+        spark.style.top =
+        (40 + Math.random()*20) + "%";
+
+        spark.style.fontSize =
+        (16 + Math.random()*10) + "px";
+
+        spark.style.pointerEvents = "none";
+
+        spark.style.zIndex = "999";
+
+        spark.style.setProperty(
+            "--x",
+            (Math.random()*200-100)+"px"
+        );
+
+        spark.style.setProperty(
+            "--y",
+            (Math.random()*120-60)+"px"
+        );
+
+        spark.style.animation =
+        "sparkBurst 1s ease-out forwards";
+
+        heading.appendChild(spark);
+
+        setTimeout(()=>{
+            spark.remove();
+        },1000);
+
+    }
+
+},1000);
+
+
+const brand =
+document.getElementById("brandChanging");
+
+const brandItems = [
+
+    {
+        text:"FASHION",
+        font:"Cinzel",
+        cls:"leftAnim"
+    },
+
+    {
+        text:"ELEGANCE",
+        font:"Cormorant Garamond",
+        cls:"rightAnim"
+    },
+
+    {
+        text:"LUXURY",
+        font:"Playfair Display",
+        cls:"topAnim"
+    },
+
+    {
+        text:"STYLE",
+        font:"Cinzel",
+        cls:"bottomAnim"
+    },
+
+    {
+        text:"MAGUA<br>ETHNICS",
+        font:"Azonix",
+        cls:"zoomAnim"
+    }
+
+];
+
+let brandIndex = 0;
+
+setInterval(()=>{
+
+    brandIndex =
+    (brandIndex + 1) %
+    brandItems.length;
+
+    brand.className =
+    "changing-heading brand-changing";
+
+    brand.innerHTML =
+    brandItems[brandIndex].text;
+
+    brand.style.fontFamily =
+    brandItems[brandIndex].font;
+
+    brand.classList.add(
+        brandItems[brandIndex].cls
+    );
+
+    for(let i=0;i<25;i++){
+
+        const spark =
+        document.createElement("span");
+
+        spark.className =
+        "heading-spark";
+
+        const effects = [
+            "✨",
+            "⭐",
+            "💫",
+            "✦",
+            "✧",
+            "❋"
+        ];
+
+        spark.innerHTML =
+        effects[
+            Math.floor(
+                Math.random()*effects.length
+            )
+        ];
+
+        spark.style.left =
+        (35 + Math.random()*30) + "%";
+
+        spark.style.top =
+        (35 + Math.random()*30) + "%";
+
+        spark.style.fontSize =
+        (18 + Math.random()*14) + "px";
+
+        spark.style.setProperty(
+            "--x",
+            (Math.random()*280-140)+"px"
+        );
+
+        spark.style.setProperty(
+            "--y",
+            (Math.random()*180-90)+"px"
+        );
+
+        spark.style.animation =
+        "sparkBurst 1.2s ease-out forwards";
+
+        brand.appendChild(spark);
+
+        setTimeout(()=>{
+            spark.remove();
+        },1200);
+
+    }
+
+},1000);
