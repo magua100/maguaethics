@@ -4359,6 +4359,223 @@ body{
     }
 
 }
+.changing-heading{
+
+    position:relative;
+
+    text-align:center;
+
+    margin:0;
+
+    padding:0;
+
+    line-height:1;
+
+    min-height:35px;
+
+    color:white;
+
+    font-size:24px;
+
+    letter-spacing:4px;
+
+    text-transform:uppercase;
+
+    overflow:visible;
+}
+
+.heading-spark{
+
+    position:absolute;
+
+    pointer-events:none;
+
+    z-index:999;
+
+    filter:
+        drop-shadow(0 0 8px rgba(255,255,255,.9))
+        drop-shadow(0 0 18px rgba(255,255,255,.6));
+}
+
+@keyframes sparkBurst{
+
+    0%{
+
+        transform:
+        translate(-50%,-50%)
+        scale(.2)
+        rotate(0deg);
+
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    100%{
+
+        transform:
+        translate(
+            calc(-50% + var(--x)),
+            calc(-50% + var(--y))
+        )
+        scale(1.6)
+        rotate(540deg);
+
+        opacity:0;
+    }
+
+}
+
+.zoomAnim{
+    animation:zoomAnim .8s ease;
+}
+
+.leftAnim{
+    animation:leftAnim .8s ease;
+}
+
+.rightAnim{
+    animation:rightAnim .8s ease;
+}
+
+.topAnim{
+    animation:topAnim .8s ease;
+}
+
+.bottomAnim{
+    animation:bottomAnim .8s ease;
+}
+
+@keyframes zoomAnim{
+
+    from{
+        opacity:0;
+        transform:scale(.4);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+@keyframes leftAnim{
+
+    from{
+        opacity:0;
+        transform:translateX(-120px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+
+}
+
+@keyframes rightAnim{
+
+    from{
+        opacity:0;
+        transform:translateX(120px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+
+}
+
+@keyframes topAnim{
+
+    from{
+        opacity:0;
+        transform:translateY(-80px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+@keyframes bottomAnim{
+
+    from{
+        opacity:0;
+        transform:translateY(80px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+@keyframes sparkBurst{
+
+    0%{
+
+        transform:
+        translate(-50%,-50%)
+        scale(1);
+
+        opacity:1;
+    }
+
+    100%{
+
+        transform:
+        translate(
+            calc(-50% + var(--x)),
+            calc(-50% + var(--y))
+        )
+        scale(.3);
+
+        opacity:0;
+    }
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .changing-heading{
+
+        font-size:16px;
+
+        letter-spacing:2px;
+
+        min-height:28px;
+    }
+
+}
+.brand-changing{
+
+    margin-top:10px;
+
+    font-size:26px;
+
+    min-height:40px;
+}
+
+@media(max-width:768px){
+
+    .brand-changing{
+
+        font-size:18px;
+
+        min-height:30px;
+    }
+
+}
 </style>
 </head>
 <body>
@@ -4459,9 +4676,11 @@ body{
 
 </video>
 
-<div class="brand-text">
-  <span>magua</span>
-  <p>Ethnics</p>
+<div
+    class="changing-heading brand-changing"
+    id="brandChanging"
+>
+    MAGUA ETHNICS
 </div>
 <div class="earrings">
 
@@ -4553,6 +4772,7 @@ body{
   <span></span>
    <span></span>
 </div>
+
 <div class="feature-box">
     <div class="feature-img-wrap">
         <div class="feature-img-shimmer"></div>
@@ -4644,6 +4864,10 @@ body{
 
     </div>
 
+</div>
+
+<div class="changing-heading" id="changingHeading">
+    FASHION
 </div>
 <div class="store-heading">
     💜 ✨ 💜 ✨ 💜
