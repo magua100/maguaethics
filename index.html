@@ -4639,6 +4639,531 @@ body{
     }
 
 }
+.app-launch-card{
+    max-width:500px;
+    margin:25px auto;
+    padding:28px 20px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:28px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.18);
+}
+
+.launch-icon-row{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    margin-bottom:15px;
+}
+
+.launch-icon-row i{
+    width:52px;
+    height:52px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.12);
+
+    color:#fff;
+    font-size:24px;
+}
+
+.app-launch-card h3{
+    color:#fff;
+    font-family:'Azonix',sans-serif;
+    font-size:16px;
+    letter-spacing:1px;
+    margin-bottom:8px;
+}
+
+.app-launch-card p{
+    color:rgba(255,255,255,.8);
+    font-size:13px;
+    margin-bottom:20px;
+}
+
+.notify-box{
+    display:flex;
+    align-items:center;
+
+    background:rgba(255,255,255,.12);
+
+    border-radius:60px;
+
+    padding:6px;
+}
+
+.notify-box .fa-whatsapp{
+    color:#25D366;
+    font-size:22px;
+    padding:0 14px;
+}
+
+.notify-box input{
+    flex:1;
+
+    border:none;
+    outline:none;
+
+    background:none;
+
+    color:#fff;
+
+    font-size:14px;
+}
+
+.notify-box input::placeholder{
+    color:rgba(255,255,255,.6);
+}
+
+.notify-box button{
+    width:42px;
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    color:#5e3984;
+
+    cursor:pointer;
+}
+
+@media(max-width:768px){
+
+    .app-launch-card{
+        padding:22px 14px;
+    }
+
+    .launch-icon-row i{
+        width:42px;
+        height:42px;
+        font-size:18px;
+    }
+
+    .app-launch-card h3{
+        font-size:11px;
+    }
+
+    .app-launch-card p{
+        font-size:9px;
+    }
+
+    .notify-box input{
+        font-size:12px;
+    }
+}
+/* Shake Input */
+.shake{
+    animation:shake .4s ease;
+}
+
+@keyframes shake{
+    0%,100%{transform:translateX(0);}
+    20%{transform:translateX(-6px);}
+    40%{transform:translateX(6px);}
+    60%{transform:translateX(-4px);}
+    80%{transform:translateX(4px);}
+}
+
+/* Bell Success Animation */
+
+#notifyBtn{
+    transform-style:preserve-3d;
+}
+
+.notify-success{
+    animation:bellMegaShake 5s ease-in-out;
+    box-shadow:
+        0 0 20px rgba(255,255,255,.7),
+        0 0 40px rgba(255,255,255,.4);
+}
+.notify-success{
+    animation:bellMegaShake 5s ease-in-out;
+}
+
+@keyframes bellMegaShake{
+
+    0%{
+        transform:
+            translateY(0)
+            scale(1)
+            rotate(0deg);
+    }
+
+    5%{
+        transform:
+            translateY(-15px)
+            scale(1.4)
+            rotate(-20deg);
+    }
+
+    10%{
+        transform:
+            translateY(-15px)
+            scale(1.4)
+            rotate(20deg);
+    }
+
+    15%{
+        transform:
+            translateY(-15px)
+            scale(1.4)
+            rotate(-20deg);
+    }
+
+    20%{
+        transform:
+            translateY(-15px)
+            scale(1.4)
+            rotate(20deg);
+    }
+
+    25%{
+        transform:
+            translateY(-15px)
+            scale(1.4)
+            rotate(-20deg);
+    }
+
+    30%{
+        transform:
+            translateY(-15px)
+            scale(1.4)
+            rotate(20deg);
+    }
+
+    35%{
+        transform:
+            translateY(-15px)
+            scale(1.35)
+            rotate(-18deg);
+    }
+
+    40%{
+        transform:
+            translateY(-15px)
+            scale(1.35)
+            rotate(18deg);
+    }
+
+    50%{
+        transform:
+            translateY(-12px)
+            scale(1.3)
+            rotate(-15deg);
+    }
+
+    60%{
+        transform:
+            translateY(-12px)
+            scale(1.3)
+            rotate(15deg);
+    }
+
+    70%{
+        transform:
+            translateY(-8px)
+            scale(1.2)
+            rotate(-10deg);
+    }
+
+    80%{
+        transform:
+            translateY(-8px)
+            scale(1.2)
+            rotate(10deg);
+    }
+
+    90%{
+        transform:
+            translateY(-4px)
+            scale(1.1)
+            rotate(-5deg);
+    }
+
+    100%{
+        transform:
+            translateY(0)
+            scale(1)
+            rotate(0deg);
+    }
+}
+
+.terms-text{
+    margin-top:8px;
+
+    text-align:center;
+
+    color:rgba(255,255,255,.72);
+
+    font-size:12px;
+
+    line-height:1.3;
+}
+
+.terms-text a{
+    color:#fff;
+
+    text-decoration:none;
+
+    font-weight:600;
+}
+
+.terms-text a:hover{
+    text-decoration:underline;
+}
+
+@media(max-width:768px){
+
+    .terms-text{
+        margin-top:6px;
+
+        font-size:10px;
+
+        line-height:1.2;
+
+        padding:0 10px;
+    }
+
+}
+.terms-text span{
+    color:#fff;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.sheet-overlay{
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.55);
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.3s;
+
+    z-index:9998;
+}
+
+.sheet-overlay.show{
+    opacity:1;
+    visibility:visible;
+}
+
+.bottom-sheet{
+    position:fixed;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:75vh;
+
+    background:#5e3984;
+
+    border-radius:28px 28px 0 0;
+
+    transform:translateY(100%);
+
+    transition:.35s ease;
+
+    z-index:9999;
+
+    overflow-y:auto;
+
+    padding:24px;
+    
+    box-shadow:
+    0 -10px 40px rgba(0,0,0,.35);
+}
+
+.bottom-sheet.show{
+    transform:translateY(0);
+}
+
+.sheet-handle{
+    width:60px;
+    height:6px;
+
+    background:rgba(255,255,255,.45);
+
+    border-radius:20px;
+
+    margin:0 auto 22px;
+}
+.bottom-sheet{
+    -ms-overflow-style:none;
+    scrollbar-width:none;
+}
+
+.bottom-sheet::-webkit-scrollbar{
+    display:none;
+}
+.sheet-content h3{
+    margin-bottom:18px;
+
+    color:#fff;
+
+    font-size:24px;
+
+    font-family:'Azonix',sans-serif;
+
+    letter-spacing:1px;
+
+    text-align:center;
+}
+
+.sheet-content p{
+    color:rgba(255,255,255,.88);
+
+    line-height:1.9;
+
+    font-size:16px;
+
+    text-align:left;
+}
+
+@media(max-width:768px){
+
+    .bottom-sheet{
+        height:80vh;
+        padding:20px;
+    }
+
+    .sheet-content h3{
+        font-size:16px;
+        margin-bottom:14px;
+    }
+
+    .sheet-content p{
+        font-size:13px;
+        line-height:1.8;
+    }
+}
+.app-launch-card{
+    position:relative;
+    overflow:visible;
+}
+
+.balloon{
+    position:absolute;
+
+    font-size:60px;
+
+    z-index:1;
+
+    animation:floatBalloon 4s ease-in-out infinite;
+
+    filter:drop-shadow(0 8px 12px rgba(0,0,0,.15));
+}
+
+.balloon::after{
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+    top:55px;
+
+    width:2px;
+    height:80px;
+
+    background:rgba(255,255,255,.75);
+
+    transform:translateX(-50%);
+}
+
+/* Top Left */
+.balloon-1{
+    left:-50px;
+    top:10px;
+}
+
+/* Bottom Left */
+.balloon-2{
+    left:-35px;
+    bottom:15px;
+
+    animation-delay:1s;
+}
+
+/* Top Right */
+.balloon-3{
+    right:-50px;
+    top:10px;
+
+    animation-delay:1.5s;
+}
+
+/* Bottom Right */
+.balloon-4{
+    right:-35px;
+    bottom:15px;
+
+    animation-delay:.5s;
+}
+
+@keyframes floatBalloon{
+
+    0%,100%{
+        transform:
+        translateY(0)
+        rotate(-4deg);
+    }
+
+    50%{
+        transform:
+        translateY(-16px)
+        rotate(4deg);
+    }
+}
+
+@media(max-width:768px){
+
+    .balloon{
+        font-size:44px;
+    }
+
+    .balloon::after{
+        top:40px;
+        height:55px;
+    }
+
+    .balloon-1{
+        left:-22px;
+        top:10px;
+    }
+
+    .balloon-2{
+        left:-16px;
+        bottom:20px;
+    }
+
+    .balloon-3{
+        right:-22px;
+        top:10px;
+    }
+
+    .balloon-4{
+        right:-16px;
+        bottom:20px;
+    }
+}
 </style>
 </head>
 <body>
@@ -4927,7 +5452,10 @@ body{
 
     </div>
 
+
+    
 </div>
+
 
 <div class="changing-heading" id="changingHeading">
     FASHION
@@ -5218,6 +5746,43 @@ body{
 
 </div>
 <div class="ethnic-heading">
+  COMING SOON
+</div>
+
+<div class="app-launch-card">
+  
+  <div class="balloon balloon-1">🎈</div>
+    <div class="balloon balloon-2">🎈</div>
+    <div class="balloon balloon-3">🎈</div>
+    <div class="balloon balloon-4">🎈</div>
+
+    <div class="launch-icon-row">
+        <i class="fab fa-apple"></i>
+        <i class="fab fa-google-play"></i>
+    </div>
+
+    <h3>Mobile Application</h3>
+
+    <p>
+        Android & IOS App Coming Soon
+    </p>
+
+    <div class="notify-box">
+        <i class="fab fa-whatsapp"></i>
+        <input
+            type="tel"
+            id="notifyNumber"
+            placeholder="WhatsApp Number"
+            maxlength="10"
+        >
+
+        <button id="notifyBtn">
+            <i class="fas fa-bell"></i>
+        </button>
+    </div>
+
+</div>
+<div class="ethnic-heading">
   Beauty Of Ethnic
 </div>
 <div class="ethnic-section">
@@ -5329,7 +5894,12 @@ body{
 </div>
 <div class="connect-form">  <div class="input-line">
       <input       type="text"      placeholder="Your Name"      id="nameInput"    >  </div>  <div class="input-line">    <input       type="tel"      placeholder="Mobile Number"      id="mobileInput"    >  </div> 
-      
+     <div class="terms-text">
+    By continuing, you agree to our
+    <span onclick="openSheet('terms')">Terms & Conditions</span>
+    and
+    <span onclick="openSheet('privacy')">Privacy Policy</span>
+</div>
       <button class="connect-btn" id="connectBtn">    Connect Now  </button></div>
 <footer class="footer-section">
 
@@ -5384,6 +5954,16 @@ body{
     <span id="galleryClose">&times;</span>
 
     <img id="galleryImage" src="">
+
+</div>
+
+<div class="sheet-overlay" id="sheetOverlay"></div>
+
+<div class="bottom-sheet" id="bottomSheet">
+
+    <div class="sheet-handle"></div>
+
+    <div class="sheet-content" id="sheetContent"></div>
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
