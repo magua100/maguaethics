@@ -1,770 +1,425 @@
-const SUPABASE_URL = "https://wyvttsbfhrsnttncvdre.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_7mAtSSCMGYgTfuSQBM9jtA_U46okrpb";
 
-window.supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
+
+const supabaseUrl =
+"https://ummzqbaalrxyyulrkxaz.supabase.co";
+
+const supabaseKey =
+"sb_publishable_o79JQ-LkQkFohS4m7waJVw_U_xiIX8r";
+
+window.supabaseClient =
+supabase.createClient(
+    supabaseUrl,
+    supabaseKey
 );
 
-console.log("secured");
-
-document.addEventListener("DOMContentLoaded", function(){
-
-    document.body.style.overflow = "hidden";
-
-    setTimeout(function(){
-
-        document.querySelector(".splash").style.display = "none";
-
-        document.body.style.overflow = "auto";
-
-        document.getElementById("main-content").style.display = "flex";
-
-    },2050);
-
-});
+console.log(
+    "✅ Supabase Connected"
+);
 
 
-const connectBtn =
-  document.getElementById("connectBtn");
+let slides = document.querySelectorAll(".banner-slide");
+let dots = document.querySelectorAll(".dot");
 
-connectBtn.onclick = () => {
+let currentSlide = 0;
 
-  const name =
-    document.getElementById("nameInput");
+/* SHOW SLIDE */
 
-  const mobile =
-    document.getElementById("mobileInput");
+function showSlide(index){
 
-  /* Empty Check */
-  if(
-    name.value.trim() === "" ||
-    mobile.value.trim() === ""
-  ){
+  slides.forEach(slide=>{
+    slide.classList.remove("active");
+  });
 
-    /* Name Shake */
-    if(name.value.trim() === ""){
+  dots.forEach(dot=>{
+    dot.classList.remove("active");
+  });
 
-      name.parentElement.classList.add("shake");
+  slides[index].classList.add("active");
+  dots[index].classList.add("active");
+}
 
-      setTimeout(() => {
+/* AUTO CHANGE */
 
-        name.parentElement.classList.remove("shake");
+setInterval(()=>{
 
-      }, 400);
+  currentSlide++;
 
-    }
-
-    /* Mobile Shake */
-    if(mobile.value.trim() === ""){
-
-      mobile.parentElement.classList.add("shake");
-
-      setTimeout(() => {
-
-        mobile.parentElement.classList.remove("shake");
-
-      }, 400);
-
-    }
-
-    return;
-
+  if(currentSlide >= slides.length){
+    currentSlide = 0;
   }
 
-  /* Connected */
-  connectBtn.innerText =
-    "Connected";
+  showSlide(currentSlide);
 
-  connectBtn.classList.add("connected");
+},3000);
 
-};
+/* SCROLL CHANGE */
+
+let slider = document.getElementById("bannerSlider");
+
+slider.addEventListener("wheel",function(){
+
+  currentSlide++;
+
+  if(currentSlide >= slides.length){
+    currentSlide = 0;
+  }
+
+  showSlide(currentSlide);
+
+});
 
 
-const featureObserver = new IntersectionObserver((entries) => {
+function showCategory(category, element){
 
-    entries.forEach((entry) => {
+    document
+    .querySelectorAll(".category-content")
+    .forEach(section=>{
 
-        if(entry.isIntersecting){
-
-            entry.target.classList.add("show");
-
-            featureObserver.unobserve(entry.target);
-        }
+        section.style.display = "none";
 
     });
 
-}, {
-    threshold:0.15
-});
+    document
+    .querySelectorAll(".category-item")
+    .forEach(item=>{
 
-document.querySelectorAll(".feature-box").forEach((box) => {
-    featureObserver.observe(box);
-});
-
-
-const journeyObserver = new IntersectionObserver((entries) => {
-
-    entries.forEach((entry) => {
-
-        if(entry.isIntersecting){
-
-            entry.target.classList.add("show");
-
-            journeyObserver.unobserve(entry.target);
-        }
+        item.classList.remove("active");
 
     });
 
-}, {
-    threshold:0.2
+    document.getElementById(
+        category + "Content"
+    ).style.display = "block";
+
+    element.classList.add("active");
+
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+    showCategory(
+        "sarees",
+        document.querySelector(".category-item")
+    );
+
 });
 
-document.querySelectorAll(".journey-card").forEach((card) => {
-    journeyObserver.observe(card);
+const panels = document.querySelectorAll(".hero-panel");
+const markers = document.querySelectorAll(".hero-marker");
+const heroCarousel = document.getElementById("heroCarousel");
+
+let activePanel = 0;
+
+function displayPanel(index){
+
+    panels.forEach(panel=>{
+        panel.classList.remove("current");
+    });
+
+    markers.forEach(marker=>{
+        marker.classList.remove("current");
+    });
+
+    panels[index].classList.add("current");
+    markers[index].classList.add("current");
+}
+
+function nextPanel(){
+
+    activePanel++;
+
+    if(activePanel >= panels.length){
+        activePanel = 0;
+    }
+
+    displayPanel(activePanel);
+}
+
+let autoPlay = setInterval(nextPanel,3000);
+
+markers.forEach((marker,index)=>{
+
+    marker.addEventListener("click",()=>{
+
+        activePanel = index;
+
+        displayPanel(activePanel);
+
+        clearInterval(autoPlay);
+        autoPlay = setInterval(nextPanel,3000);
+
+    });
+
+});
+
+heroCarousel.addEventListener("wheel",(e)=>{
+
+    if(e.deltaY > 0){
+        activePanel++;
+    }else{
+        activePanel--;
+    }
+
+    if(activePanel >= panels.length){
+        activePanel = 0;
+    }
+
+    if(activePanel < 0){
+        activePanel = panels.length - 1;
+    }
+
+    displayPanel(activePanel);
+
+});
+
+let touchStart = 0;
+
+heroCarousel.addEventListener("touchstart",(e)=>{
+    touchStart = e.touches[0].clientX;
+});
+
+heroCarousel.addEventListener("touchend",(e)=>{
+
+    let touchEnd = e.changedTouches[0].clientX;
+
+    if(touchStart - touchEnd > 50){
+        activePanel = (activePanel + 1) % panels.length;
+    }
+    else if(touchEnd - touchStart > 50){
+        activePanel = (activePanel - 1 + panels.length) % panels.length;
+    }
+
+    displayPanel(activePanel);
+
 });
 
 
+const cards = document.querySelectorAll(".showcase-item");
+const points = document.querySelectorAll(".showcase-point");
 
-window.addEventListener("load",()=>{
+let activeCard = 0;
 
-    setTimeout(()=>{
+function activateCard(index){
 
-        document.querySelectorAll('.video-wrap video')
-        .forEach(video=>{
+    cards.forEach(card=>{
+        card.classList.remove("selected");
+    });
 
-            const shimmer =
-            video.parentElement.querySelector('.video-shimmer');
+    points.forEach(point=>{
+        point.classList.remove("selected");
+    });
 
-            video.load();
+    cards[index].classList.add("selected");
+    points[index].classList.add("selected");
+}
 
-            video.addEventListener('canplay',()=>{
+setInterval(()=>{
 
-                shimmer.style.display='none';
+    activeCard++;
 
-                video.play();
+    if(activeCard >= cards.length){
+        activeCard = 0;
+    }
 
-            },{once:true});
+    activateCard(activeCard);
+
+},3000);
+
+points.forEach((point,index)=>{
+
+    point.addEventListener("click",()=>{
+
+        activeCard = index;
+        activateCard(activeCard);
+
+    });
+
+});
+window.addEventListener("DOMContentLoaded", () => {
+
+    const panels = document.querySelectorAll(".flip-card");
+    const marks = document.querySelectorAll(".flip-mark");
+
+    let pointer = 0;
+
+    function switchPanel(index){
+
+        panels.forEach(panel => {
+            panel.classList.remove("open");
+        });
+
+        marks.forEach(mark => {
+            mark.classList.remove("open");
+        });
+
+        panels[index].classList.add("open");
+        marks[index].classList.add("open");
+    }
+
+    let sliderTimer = setInterval(() => {
+
+        pointer++;
+
+        if(pointer >= panels.length){
+            pointer = 0;
+        }
+
+        switchPanel(pointer);
+
+    }, 3000);
+
+    marks.forEach((mark, index) => {
+
+        mark.addEventListener("click", () => {
+
+            pointer = index;
+
+            switchPanel(pointer);
+
+            clearInterval(sliderTimer);
+
+            sliderTimer = setInterval(() => {
+
+                pointer++;
+
+                if(pointer >= panels.length){
+                    pointer = 0;
+                }
+
+                switchPanel(pointer);
+
+            }, 3000);
 
         });
 
-    },2200);
-
-});
-
-document.querySelectorAll('.feature-img-wrap img')
-.forEach(img=>{
-
-    const shimmer =
-    img.parentElement.querySelector('.feature-img-shimmer');
-
-    const hideShimmer = ()=>{
-
-        shimmer.style.display='none';
-
-    };
-
-    if(img.complete){
-
-        hideShimmer();
-
-    }else{
-
-        img.addEventListener('load',hideShimmer);
-
-        img.addEventListener('error',hideShimmer);
-
-    }
-
-});
-
-document.querySelectorAll('.grid-img img')
-.forEach(img=>{
-
-    const shimmer =
-    img.parentElement.querySelector('.collage-shimmer');
-
-    const hideShimmer = ()=>{
-        shimmer.style.display='none';
-    };
-
-    if(img.complete){
-        hideShimmer();
-    }else{
-        img.addEventListener('load',hideShimmer);
-        img.addEventListener('error',hideShimmer);
-    }
-
-});
-
-
-const featureData = {
-
-    en:[
-        ["DESIGNER SAREES","Elegant collections crafted for every occasion with timeless beauty and modern style."],
-        ["READY MADE DRESSES","Stylish ready made outfits crafted for comfort, elegance and everyday fashion."],
-        ["DRESS MATERIALS","Premium fabrics and elegant designs perfect for creating your own unique style."],
-        ["LEHENGAS","Stunning lehenga collections designed to bring elegance and charm to every special occasion."],
-        ["FINE JEWELLERY","Exquisite jewellery collections crafted to add elegance and sparkle to every occasion."]
-    ],
-
-    te:[
-        ["డిజైనర్ చీరలు","ప్రతి సందర్భానికి అనువైన అందమైన చీరల కలెక్షన్లు."],
-        ["రెడీమేడ్ డ్రెస్సులు","సౌకర్యం మరియు స్టైల్ కోసం రూపొందించిన డ్రెస్సులు."],
-        ["డ్రెస్ మెటీరియల్స్","మీ ప్రత్యేక శైలిని సృష్టించడానికి అద్భుతమైన ఫ్యాబ్రిక్స్."],
-        ["లెహంగాలు","ప్రత్యేక సందర్భాలకు అందాన్ని తీసుకువచ్చే లెహంగా కలెక్షన్లు."],
-        ["నగలు","ప్రతి సందర్భానికి మెరుపు మరియు అందాన్ని జోడించే నగలు."]
-    ]
-};
-
-const serviceData = {
-
-    en:[
-        ["Boutique","Exclusive Designer Fashion Collections","Premium Traditional Wear Styles","Luxury Ethnic Boutique Experience"],
-        ["Makeup","Professional Bridal Beauty Services","Elegant Party Makeup Styling","Flawless Premium Makeover Looks"],
-        ["Designer Sarees","Rich Embroidered Saree Collections","Modern Traditional Fashion Elegance","Exclusive Premium Designer Styles"],
-        ["Dresses","Elegant Festive Outfit Collections","Premium Ethnic Fashion Dresses","Stylish Traditional Party Wear"],
-        ["Lehengas","Luxury Bridal Lehenga Collections","Royal Wedding Fashion Styles","Premium Festive Ethnic Designs"],
-        ["Fine Jewellery","Elegant Heritage Jewellery Collections","Luxury Traditional Ornament Styles","Premium Handcrafted Jewellery Designs"]
-    ],
-
-    te:[
-        ["బుటిక్","ప్రత్యేక డిజైనర్ ఫ్యాషన్ కలెక్షన్లు","అద్భుతమైన సంప్రదాయ దుస్తుల శైలులు","విలాసవంతమైన ఎథ్నిక్ బుటిక్ అనుభవం"],
-        ["మేకప్","ప్రొఫెషనల్ బ్రైడల్ బ్యూటీ సేవలు","అందమైన పార్టీ మేకప్ స్టైలింగ్","అద్భుతమైన ప్రీమియం మేకోవర్ లుక్స్"],
-        ["డిజైనర్ చీరలు","అందమైన ఎంబ్రాయిడరీ చీరల కలెక్షన్లు","ఆధునిక సంప్రదాయ ఫ్యాషన్","ప్రత్యేక డిజైనర్ శైలులు"],
-        ["డ్రెస్సులు","అందమైన పండుగ దుస్తుల కలెక్షన్లు","ప్రీమియం ఎథ్నిక్ ఫ్యాషన్ డ్రెస్సులు","స్టైలిష్ సంప్రదాయ పార్టీ వేర్"],
-        ["లెహంగాలు","విలాసవంతమైన వధువు లెహంగా కలెక్షన్లు","రాయల్ వెడ్డింగ్ ఫ్యాషన్ శైలులు","ప్రీమియం పండుగ డిజైన్లు"],
-        ["నగలు","అందమైన వారసత్వ నగల కలెక్షన్లు","విలాసవంతమైన సంప్రదాయ ఆభరణాలు","ప్రీమియం హ్యాండ్‌క్రాఫ్టెడ్ నగలు"]
-    ]
-};
-
-const journeyData = {
-    en:["Design","Crafting","Styling","Elegance"],
-    te:["డిజైన్","తయారీ","స్టైలింగ్","అందం"]
-};
-
-const whyUsData = {
-
-    en:{
-        heading:"Why Us",
-        cards:[
-            ["Premium Quality","Carefully curated luxury ethnic fashion collections with elegant craftsmanship and premium finishing."],
-            ["Latest Trends","Modern bridal and festive fashion styles inspired by contemporary ethnic elegance."],
-            ["Affordable Luxury","Premium quality collections offered with stylish designs and best value pricing."],
-            ["Trusted Service","Personalized styling support with smooth shopping experience and customer satisfaction."]
-        ]
-    },
-
-    te:{
-        heading:"ఎందుకు మేము",
-        cards:[
-            ["ప్రీమియం నాణ్యత","అత్యుత్తమ నైపుణ్యం మరియు ప్రీమియం ఫినిషింగ్‌తో రూపొందించిన కలెక్షన్లు."],
-            ["తాజా ట్రెండ్స్","ఆధునిక వధువు మరియు పండుగ ఫ్యాషన్ శైలులు."],
-            ["సరసమైన విలాసం","ఉత్తమ నాణ్యతతో స్టైలిష్ డిజైన్లు సరసమైన ధరల్లో."],
-            ["నమ్మకమైన సేవ","వ్యక్తిగత స్టైలింగ్ సహాయం మరియు ఉత్తమ కస్టమర్ అనుభవం."]
-        ]
-    }
-};
-const storyData = {
-
-    en:{
-        heading:"The magua Story",
-        cards:[
-            ["Our Beginning","magua Ethnics started with timeless Indian fashion inspiration."],
-            ["Inspired Tradition","Every design reflects elegance, heritage, and modern sophistication."],
-            ["Crafted Elegance","Premium collections created with luxurious detailing and passion."],
-            ["Our Promise","Bringing confidence, beauty, and timeless ethnic charm forever."]
-        ]
-    },
-
-    te:{
-        heading:"మగువ కథ",
-        cards:[
-            ["మా ప్రారంభం","మగువ ఎథ్నిక్స్ భారతీయ సంప్రదాయ ఫ్యాషన్ ప్రేరణతో ప్రారంభమైంది."],
-            ["స్ఫూర్తిదాయక సంప్రదాయం","ప్రతి డిజైన్‌లో అందం, వారసత్వం మరియు ఆధునిక శైలి ప్రతిబింబిస్తాయి."],
-            ["అందంగా రూపొందింపు","అద్భుతమైన వివరాలతో మరియు ప్రేమతో రూపొందించిన ప్రీమియం కలెక్షన్లు."],
-            ["మా హామీ","ఆత్మవిశ్వాసం, అందం మరియు శాశ్వత సంప్రదాయ ఆకర్షణను అందించడం."]
-        ]
-    }
-
-};
-
-const ethnicData = {
-
-    en:{
-        heading:"Beauty Of Ethnic",
-        sections:[
-            [
-                "Elegant Ethnic Fashion",
-                "Discover timeless Indian elegance crafted with luxurious fabrics, intricate detailing, and graceful modern silhouettes designed for every beautiful celebration."
-            ],
-            [
-                "Luxury Bridal Collections",
-                "Experience premium bridal elegance with handcrafted ethnic styles, rich textures, shimmering details, and timeless fashion designed for unforgettable moments."
-            ],
-            [
-                "Grace In Every Thread",
-                "Celebrate the beauty of Indian tradition with luxurious ethnic collections crafted to bring elegance, confidence, and timeless charm to every special occasion."
-            ]
-        ]
-    },
-
-    te:{
-        heading:"సాంప్రదాయ అందం",
-        sections:[
-            [
-                "అందమైన ఎథ్నిక్ ఫ్యాషన్",
-                "ప్రతి వేడుక కోసం విలాసవంతమైన వస్త్రాలు మరియు అందమైన డిజైన్లతో రూపొందించిన భారతీయ శైలి."
-            ],
-            [
-                "విలాసవంతమైన వధువు కలెక్షన్లు",
-                "హ్యాండ్‌క్రాఫ్టెడ్ డిజైన్లు మరియు శాశ్వత అందంతో కూడిన ప్రత్యేక వధువు కలెక్షన్లు."
-            ],
-            [
-                "ప్రతి దారంలో అందం",
-                "భారతీయ సంప్రదాయ సౌందర్యాన్ని ప్రతిబింబించే ప్రత్యేక కలెక్షన్లు."
-            ]
-        ]
-    }
-
-};
-const langSwitch = document.getElementById("langSwitch");
-
-let isTelugu = false;
-
-langSwitch.addEventListener("click",()=>{
-
-    isTelugu = !isTelugu;
-
-    langSwitch.classList.toggle("active");
-
-    // Tagline
-    document.getElementById("tagline").textContent =
-        isTelugu
-        ? "సంప్రదాయానికి ప్రేరణ, నేటి శైలికి రూపం"
-        : "Inspired By Tradition Styled For Today";
-
-    // Categories
-    document.getElementById("cat1").textContent =
-        isTelugu ? "చీరలు" : "Sarees";
-
-    document.getElementById("cat2").textContent =
-        isTelugu ? "డ్రెస్సులు" : "Dresses";
-
-    document.getElementById("cat3").textContent =
-        isTelugu ? "డ్రెస్ మెటీరియల్స్" : "Materials";
-
-    document.getElementById("cat4").textContent =
-        isTelugu ? "లెహంగాలు" : "Lehangas";
-
-    document.getElementById("cat5").textContent =
-        isTelugu ? "నగలు" : "Fine Jewellery";
-
-    document.getElementById("cat6").textContent =
-        isTelugu ? "మేకప్" : "MakeUp";
-
-    // Feature Boxes
-    document.querySelectorAll('.feature-box')
-    .forEach((box,index)=>{
-
-        box.querySelector('h3').textContent =
-            isTelugu
-            ? featureData.te[index][0]
-            : featureData.en[index][0];
-
-        box.querySelector('p').textContent =
-            isTelugu
-            ? featureData.te[index][1]
-            : featureData.en[index][1];
-
-    });
-
-    // Services
-    document.querySelectorAll('.service-card')
-    .forEach((card,index)=>{
-
-        const data = isTelugu
-            ? serviceData.te[index]
-            : serviceData.en[index];
-
-        card.querySelector('h3').textContent = data[0];
-
-        card.querySelectorAll('span')[0].textContent = data[1];
-        card.querySelectorAll('span')[1].textContent = data[2];
-        card.querySelectorAll('span')[2].textContent = data[3];
-
-    });
-
-    // Journey
-    document.querySelectorAll('.journey-card h3')
-    .forEach((item,index)=>{
-
-        item.textContent =
-            isTelugu
-            ? journeyData.te[index]
-            : journeyData.en[index];
-
-    });
-
-    // Why Us
-    document.querySelector('.whyus-heading').textContent =
-        isTelugu
-        ? whyUsData.te.heading
-        : whyUsData.en.heading;
-
-    document.querySelectorAll('.hang-card')
-    .forEach((card,index)=>{
-
-        const data = isTelugu
-            ? whyUsData.te.cards[index]
-            : whyUsData.en.cards[index];
-
-        card.querySelector('h3').textContent = data[0];
-        card.querySelector('p').textContent = data[1];
-
-    });
-
-    // Story
-    document.querySelector('.story-heading').textContent =
-        isTelugu
-        ? storyData.te.heading
-        : storyData.en.heading;
-
-    document.querySelectorAll('.story-card')
-    .forEach((card,index)=>{
-
-        const data = isTelugu
-            ? storyData.te.cards[index]
-            : storyData.en.cards[index];
-
-        card.querySelector('h3').textContent = data[0];
-        card.querySelector('p').textContent = data[1];
-
-    });
-
-    // Ethnic
-    document.querySelector('.ethnic-heading').textContent =
-        isTelugu
-        ? ethnicData.te.heading
-        : ethnicData.en.heading;
-
-    document.querySelectorAll('.ethnic-section')
-    .forEach((section,index)=>{
-
-        const data = isTelugu
-            ? ethnicData.te.sections[index]
-            : ethnicData.en.sections[index];
-
-        section.querySelector('h2').textContent = data[0];
-        section.querySelector('p').textContent = data[1];
-
     });
 
 });
 
-const btn = document.getElementById("connectBtn");
 
-btn.addEventListener("click", async () => {
 
-    const name = document.getElementById("nameInput").value.trim();
-    const mobile = document.getElementById("mobileInput").value.trim();
 
-   if(!name || !mobile) return;
+const orbitFrames = document.querySelectorAll(".orbit-frame");
+const orbitPins = document.querySelectorAll(".orbit-pin");
 
-    await window.supabaseClient
-    .from("contacts")
-    .insert([
-        {
-            name:name,
-            mobile:mobile
-        }
-    ]);
+let orbitIndex = 0;
 
-   btn.innerHTML = "";
+function runOrbit(index){
 
-const interval = setInterval(()=>{
-
-    for(let i=0;i<8;i++){
-
-        const spark = document.createElement("span");
-
-        spark.innerHTML = "✨";
-
-        spark.style.position = "absolute";
-        spark.style.left = "50%";
-        spark.style.top = "50%";
-        spark.style.fontSize = "20px";
-        spark.style.pointerEvents = "none";
-
-        spark.style.setProperty(
-            "--x",
-            (Math.random()*220-110)+"px"
-        );
-
-        spark.style.setProperty(
-            "--y",
-            (Math.random()*120-60)+"px"
-        );
-
-        spark.style.animation =
-        "sparkBurst 1.2s ease-out forwards";
-
-        btn.appendChild(spark);
-
-        setTimeout(()=>spark.remove(),1200);
-
-    }
-
-},150);
-
-setTimeout(()=>{
-
-    clearInterval(interval);
-
-    btn.innerHTML = "Connect Now";
-
-    document.getElementById("nameInput").value = "";
-    document.getElementById("mobileInput").value = "";
-
-},5000);
-
-});
-
-const emailInput =
-document.getElementById("emailInput");
-
-const joinBtn =
-document.getElementById("joinBtn");
-
-joinBtn.addEventListener("click",async()=>{
-
-    const email =
-    emailInput.value.trim();
-
-    const validEmail =
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if(!validEmail.test(email)){
-
-        emailInput.classList.add("shake");
-
-        setTimeout(()=>{
-            emailInput.classList.remove("shake");
-        },400);
-
-        return;
-    }
-
-    await window.supabaseClient
-    .from("newsletter")
-    .insert([
-        { email:email }
-    ]);
-
-    const btnWidth = joinBtn.offsetWidth;
-
-    joinBtn.style.width = btnWidth + "px";
-    joinBtn.textContent = "";
-
-    const interval = setInterval(()=>{
-
-        for(let i=0;i<10;i++){
-
-            const spark =
-            document.createElement("span");
-
-            spark.innerHTML = "✨";
-
-            spark.style.position = "absolute";
-            spark.style.left = "50%";
-            spark.style.top = "50%";
-
-            spark.style.fontSize =
-            (18 + Math.random()*8) + "px";
-
-            spark.style.pointerEvents = "none";
-
-            spark.style.setProperty(
-                "--x",
-                (Math.random()*250-125)+"px"
-            );
-
-            spark.style.setProperty(
-                "--y",
-                (Math.random()*140-70)+"px"
-            );
-
-            spark.style.animation =
-            "sparkBurst 1.2s linear forwards";
-
-            joinBtn.appendChild(spark);
-
-            setTimeout(()=>{
-                spark.remove();
-            },1200);
-
-        }
-
-    },120);
-
-    setTimeout(()=>{
-
-        clearInterval(interval);
-
-        joinBtn.innerHTML = "Join Now";
-
-        emailInput.value = "";
-
-    },5000);
-
-});
-
-
-
-
-// Desktop flower trail
-if(window.innerWidth > 768){
-
-    document.addEventListener('mousemove',(e)=>{
-
-        const flower =
-        document.createElement('span');
-
-        flower.innerHTML = '🌸';
-
-        flower.style.position='fixed';
-        flower.style.left=e.clientX+'px';
-        flower.style.top=e.clientY+'px';
-
-        flower.style.fontSize='18px';
-        flower.style.pointerEvents='none';
-        flower.style.zIndex='999999';
-
-        flower.style.animation=
-        'flowerTrail 1s linear forwards';
-
-        document.body.appendChild(flower);
-
-        setTimeout(()=>{
-            flower.remove();
-        },1000);
-
+    orbitFrames.forEach(frame=>{
+        frame.classList.remove("live");
     });
 
+    orbitPins.forEach(pin=>{
+        pin.classList.remove("live");
+    });
+
+    orbitFrames[index].classList.add("live");
+    orbitPins[index].classList.add("live");
 }
 
-// Mobile sparkle tap
-if(window.innerWidth <= 768){
+setInterval(()=>{
 
-    document.addEventListener('touchstart',(e)=>{
+    orbitIndex++;
 
-        const touch = e.touches[0];
+    if(orbitIndex >= orbitFrames.length){
+        orbitIndex = 0;
+    }
 
-        for(let i=0;i<10;i++){
+    runOrbit(orbitIndex);
 
-            const spark =
-            document.createElement('span');
+},3000);
 
-            spark.innerHTML = '✨';
+orbitPins.forEach((pin,index)=>{
 
-            spark.style.position='fixed';
-            spark.style.left=touch.clientX+'px';
-            spark.style.top=touch.clientY+'px';
+    pin.addEventListener("click",()=>{
 
-            spark.style.fontSize='20px';
-            spark.style.pointerEvents='none';
-            spark.style.zIndex='999999';
-
-            spark.style.setProperty(
-                '--x',
-                (Math.random()*160-80)+'px'
-            );
-
-            spark.style.setProperty(
-                '--y',
-                (Math.random()*160-80)+'px'
-            );
-
-            spark.style.animation=
-            'touchSpark 1s ease-out forwards';
-
-            document.body.appendChild(spark);
-
-            setTimeout(()=>{
-                spark.remove();
-            },1000);
-
-        }
+        orbitIndex = index;
+        runOrbit(orbitIndex);
 
     });
 
-}
-const heading =
-document.getElementById("changingHeading");
+});
 
-const items = [
+const bannerText =
+document.getElementById(
+    "bannerChangingText"
+);
+
+const bannerWords = [
+
+    {
+        text:"MAKEUP",
+        font:"cursive",
+        anim:"fromLeft",
+        color:"#ff69b4"
+    },
 
     {
         text:"FASHION",
-        font:"Azonix",
-        cls:"zoomAnim"
+        font:"Georgia",
+        anim:"fromRight",
+        color:"#ffd700"
     },
 
     {
-        text:"ELEGANCE",
-        font:"Cinzel",
-        cls:"leftAnim"
+        text:"BEAUTY",
+        font:"Verdana",
+        anim:"fromTop",
+        color:"#00ffff"
     },
 
     {
-        text:"LUXURY",
-        font:"Cormorant Garamond",
-        cls:"rightAnim"
+        text:"JEWELLERY",
+        font:"Times New Roman",
+        anim:"fromBottom",
+        color:"#adff2f"
     },
 
     {
-        text:"STYLE",
-        font:"Playfair Display",
-        cls:"topAnim"
-    },
-
-    {
-        text:"MAGUA ETHNICS",
-        font:"Azonix",
-        cls:"bottomAnim"
+        text:"LEHENGAS",
+        font:"Impact",
+        anim:"fromZoom",
+        color:"#ff8c00"
     }
 
 ];
 
-let i = 0;
+let wordPos = 0;
 
 setInterval(()=>{
 
-    i = (i + 1) % items.length;
+    wordPos =
+    (wordPos + 1) %
+    bannerWords.length;
 
-    heading.className =
-    "changing-heading";
+    bannerText.className =
+    "banner-top-text";
 
-    heading.textContent =
-    items[i].text;
+    bannerText.textContent =
+    bannerWords[wordPos].text;
 
-    heading.style.fontFamily =
-    items[i].font;
-
-    heading.classList.add(
-        items[i].cls
+    bannerText.style.fontFamily =
+    bannerWords[wordPos].font;
+bannerText.style.color =
+bannerWords[wordPos].color;
+    bannerText.classList.add(
+        bannerWords[wordPos].anim
     );
 
-    // Sparkles on every word change
+    /* Sparkle Blast */
 
-    for(let s=0;s<12;s++){
+    for(let i=0;i<18;i++){
 
         const spark =
         document.createElement("span");
 
-        spark.innerHTML = "✨";
+        spark.innerHTML =
+        ["✨","⭐","💫","✦","✧"]
+        [Math.floor(Math.random()*5)];
 
-        spark.style.position = "absolute";
+        spark.style.position =
+        "absolute";
 
         spark.style.left =
         (40 + Math.random()*20) + "%";
@@ -773,15 +428,14 @@ setInterval(()=>{
         (40 + Math.random()*20) + "%";
 
         spark.style.fontSize =
-        (16 + Math.random()*10) + "px";
+        (12 + Math.random()*12) + "px";
 
-        spark.style.pointerEvents = "none";
-
-        spark.style.zIndex = "999";
+        spark.style.pointerEvents =
+        "none";
 
         spark.style.setProperty(
             "--x",
-            (Math.random()*200-100)+"px"
+            (Math.random()*180-90)+"px"
         );
 
         spark.style.setProperty(
@@ -792,7 +446,9 @@ setInterval(()=>{
         spark.style.animation =
         "sparkBurst 1s ease-out forwards";
 
-        heading.appendChild(spark);
+        bannerText.appendChild(
+            spark
+        );
 
         setTimeout(()=>{
             spark.remove();
@@ -803,477 +459,734 @@ setInterval(()=>{
 },1000);
 
 
-const brand =
-document.getElementById("brandChanging");
+const maguaBtn =
+document.getElementById("maguaBtn");
 
-const brandItems = [
+const swiggySheet =
+document.getElementById("swiggySheet");
 
-    {
-        text:"FASHION",
-        font:"Cinzel",
-        cls:"leftAnim"
-    },
+const sheetBackdrop =
+document.getElementById("sheetBackdrop");
 
-    {
-        text:"ELEGANCE",
-        font:"Cormorant Garamond",
-        cls:"rightAnim"
-    },
+maguaBtn.addEventListener("click",()=>{
 
-    {
-        text:"LUXURY",
-        font:"Playfair Display",
-        cls:"topAnim"
-    },
+    swiggySheet.classList.add("show");
 
-    {
-        text:"STYLE",
-        font:"Cinzel",
-        cls:"bottomAnim"
-    },
-
-    {
-        text:"MAGUA<br>ETHNICS",
-        font:"Azonix",
-        cls:"zoomAnim"
-    }
-
-];
-
-let brandIndex = 0;
-
-setInterval(()=>{
-
-    brandIndex =
-    (brandIndex + 1) %
-    brandItems.length;
-
-    brand.className =
-    "changing-heading brand-changing";
-
-    brand.innerHTML =
-    brandItems[brandIndex].text;
-
-    brand.style.fontFamily =
-    brandItems[brandIndex].font;
-
-    brand.classList.add(
-        brandItems[brandIndex].cls
-    );
-
-    for(let i=0;i<25;i++){
-
-        const spark =
-        document.createElement("span");
-
-        spark.className =
-        "heading-spark";
-
-        const effects = [
-            "✨",
-            "⭐",
-            "💫",
-            "✦",
-            "✧",
-            "❋"
-        ];
-
-        spark.innerHTML =
-        effects[
-            Math.floor(
-                Math.random()*effects.length
-            )
-        ];
-
-        spark.style.left =
-        (35 + Math.random()*30) + "%";
-
-        spark.style.top =
-        (35 + Math.random()*30) + "%";
-
-        spark.style.fontSize =
-        (18 + Math.random()*14) + "px";
-
-        spark.style.setProperty(
-            "--x",
-            (Math.random()*280-140)+"px"
-        );
-
-        spark.style.setProperty(
-            "--y",
-            (Math.random()*180-90)+"px"
-        );
-
-        spark.style.animation =
-        "sparkBurst 1.2s ease-out forwards";
-
-        brand.appendChild(spark);
-
-        setTimeout(()=>{
-            spark.remove();
-        },1200);
-
-    }
-
-},1000);
-
-
-
-const viewer =
-document.getElementById("galleryViewer");
-
-const viewerImg =
-document.getElementById("galleryImage");
-
-let scale = 1;
-
-document
-.querySelectorAll('.grid-img img')
-.forEach(img=>{
-
-    img.addEventListener('click',()=>{
-
-        viewer.style.display='flex';
-
-        viewerImg.src=img.src;
-
-        scale=1;
-
-        viewerImg.style.transform=
-        `scale(${scale})`;
-
-    });
+    sheetBackdrop.classList.add("show");
 
 });
 
-document
-.getElementById("galleryClose")
-.onclick=()=>{
+sheetBackdrop.addEventListener("click",()=>{
 
-    viewer.style.display='none';
+    swiggySheet.classList.remove("show");
 
-};
-
-viewer.addEventListener('click',(e)=>{
-
-    if(e.target===viewer){
-
-        viewer.style.display='none';
-
-    }
+    sheetBackdrop.classList.remove("show");
 
 });
 
-let startDistance = 0;
-
-viewer.addEventListener(
-'touchstart',
-(e)=>{
-
-    if(e.touches.length===2){
-
-        startDistance =
-        Math.hypot(
-            e.touches[0].clientX -
-            e.touches[1].clientX,
-
-            e.touches[0].clientY -
-            e.touches[1].clientY
-        );
-
-    }
-
-},
-{passive:false}
+const categoriesBtn =
+document.getElementById(
+"categoriesBtn"
 );
 
-viewer.addEventListener(
-'touchmove',
-(e)=>{
-
-    if(e.touches.length===2){
-
-        e.preventDefault();
-
-        const newDistance =
-        Math.hypot(
-            e.touches[0].clientX -
-            e.touches[1].clientX,
-
-            e.touches[0].clientY -
-            e.touches[1].clientY
-        );
-
-        scale *=
-        newDistance /
-        startDistance;
-
-        scale =
-        Math.min(
-            Math.max(scale,1),
-            5
-        );
-
-        viewerImg.style.transform =
-        `scale(${scale})`;
-
-        startDistance =
-        newDistance;
-
-    }
-
-},
-{passive:false}
+const categorySheet =
+document.getElementById(
+"categorySheet"
 );
+
+const sheetOverlay =
+document.getElementById(
+"sheetOverlay"
+);
+
+function closeCategorySheet(){
+
+    categorySheet
+    .classList.remove("show");
+
+    sheetOverlay
+    .classList.remove("show");
+
+}
+
+categoriesBtn.addEventListener(
+"click",()=>{
+
+    categorySheet
+    .classList.add("show");
+
+    sheetOverlay
+    .classList.add("show");
+
+});
+
+sheetOverlay.addEventListener(
+"click",
+closeCategorySheet
+);
+
+/* Swipe Down Close */
 
 let startY = 0;
 
-viewer.addEventListener(
-'touchstart',
-e=>{
+categorySheet.addEventListener(
+"touchstart",(e)=>{
 
     startY =
     e.touches[0].clientY;
 
-}
-);
+});
 
-viewer.addEventListener(
-'touchend',
-e=>{
+categorySheet.addEventListener(
+"touchend",(e)=>{
 
     const endY =
     e.changedTouches[0].clientY;
 
-    if(endY - startY > 120){
+    if(endY - startY > 80){
 
-        viewer.style.display='none';
+        closeCategorySheet();
 
     }
 
-}
+});
+document
+.querySelectorAll(".cat-image")
+.forEach(img=>{
+
+    const shimmer =
+    img.parentElement
+    .querySelector(".cat-shimmer");
+
+    function hideShimmer(){
+
+        shimmer.style.display =
+        "none";
+
+    }
+
+    if(img.complete){
+
+        hideShimmer();
+
+    }else{
+
+        img.addEventListener(
+        "load",
+        hideShimmer
+        );
+
+        img.addEventListener(
+        "error",
+        hideShimmer
+        );
+
+    }
+
+});
+
+
+const profileBtn =
+document.getElementById(
+"profileBtn"
 );
 
-function ringBell(){
+const userPanel =
+document.getElementById(
+"userPanel"
+);
 
-    const audioCtx =
-    new (window.AudioContext || window.webkitAudioContext)();
+const userBackdrop =
+document.getElementById(
+"userBackdrop"
+);
 
-    const gain =
-    audioCtx.createGain();
+function closeUserPanel(){
 
-    gain.connect(audioCtx.destination);
+    userPanel
+    .classList.remove("active");
 
-    gain.gain.setValueAtTime(
-        1, // volume (0.4 is much louder)
-        audioCtx.currentTime
-    );
+    userBackdrop
+    .classList.remove("active");
 
-    const osc1 =
-    audioCtx.createOscillator();
-
-    const osc2 =
-    audioCtx.createOscillator();
-
-    osc1.type = "triangle";
-    osc2.type = "sine";
-
-    osc1.frequency.setValueAtTime(
-        1200,
-        audioCtx.currentTime
-    );
-
-    osc2.frequency.setValueAtTime(
-        1800,
-        audioCtx.currentTime
-    );
-
-    osc1.connect(gain);
-    osc2.connect(gain);
-
-    osc1.start();
-    osc2.start();
-
-    gain.gain.exponentialRampToValueAtTime(
-        0.0001,
-        audioCtx.currentTime + 2
-    );
-
-    osc1.stop(audioCtx.currentTime + 2);
-    osc2.stop(audioCtx.currentTime + 2);
 }
 
-const notifyBtn = document.getElementById("notifyBtn");
-const notifyNumber = document.getElementById("notifyNumber");
+profileBtn.addEventListener(
+"click",()=>{
 
-notifyBtn.addEventListener("click", async () => {
+    userPanel
+    .classList.add("active");
 
-    const number = notifyNumber.value.trim();
+    userBackdrop
+    .classList.add("active");
 
-    // Only 10 digits
-    if(!/^[0-9]{10}$/.test(number)){
+});
 
-        notifyNumber.classList.remove("shake");
+userBackdrop.addEventListener(
+"click",()=>{
 
-        void notifyNumber.offsetWidth;
+    closeUserPanel();
 
-        notifyNumber.classList.add("shake");
+});
+
+
+const loginBtn =
+document.getElementById(
+"userLoginBtn"
+);
+
+const nameInput =
+document.getElementById(
+"userNameInput"
+);
+
+const mobileInput =
+document.getElementById(
+"userMobileInput"
+);
+
+const privacyCheck =
+document.getElementById(
+"privacyCheck"
+);
+
+loginBtn.addEventListener(
+"click",
+async()=>{
+
+    const name =
+    nameInput.value.trim();
+
+    const mobile =
+    mobileInput.value.trim();
+
+    if(!name){
+
+        nameInput.classList.add(
+        "shake"
+        );
+
+        setTimeout(()=>{
+            nameInput.classList.remove(
+            "shake"
+            );
+        },400);
 
         return;
     }
 
-    // Save to localStorage
-    let numbers =
-        JSON.parse(
-            localStorage.getItem("launch_notify_numbers")
-        ) || [];
+    if(!/^\d{10}$/.test(mobile)){
 
-    if(!numbers.includes(number)){
-
-        numbers.push(number);
-
-        localStorage.setItem(
-            "launch_notify_numbers",
-            JSON.stringify(numbers)
+        mobileInput.classList.add(
+        "shake"
         );
+
+        setTimeout(()=>{
+            mobileInput.classList.remove(
+            "shake"
+            );
+        },400);
+
+        return;
     }
-    await window.supabaseClient
-.from("app_updates")
+
+    if(!privacyCheck.checked){
+
+        document
+        .querySelector(".privacy-row")
+        .classList.add("shake");
+
+        setTimeout(()=>{
+
+            document
+            .querySelector(".privacy-row")
+            .classList.remove("shake");
+
+        },400);
+
+        return;
+    }
+
+    /* Instant Sparkles First */
+
+for(let i=0;i<40;i++){
+
+    // your sparkle code here
+
+}
+
+/* Save In Background */
+
+window.supabaseClient
+.from("profiles")
 .insert([
     {
-        mobile:number
+        name:name,
+        mobile:mobile
     }
-]);
+])
+.then(({error})=>{
 
-    // Bell animation
-    ringBell();
-
-// Bell animation
-notifyBtn.classList.remove("notify-success");
-
-void notifyBtn.offsetWidth;
-
-notifyBtn.classList.add("notify-success");
-
-    notifyNumber.value = "";
+    if(error){
+        console.log(error);
+    }
 
 });
 
-const sheet =
-document.getElementById("bottomSheet");
+/* Sparkles */
 
-const overlay =
-document.getElementById("sheetOverlay");
+for(let i=0;i<40;i++){
 
-const content =
-document.getElementById("sheetContent");
-function openSheet(type){
+    const spark =
+    document.createElement("span");
 
-    if(type === "terms"){
+    spark.innerHTML =
+    ["✨","⭐","💫","✦"]
+    [Math.floor(Math.random()*4)];
 
-        content.innerHTML = `
-            <h3>Terms & Conditions</h3>
+    spark.style.position =
+    "fixed";
 
-            <p>
-            1. By submitting your details, you agree to use this website in accordance with these terms.<br><br>
+    spark.style.left =
+    Math.random()*window.innerWidth
+    + "px";
 
-            2. Information provided by you must be accurate and up to date.<br><br>
+    spark.style.top =
+    Math.random()*window.innerHeight
+    + "px";
 
-            3. Magua Ethnics may contact you regarding enquiries, updates, offers, launches, and customer support.<br><br>
+    spark.style.fontSize =
+    (16 + Math.random()*14)
+    + "px";
 
-            4. Promotional communications may be sent through WhatsApp, SMS, phone calls, or email.<br><br>
+    spark.style.pointerEvents =
+    "none";
 
-            5. Submission of details does not guarantee product availability or promotional eligibility.<br><br>
+    spark.style.zIndex =
+    "999999";
 
-            6. Website content, images, logos, and designs remain the property of Magua Ethnics.<br><br>
+    spark.style.setProperty(
+        "--x",
+        (Math.random()*200-100)
+        + "px"
+    );
 
-            7. Unauthorized copying or reproduction of website content is prohibited.<br><br>
+    spark.style.setProperty(
+        "--y",
+        (-200-Math.random()*150)
+        + "px"
+    );
 
-            8. We reserve the right to update products, services, pricing, and website content without prior notice.<br><br>
+    spark.style.animation =
+    "sparkBurst 1.5s ease-out forwards";
 
-            9. Users must not misuse forms, submit false information, or attempt unauthorized access.<br><br>
+    document.body.appendChild(
+        spark
+    );
 
-            10. We may suspend access if fraudulent or harmful activity is detected.<br><br>
+    setTimeout(()=>{
+        spark.remove();
+    },1500);
 
-            11. Continued use of this website indicates acceptance of these terms.<br><br>
+}
 
-            12. These terms may be updated periodically without prior notification.
-            </p>
-        `;
+/* Clear + Close */
+setTimeout(()=>{
+
+    localStorage.setItem(
+        "maguaName",
+        name
+    );
+
+    localStorage.setItem(
+        "maguaMobile",
+        mobile
+    );
+
+    nameInput.value = "";
+
+    mobileInput.value = "";
+
+    privacyCheck.checked =
+    false;
+
+    closeUserPanel();
+
+},1500);
+
+});
+const bannerImages =
+document.querySelectorAll(
+"#bannerSlider .banner-img"
+);
+
+const bannerShimmer =
+document.getElementById(
+"bannerShimmer"
+);
+
+let loadedCount = 0;
+
+bannerImages.forEach(img=>{
+
+    function imageLoaded(){
+
+        loadedCount++;
+
+       if(
+    loadedCount ===
+    bannerImages.length
+){
+
+    bannerShimmer.style.display =
+    "none";
+
+}
+
+    }
+
+    if(img.complete){
+
+        imageLoaded();
 
     }else{
 
-        content.innerHTML = `
-            <h3>Privacy Policy</h3>
+        img.addEventListener(
+            "load",
+            imageLoaded
+        );
 
-            <p>
-            1. We collect only the information voluntarily provided by you.<br><br>
-
-            2. Information may include your name, mobile number, and email address.<br><br>
-
-            3. Your details are used to provide customer support, updates, notifications, and promotional offers.<br><br>
-
-            4. Mobile numbers may be used for WhatsApp updates and communication.<br><br>
-
-            5. Email addresses may be used for newsletters, launch announcements, and offers.<br><br>
-
-            6. We do not sell your personal information to third parties.<br><br>
-
-            7. Your information is stored securely using trusted technology providers.<br><br>
-
-            8. Access to collected information is limited to authorized personnel only.<br><br>
-
-            9. We take reasonable measures to protect your data from unauthorized access.<br><br>
-
-            10. You may request removal of your information by contacting us.<br><br>
-
-            11. We may update this privacy policy from time to time as required.<br><br>
-
-            12. By submitting your details, you consent to the collection and use of information described above.
-            </p>
-        `;
+        img.addEventListener(
+            "error",
+            imageLoaded
+        );
 
     }
-sheet.classList.add("show");
-overlay.classList.add("show");
-
-document.body.style.overflow = "hidden";
-}
-
-overlay.onclick = closeSheet;
-
-function closeSheet(){
-
-    sheet.classList.remove("show");
-
-    overlay.classList.remove("show");
-
-    document.body.style.overflow = "";
-}
-
-let sheetStartX = 0;
-let sheetStartY = 0;
-sheet.addEventListener("touchstart",(e)=>{
-
-    sheetStartX = e.touches[0].clientX;
-    sheetStartY = e.touches[0].clientY;
 
 });
 
-sheet.addEventListener("touchend",(e)=>{
 
-    const endX = e.changedTouches[0].clientX;
-    const endY = e.changedTouches[0].clientY;
 
-    const diffX = Math.abs(endX - sheetStartX);
-    const diffY = endY - sheetStartY;
 
-    if(diffX > 120){
-        closeSheet();
+const heroImages =
+document.querySelectorAll(
+"#heroCarousel img"
+);
+
+const heroLoading =
+document.getElementById(
+"heroLoading"
+);
+
+let heroLoaded = 0;
+
+const heroObserver =
+new IntersectionObserver(entries=>{
+
+    if(entries[0].isIntersecting){
+
+        heroImages.forEach(img=>{
+
+            if(img.complete){
+
+                heroLoaded++;
+
+            }else{
+
+                img.addEventListener(
+                "load",()=>{
+
+                    heroLoaded++;
+
+                    if(
+                        heroLoaded ===
+                        heroImages.length
+                    ){
+
+                        heroLoading
+                        .style.display =
+                        "none";
+
+                    }
+
+                });
+
+            }
+
+        });
+
+        if(
+            heroLoaded ===
+            heroImages.length
+        ){
+
+            heroLoading
+            .style.display =
+            "none";
+
+        }
+
+        heroObserver.disconnect();
+
     }
 
-    if(diffY > 100){
-        closeSheet();
+},{
+    rootMargin:"200px"
+});
+
+heroObserver.observe(
+document.getElementById(
+"heroCarousel"
+));
+
+const showcaseImages =
+document.querySelectorAll(
+"#showcaseWrap img"
+);
+
+const showcaseLoading =
+document.getElementById(
+"showcaseLoading"
+);
+
+let showcaseLoaded = 0;
+
+const showcaseObserver =
+new IntersectionObserver(entries=>{
+
+    if(entries[0].isIntersecting){
+
+        showcaseImages.forEach(img=>{
+
+            if(img.complete){
+
+                showcaseLoaded++;
+
+            }else{
+
+                img.addEventListener(
+                "load",()=>{
+
+                    showcaseLoaded++;
+
+                    if(
+                        showcaseLoaded ===
+                        showcaseImages.length
+                    ){
+
+                        showcaseLoading
+                        .style.display =
+                        "none";
+
+                    }
+
+                });
+
+            }
+
+        });
+
+        if(
+            showcaseLoaded ===
+            showcaseImages.length
+        ){
+
+            showcaseLoading
+            .style.display =
+            "none";
+
+        }
+
+        showcaseObserver.disconnect();
+
+    }
+
+},{
+    rootMargin:"200px"
+});
+
+showcaseObserver.observe(
+document.getElementById(
+"showcaseWrap"
+));
+
+
+const orbitImages =
+document.querySelectorAll(
+"#orbitBox img"
+);
+
+const orbitLoading =
+document.getElementById(
+"orbitLoading"
+);
+
+let orbitLoaded = 0;
+
+const orbitObserver =
+new IntersectionObserver(entries=>{
+
+    if(entries[0].isIntersecting){
+
+        orbitImages.forEach(img=>{
+
+            if(img.complete){
+
+                orbitLoaded++;
+
+            }else{
+
+                img.addEventListener(
+                "load",()=>{
+
+                    orbitLoaded++;
+
+                    if(
+                        orbitLoaded ===
+                        orbitImages.length
+                    ){
+
+                        orbitLoading
+                        .style.display =
+                        "none";
+
+                    }
+
+                });
+
+            }
+
+        });
+
+        if(
+            orbitLoaded ===
+            orbitImages.length
+        ){
+
+            orbitLoading
+            .style.display =
+            "none";
+
+        }
+
+        orbitObserver.disconnect();
+
+    }
+
+},{
+    rootMargin:"200px"
+});
+
+orbitObserver.observe(
+document.getElementById(
+"orbitBox"
+));
+
+
+
+const flipImages =
+document.querySelectorAll(
+"#flipGallery img"
+);
+
+const flipLoading =
+document.getElementById(
+"flipLoading"
+);
+
+let flipLoaded = 0;
+
+const flipObserver =
+new IntersectionObserver(entries=>{
+
+    if(entries[0].isIntersecting){
+
+        flipImages.forEach(img=>{
+
+            if(img.complete){
+
+                flipLoaded++;
+
+            }else{
+
+                img.addEventListener(
+                "load",()=>{
+
+                    flipLoaded++;
+
+                    if(
+                        flipLoaded ===
+                        flipImages.length
+                    ){
+
+                        flipLoading
+                        .style.display =
+                        "none";
+
+                    }
+
+                });
+
+            }
+
+        });
+
+        if(
+            flipLoaded ===
+            flipImages.length
+        ){
+
+            flipLoading
+            .style.display =
+            "none";
+
+        }
+
+        flipObserver.disconnect();
+
+    }
+
+},{
+    rootMargin:"200px"
+});
+
+flipObserver.observe(
+document.getElementById(
+"flipGallery"
+));
+
+
+document
+.querySelectorAll(".product-img")
+.forEach(img=>{
+
+    const shimmer =
+    img.parentElement
+    .querySelector(".product-shimmer");
+
+    function hideShimmer(){
+
+        shimmer.style.display =
+        "none";
+
+    }
+
+    if(img.complete){
+
+        hideShimmer();
+
+    }else{
+
+        img.addEventListener(
+        "load",
+        hideShimmer
+        );
+
+        img.addEventListener(
+        "error",
+        hideShimmer
+        );
+
     }
 
 });
