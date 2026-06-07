@@ -8,17 +8,17 @@ window.supabaseClient = window.supabase.createClient(
 
 console.log("secured");
 
-window.addEventListener("DOMContentLoaded",()=>{
+document.addEventListener("DOMContentLoaded", function(){
 
     document.body.style.overflow = "hidden";
 
-    setTimeout(()=>{
+    setTimeout(function(){
 
         document.querySelector(".splash").style.display = "none";
 
-        document.getElementById("main-content").style.display = "flex";
-
         document.body.style.overflow = "auto";
+
+        document.getElementById("main-content").style.display = "flex";
 
     },2050);
 
