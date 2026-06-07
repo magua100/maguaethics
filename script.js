@@ -1053,3 +1053,227 @@ e=>{
 
 }
 );
+
+function ringBell(){
+
+    const audioCtx =
+    new (window.AudioContext || window.webkitAudioContext)();
+
+    const gain =
+    audioCtx.createGain();
+
+    gain.connect(audioCtx.destination);
+
+    gain.gain.setValueAtTime(
+        1, // volume (0.4 is much louder)
+        audioCtx.currentTime
+    );
+
+    const osc1 =
+    audioCtx.createOscillator();
+
+    const osc2 =
+    audioCtx.createOscillator();
+
+    osc1.type = "triangle";
+    osc2.type = "sine";
+
+    osc1.frequency.setValueAtTime(
+        1200,
+        audioCtx.currentTime
+    );
+
+    osc2.frequency.setValueAtTime(
+        1800,
+        audioCtx.currentTime
+    );
+
+    osc1.connect(gain);
+    osc2.connect(gain);
+
+    osc1.start();
+    osc2.start();
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.0001,
+        audioCtx.currentTime + 2
+    );
+
+    osc1.stop(audioCtx.currentTime + 2);
+    osc2.stop(audioCtx.currentTime + 2);
+}
+
+const notifyBtn = document.getElementById("notifyBtn");
+const notifyNumber = document.getElementById("notifyNumber");
+
+notifyBtn.addEventListener("click", async () => {
+
+    const number = notifyNumber.value.trim();
+
+    // Only 10 digits
+    if(!/^[0-9]{10}$/.test(number)){
+
+        notifyNumber.classList.remove("shake");
+
+        void notifyNumber.offsetWidth;
+
+        notifyNumber.classList.add("shake");
+
+        return;
+    }
+
+    // Save to localStorage
+    let numbers =
+        JSON.parse(
+            localStorage.getItem("launch_notify_numbers")
+        ) || [];
+
+    if(!numbers.includes(number)){
+
+        numbers.push(number);
+
+        localStorage.setItem(
+            "launch_notify_numbers",
+            JSON.stringify(numbers)
+        );
+    }
+    await window.supabaseClient
+.from("app_updates")
+.insert([
+    {
+        mobile:number
+    }
+]);
+
+    // Bell animation
+    ringBell();
+
+// Bell animation
+notifyBtn.classList.remove("notify-success");
+
+void notifyBtn.offsetWidth;
+
+notifyBtn.classList.add("notify-success");
+
+    notifyNumber.value = "";
+
+});
+
+const sheet =
+document.getElementById("bottomSheet");
+
+const overlay =
+document.getElementById("sheetOverlay");
+
+const content =
+document.getElementById("sheetContent");
+function openSheet(type){
+
+    if(type === "terms"){
+
+        content.innerHTML = `
+            <h3>Terms & Conditions</h3>
+
+            <p>
+            1. By submitting your details, you agree to use this website in accordance with these terms.<br><br>
+
+            2. Information provided by you must be accurate and up to date.<br><br>
+
+            3. Magua Ethnics may contact you regarding enquiries, updates, offers, launches, and customer support.<br><br>
+
+            4. Promotional communications may be sent through WhatsApp, SMS, phone calls, or email.<br><br>
+
+            5. Submission of details does not guarantee product availability or promotional eligibility.<br><br>
+
+            6. Website content, images, logos, and designs remain the property of Magua Ethnics.<br><br>
+
+            7. Unauthorized copying or reproduction of website content is prohibited.<br><br>
+
+            8. We reserve the right to update products, services, pricing, and website content without prior notice.<br><br>
+
+            9. Users must not misuse forms, submit false information, or attempt unauthorized access.<br><br>
+
+            10. We may suspend access if fraudulent or harmful activity is detected.<br><br>
+
+            11. Continued use of this website indicates acceptance of these terms.<br><br>
+
+            12. These terms may be updated periodically without prior notification.
+            </p>
+        `;
+
+    }else{
+
+        content.innerHTML = `
+            <h3>Privacy Policy</h3>
+
+            <p>
+            1. We collect only the information voluntarily provided by you.<br><br>
+
+            2. Information may include your name, mobile number, and email address.<br><br>
+
+            3. Your details are used to provide customer support, updates, notifications, and promotional offers.<br><br>
+
+            4. Mobile numbers may be used for WhatsApp updates and communication.<br><br>
+
+            5. Email addresses may be used for newsletters, launch announcements, and offers.<br><br>
+
+            6. We do not sell your personal information to third parties.<br><br>
+
+            7. Your information is stored securely using trusted technology providers.<br><br>
+
+            8. Access to collected information is limited to authorized personnel only.<br><br>
+
+            9. We take reasonable measures to protect your data from unauthorized access.<br><br>
+
+            10. You may request removal of your information by contacting us.<br><br>
+
+            11. We may update this privacy policy from time to time as required.<br><br>
+
+            12. By submitting your details, you consent to the collection and use of information described above.
+            </p>
+        `;
+
+    }
+sheet.classList.add("show");
+overlay.classList.add("show");
+
+document.body.style.overflow = "hidden";
+}
+
+overlay.onclick = closeSheet;
+
+function closeSheet(){
+
+    sheet.classList.remove("show");
+
+    overlay.classList.remove("show");
+
+    document.body.style.overflow = "";
+}
+
+let sheetStartX = 0;
+let sheetStartY = 0;
+sheet.addEventListener("touchstart",(e)=>{
+
+    sheetStartX = e.touches[0].clientX;
+    sheetStartY = e.touches[0].clientY;
+
+});
+
+sheet.addEventListener("touchend",(e)=>{
+
+    const endX = e.changedTouches[0].clientX;
+    const endY = e.changedTouches[0].clientY;
+
+    const diffX = Math.abs(endX - sheetStartX);
+    const diffY = endY - sheetStartY;
+
+    if(diffX > 120){
+        closeSheet();
+    }
+
+    if(diffY > 100){
+        closeSheet();
+    }
+
+});
