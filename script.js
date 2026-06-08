@@ -8,7 +8,7 @@ window.supabaseClient = window.supabase.createClient(
 
 console.log("secured");
 
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("load", function(){
 
     document.body.style.overflow = "hidden";
 
