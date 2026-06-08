@@ -5245,6 +5245,54 @@ body{
     }
 
 }
+.visitor-counter{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+
+    margin-top:2px;
+
+    color:rgba(255,255,255,.9);
+
+    animation:counterPop .8s ease;
+}
+.visitor-counter span{
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.2px;
+}
+.visitor-counter i{
+    font-size:15px;
+
+    animation:eyePulse 2s infinite;
+}
+
+@keyframes counterPop{
+
+    0%{
+        opacity:0;
+        transform:scale(.5);
+    }
+
+    100%{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+@keyframes eyePulse{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.18);
+    }
+
+}
 </style>
 </head>
 <body>
@@ -5992,6 +6040,14 @@ body{
     magua ETHNICS
   </div>
 
+
+<div class="visitor-counter">
+
+    <i class="fas fa-eye"></i>
+
+    <span id="visitorCount">0</span>
+
+</div>
  <div class="footer-address">
   Magua ETHNICS • R.S.No.: 780/6 1st Floor, V.V. Enclave Upstairs State Bank Of India, Pedatadepalli, Tadepalligudem, W.G Dist, Andhra Pradesh - 534101
 </div>
@@ -6068,6 +6124,6 @@ body{
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="script.js?v=3.0.0"></script>
+<script src="script.js?v=1.0.0"></script>
 </body>
 </html>
