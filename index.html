@@ -5164,6 +5164,60 @@ body{
         bottom:20px;
     }
 }
+.footer-dev{
+    margin-top:10px;
+    text-align:center;
+}
+
+.crafted-line{
+    font-size:12px;
+    color:rgba(255,255,255,.65);
+    margin-bottom:4px;
+}
+
+.crafted-line i{
+    color:#ff4d6d;
+    margin-left:3px;
+    animation:heartBeat 1.5s infinite;
+}
+
+.cezonal-link{
+    display:inline-block;
+    color:#fff;
+    font-size:14px;
+    font-weight:700;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.cezonal-link:hover{
+    transform:translateY(-2px);
+    opacity:.9;
+}
+
+@keyframes heartBeat{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.2);
+    }
+
+}
+
+@media(max-width:768px){
+
+    .crafted-line{
+        font-size:10px;
+    }
+
+    .cezonal-link{
+        font-size:12px;
+    }
+
+}
 </style>
 </head>
 <body>
@@ -5910,7 +5964,24 @@ body{
   </div>
 
  <div class="footer-address">
-  magua ETHNICS • R.S.No.: 780/6 1st Floor, V.V. Enclave Upstairs State Bank Of India, Pedatadepalli, Tadepalligudem, W.G Dist, Andhra Pradesh - 534101
+  Magua ETHNICS • R.S.No.: 780/6 1st Floor, V.V. Enclave Upstairs State Bank Of India, Pedatadepalli, Tadepalligudem, W.G Dist, Andhra Pradesh - 534101
+</div>
+<div class="footer-dev">
+
+    <div class="crafted-line">
+        Crafted with
+        <i class="fas fa-heart"></i>
+    </div>
+
+    <a
+        href="https://cezonalsolutions.com/"
+        target="_blank"
+        rel="noopener"
+        class="cezonal-link"
+    >
+        Cezonal Solutions Pvt. Ltd.
+    </a>
+
 </div>
 <div class="footer-newsletter">
 
@@ -5935,11 +6006,12 @@ body{
 </div>
 </div>
   <div class="footer-phone">
-    +91 98765 43210
+    +91 9347768947
   </div>
 <div class="footer-copy">
   © 2026 magua Ethnics • All Rights Reserved
 </div>
+
 </footer>
 
 
