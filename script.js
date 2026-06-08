@@ -1277,3 +1277,65 @@ sheet.addEventListener("touchend",(e)=>{
     }
 
 });
+
+
+async function updateVisitorCounter(){
+
+    try{
+
+        await window.supabaseClient
+        .from("website_visits")
+        .insert([{}]);
+
+        const { count,error } =
+        await window.supabaseClient
+        .from("website_visits")
+        .select("*",{
+            count:"exact",
+            head:true
+        });
+
+        if(error){
+
+            console.log(error);
+            return;
+
+        }
+
+       const counter =
+document.getElementById("visitorCount");
+
+const target = count || 0;
+
+let current = 0;
+
+const step = Math.max(
+    1,
+    Math.ceil(target / 60)
+);
+
+const timer = setInterval(()=>{
+
+    current += step;
+
+    if(current >= target){
+
+        current = target;
+
+        clearInterval(timer);
+
+    }
+
+    counter.textContent = current;
+
+},16);
+
+    }catch(err){
+
+        console.log(err);
+
+    }
+
+}
+
+updateVisitorCounter();
