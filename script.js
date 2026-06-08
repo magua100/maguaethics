@@ -360,8 +360,7 @@ langSwitch.addEventListener("click",()=>{
     document.getElementById("cat5").textContent =
         isTelugu ? "నగలు" : "Fine Jewellery";
 
-    document.getElementById("cat6").textContent =
-        isTelugu ? "మేకప్" : "MakeUp";
+   
 
     // Feature Boxes
     document.querySelectorAll('.feature-box')
