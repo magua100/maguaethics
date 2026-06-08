@@ -5293,6 +5293,296 @@ body{
     }
 
 }
+.beauty-scroll-row{
+    display:flex;
+
+    gap:10px;
+
+    overflow-x:auto;
+
+   padding:12px 0 12px; 
+
+    scroll-behavior:smooth;
+
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+}
+
+.beauty-scroll-row::-webkit-scrollbar{
+    display:none;
+}
+
+.beauty-service-card{
+    flex:0 0 88px;
+
+    text-align:center;
+}
+
+.beauty-service-card img{
+    width:88px;
+    height:88px;
+
+    object-fit:cover;
+
+    border-radius:18px;
+
+    display:block;
+
+    margin:0 auto;
+}
+
+.beauty-service-card span{
+    display:block;
+
+    margin-top:6px;
+
+    color:#fff;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    white-space:nowrap;
+}
+
+/* Laptop & Desktop */
+
+@media(min-width:769px){
+
+    .beauty-scroll-row{
+
+        justify-content:center;
+
+        overflow-x:hidden;
+
+        flex-wrap:wrap;
+
+        max-width:900px;
+
+        margin:0 auto;
+    }
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .beauty-scroll-row{
+
+        justify-content:flex-start;
+
+        flex-wrap:nowrap;
+
+        overflow-x:auto;
+    }
+
+    .beauty-service-card{
+        flex:0 0 78px;
+    }
+
+    .beauty-service-card img{
+        width:78px;
+        height:78px;
+    }
+
+    .beauty-service-card span{
+        font-size:10px;
+    }
+
+}
+.beauty-img-wrap{
+    position:relative;
+
+    width:88px;
+    height:88px;
+
+    margin:0 auto;
+
+    border-radius:18px;
+
+    overflow:hidden;
+}
+
+.beauty-img-wrap img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    position:relative;
+
+    z-index:2;
+}
+
+.beauty-img-loader{
+    position:absolute;
+
+    inset:0;
+
+    border-radius:18px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #2a2a2a 25%,
+        #444 50%,
+        #2a2a2a 75%
+    );
+
+    background-size:300% 100%;
+
+    animation:
+    beautyShimmer 1.2s linear infinite;
+
+    z-index:1;
+}
+
+@keyframes beautyShimmer{
+
+    0%{
+        background-position:100% 0;
+    }
+
+    100%{
+        background-position:-100% 0;
+    }
+
+}
+.glam-book-wrap{
+
+    width:100%;
+
+    max-width:280px;
+
+    margin:18px auto 0;
+
+    position:relative;
+}
+
+.glam-mobile-field{
+
+    width:100%;
+
+    height:46px;
+
+    border:none;
+    outline:none;
+
+    border-radius:14px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    color:#fff;
+
+    font-size:13px;
+}
+
+.glam-mobile-field::placeholder{
+
+    color:rgba(255,255,255,.55);
+}
+.glam-book-button{
+
+    width:100%;
+
+    height:46px;
+
+    margin-top:10px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#d946ef;
+
+    color:#fff;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+.glam-spark{
+
+    position:fixed;
+
+    pointer-events:none;
+
+    font-size:14px;
+
+    z-index:99999;
+
+    animation:glamSparkFly .8s ease-out forwards;
+}
+
+@keyframes glamSparkFly{
+
+    0%{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+
+    100%{
+        opacity:0;
+        transform:translateY(-25px) scale(1.5);
+    }
+
+}
+.glam-book-button{
+    position:relative;
+    overflow:hidden;
+}
+
+.shake{
+    animation:shakeInput .35s;
+}
+
+@keyframes shakeInput{
+
+    0%,100%{
+        transform:translateX(0);
+    }
+
+    25%{
+        transform:translateX(-6px);
+    }
+
+    75%{
+        transform:translateX(6px);
+    }
+
+}
+
+@keyframes beautyBurst{
+
+    0%{
+        opacity:1;
+        transform:
+        translate(-50%,-50%)
+        scale(.5);
+    }
+
+    100%{
+        opacity:0;
+        transform:
+        translate(
+            calc(-50% + var(--x)),
+            calc(-50% + var(--y))
+        )
+        scale(1.6);
+    }
+
+}
 </style>
 </head>
 <body>
@@ -5466,13 +5756,7 @@ body{
     </div>
 </a>
 
-    <a href="makeup.html" style="text-decoration: none; color: inherit;">
-
-     <div class="category-card">
-        <img src="main/makeup.webp" alt="">
-       <p id="cat6">MakeUp</p>
-    </div>
-    </a>
+   
 </div>
 
 <div class="curve-line"></div>
@@ -5734,6 +6018,9 @@ body{
 </div>
 
 </div>
+
+
+
 <div class="whyus-heading">
   Why Us
 </div>
@@ -5792,8 +6079,158 @@ body{
   </div>
 
 </div>
+<div class="whyus-heading">
+  MAGUA MAKEUP
 
+</div>
+<div class="beauty-scroll-row">
 
+    <div class="beauty-service-card">
+
+        <div class="beauty-img-wrap">
+
+            <div class="beauty-img-loader"></div>
+
+            <img
+                src="makeup/1.webp"
+                class="beauty-lazy-img"
+                loading="lazy"
+            >
+
+        </div>
+
+        <span>Bridal MakeUp</span>
+
+    </div>
+
+    <div class="beauty-service-card">
+
+        <div class="beauty-img-wrap">
+
+            <div class="beauty-img-loader"></div>
+
+            <img
+               src="makeup/2.webp"
+                class="beauty-lazy-img"
+                loading="lazy"
+            >
+
+        </div>
+
+        <span>Party MakeUp</span>
+
+    </div>
+
+    <div class="beauty-service-card">
+
+        <div class="beauty-img-wrap">
+
+            <div class="beauty-img-loader"></div>
+
+            <img
+                src="makeup/3.webp"
+                class="beauty-lazy-img"
+                loading="lazy"
+            >
+
+        </div>
+
+        <span>Facials</span>
+
+    </div>
+
+    <div class="beauty-service-card">
+
+        <div class="beauty-img-wrap">
+
+            <div class="beauty-img-loader"></div>
+
+            <img
+              src="makeup/4.webp"
+                class="beauty-lazy-img"
+                loading="lazy"
+            >
+
+        </div>
+
+        <span>Waxing</span>
+
+    </div>
+
+    <div class="beauty-service-card">
+
+        <div class="beauty-img-wrap">
+
+            <div class="beauty-img-loader"></div>
+
+            <img
+               src="makeup/5.webp"
+                class="beauty-lazy-img"
+                loading="lazy"
+            >
+
+        </div>
+
+        <span>Hair Spa</span>
+
+    </div>
+
+    <div class="beauty-service-card">
+
+        <div class="beauty-img-wrap">
+
+            <div class="beauty-img-loader"></div>
+
+            <img
+                src="makeup/6.webp"
+                class="beauty-lazy-img"
+                loading="lazy"
+            >
+
+        </div>
+
+        <span>Hydra Facials</span>
+
+    </div>
+
+    <div class="beauty-service-card">
+
+        <div class="beauty-img-wrap">
+
+            <div class="beauty-img-loader"></div>
+
+            <img
+                src="makeup/7.webp"
+                class="beauty-lazy-img"
+                loading="lazy"
+            >
+
+        </div>
+
+        <span>Laser Therapy</span>
+
+    </div>
+
+</div>
+
+<div class="glam-book-wrap">
+
+    <input
+        type="tel"
+        id="glamMobileInput"
+        maxlength="10"
+        placeholder="Enter Mobile Number"
+        class="glam-mobile-field"
+    >
+
+    <button
+        id="glamBookBtn"
+        class="glam-book-button"
+    >
+        Book Now
+    </button>
+
+</div>
 <div class="store-heading">
   Store
 </div>
@@ -5834,6 +6271,7 @@ body{
   </div>
 
 </div>
+
 <div class="story-heading">
   The magua Story
 </div>
@@ -6124,6 +6562,6 @@ body{
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="script.js?v=5.0.0"></script>
+<script src="script.js?v=6.0.0"></script>
 </body>
 </html>
