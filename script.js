@@ -1339,3 +1339,142 @@ const timer = setInterval(()=>{
 }
 
 updateVisitorCounter();
+
+
+document
+.querySelectorAll(".beauty-lazy-img")
+.forEach(img=>{
+
+    const shimmer =
+    img.parentElement.querySelector(
+        ".beauty-img-loader"
+    );
+
+    const hideShimmer = ()=>{
+
+        shimmer.style.display = "none";
+
+    };
+
+    if(img.complete){
+
+        hideShimmer();
+
+    }else{
+
+        img.addEventListener(
+            "load",
+            hideShimmer
+        );
+
+        img.addEventListener(
+            "error",
+            hideShimmer
+        );
+
+    }
+
+});
+
+const glamBookBtn =
+document.getElementById("glamBookBtn");
+
+const glamMobileInput =
+document.getElementById("glamMobileInput");
+
+glamBookBtn.addEventListener(
+"click",
+async()=>{
+
+    const mobile =
+    glamMobileInput.value.trim();
+
+    if(!/^[0-9]{10}$/.test(mobile)){
+
+        glamMobileInput.classList.remove(
+            "shake"
+        );
+
+        void glamMobileInput.offsetWidth;
+
+        glamMobileInput.classList.add(
+            "shake"
+        );
+
+        return;
+    }
+
+    await window.supabaseClient
+    .from("beauty_bookings")
+    .insert([
+        {
+            mobile:mobile
+        }
+    ]);
+
+    glamBookBtn.innerHTML = "";
+
+    const interval =
+    setInterval(()=>{
+
+        for(let i=0;i<8;i++){
+
+            const heart =
+            document.createElement("span");
+
+            heart.innerHTML = "💜";
+
+            heart.style.position =
+            "absolute";
+
+            heart.style.left = "50%";
+
+            heart.style.top = "50%";
+
+            heart.style.fontSize =
+            "18px";
+
+            heart.style.pointerEvents =
+            "none";
+
+            heart.style.setProperty(
+                "--x",
+                (Math.random()*220-110)
+                +"px"
+            );
+
+            heart.style.setProperty(
+                "--y",
+                (Math.random()*140-70)
+                +"px"
+            );
+
+            heart.style.animation =
+            "beautyBurst 1.2s ease-out forwards";
+
+            glamBookBtn.appendChild(
+                heart
+            );
+
+            setTimeout(()=>{
+
+                heart.remove();
+
+            },1200);
+
+        }
+
+    },150);
+
+    setTimeout(()=>{
+
+        clearInterval(interval);
+
+        glamBookBtn.innerHTML =
+        "Book Now";
+
+        glamMobileInput.value = "";
+
+    },5000);
+
+});
