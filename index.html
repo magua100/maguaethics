@@ -2077,9 +2077,10 @@ select{
 
 .magua-footer-title{
     margin:0 0 12px;
+    font-family:'Azonix', sans-serif !important;
     font-size:28px;
-    font-weight:600;
-    letter-spacing:-.4px;
+    font-weight:400;
+    letter-spacing:3px;
     color:#ffffff;
 }
 
@@ -2254,6 +2255,61 @@ select{
     }
 }
 
+@media(max-width:600px){
+
+    .exclusive-collections-section{
+        padding:30px 0 35px;
+        overflow:hidden;
+    }
+
+    .exclusive-collections-heading{
+        padding:0 16px;
+    }
+
+    .exclusive-collections-grid{
+        display:flex !important;
+        grid-template-columns:none !important;
+
+        gap:14px !important;
+
+        overflow-x:auto;
+        overflow-y:hidden;
+
+        padding:5px 16px 15px;
+
+        scroll-snap-type:x mandatory;
+        -webkit-overflow-scrolling:touch;
+
+        scrollbar-width:none;
+    }
+
+    .exclusive-collections-grid::-webkit-scrollbar{
+        display:none;
+    }
+
+    .exclusive-collection-card{
+        flex:0 0 72%;
+        min-width:72%;
+
+        scroll-snap-align:start;
+        text-decoration:none;
+    }
+
+    .exclusive-card-frame{
+        width:100%;
+    }
+
+    .exclusive-card-image{
+        width:100%;
+    }
+
+    .exclusive-card-image img{
+        width:100%;
+        height:auto;
+        display:block;
+    }
+}
+
 @media(max-width:420px){
     .magua-footer-grid{
         grid-template-columns:1fr;
@@ -2261,6 +2317,509 @@ select{
     }
 }
 
+/* =====================================
+   SIGNATURE COLLECTIONS
+===================================== */
+
+.exclusive-collections-section{
+    width:100%;
+    padding:48px 6% 58px;
+    background:#ffffff;
+}
+
+
+/* HEADING */
+
+.exclusive-collections-heading{
+    width:100%;
+    text-align:left;
+    margin-bottom:34px;
+}
+
+.exclusive-collections-heading h2{
+    margin:0;
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:28px;
+    font-weight:700;
+    color:#5e3984;
+    letter-spacing:-0.5px;
+}
+
+.exclusive-collections-heading p{
+    margin:8px 0 0;
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:13px;
+    color:#777;
+}
+
+
+/* 3 CARDS PER ROW */
+
+.exclusive-collections-grid{
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:28px 24px;
+}
+
+
+/* CARD */
+
+.exclusive-collection-card{
+    display:block;
+    text-decoration:none;
+}
+
+
+/* OUTER BORDER */
+
+.exclusive-card-frame{
+    width:100%;
+    padding:6px;
+
+    background:#ffffff;
+
+    border:2px solid #2c0448;
+    border-radius:22px;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+}
+
+
+/* INNER IMAGE CARD */
+
+.exclusive-card-image{
+    width:100%;
+    aspect-ratio:16 / 10;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:16px;
+
+    background:#f7f3fa;
+}
+
+
+/* IMAGE */
+
+.exclusive-card-image img{
+    width:100%;
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+    transition:transform .4s ease;
+}
+
+
+/* BOTTOM GRADIENT */
+
+.exclusive-card-image::after{
+    content:"";
+
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:45%;
+
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.68),
+        rgba(0,0,0,.15),
+        transparent
+    );
+
+    pointer-events:none;
+}
+
+
+/* NAME INSIDE CARD */
+
+.exclusive-card-name{
+    position:absolute;
+
+    left:20px;
+    right:20px;
+    bottom:18px;
+
+    z-index:2;
+
+    font-family:'Plus Jakarta Sans',sans-serif;
+
+    font-size:18px;
+    font-weight:600;
+
+    color:#ffffff;
+
+    text-align:left;
+
+    text-shadow:0 2px 8px rgba(0,0,0,.30);
+}
+
+
+/* HOVER */
+
+.exclusive-collection-card:hover .exclusive-card-frame{
+    transform:translateY(-4px);
+
+    border-color:#bda5ce;
+
+    box-shadow:
+        0 12px 30px rgba(94,57,132,.13);
+}
+
+.exclusive-collection-card:hover img{
+    transform:scale(1.04);
+}
+
+
+/* TABLET */
+
+@media(max-width:900px){
+
+    .exclusive-collections-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:22px;
+    }
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .exclusive-collections-section{
+        padding:32px 18px 40px;
+    }
+
+    .exclusive-collections-heading{
+        margin-bottom:24px;
+    }
+
+    .exclusive-collections-heading h2{
+        font-size:21px;
+    }
+
+    .exclusive-collections-heading p{
+        font-size:11px;
+    }
+
+    .exclusive-collections-grid{
+        grid-template-columns:1fr;
+        gap:18px;
+    }
+
+    .exclusive-card-frame{
+        padding:5px;
+        border-radius:18px;
+    }
+
+    .exclusive-card-image{
+        border-radius:13px;
+    }
+
+    .exclusive-card-name{
+        left:16px;
+        bottom:14px;
+        font-size:16px;
+    }
+
+}
+
+
+/* =====================================
+   MAGUA EXACT IMAGE WAVE BANNER
+   banner5.png already contains top + bottom waves
+===================================== */
+
+.magua-wave-banner{
+    width:100%;
+    margin:35px 0 45px;
+    padding:0;
+    background:#ffffff;
+    overflow:hidden;
+}
+
+.magua-wave-image{
+    width:100%;
+    position:relative;
+    overflow:hidden;
+    background:#ffffff;
+}
+
+.magua-wave-image img{
+    width:100%;
+    height:auto;
+    display:block;
+    object-fit:contain;
+    object-position:center;
+    transform:none;
+}
+
+
+/* =========================
+   TEXT OVER IMAGE
+========================= */
+
+.magua-wave-text{
+    position:absolute;
+    left:7%;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:4;
+    color:#ffffff;
+    text-align:left;
+}
+
+
+/* FIXED FIRST LINE */
+
+.magua-wave-fixed{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:4px;
+    margin-bottom:9px;
+    color:#ffffff;
+    text-shadow:0 2px 8px rgba(0,0,0,.28);
+}
+
+
+/* CHANGING SECOND LINE */
+
+.magua-wave-changing{
+    height:55px;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:40px;
+    font-weight:700;
+    line-height:1.1;
+    color:#ffffff;
+    text-shadow:0 3px 12px rgba(0,0,0,.32);
+}
+
+#maguaWaveChangingText{
+    display:inline-block;
+    animation:maguaWaveTextIn .55s ease forwards;
+}
+
+@keyframes maguaWaveTextIn{
+    0%{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    100%{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+
+/* TABLET */
+
+@media(max-width:900px){
+    .magua-wave-banner{
+        margin:28px 0 35px;
+    }
+
+    .magua-wave-fixed{
+        font-size:10px;
+        letter-spacing:3px;
+    }
+
+    .magua-wave-changing{
+        height:42px;
+        font-size:29px;
+    }
+}
+
+
+/* MOBILE */
+
+@media(max-width:600px){
+    .magua-wave-banner{
+        width:100%;
+        margin:22px 0 30px;
+    }
+
+    .magua-wave-image{
+        width:100%;
+        height:auto;
+    }
+
+    .magua-wave-image img{
+        width:100%;
+        height:auto;
+        display:block;
+        object-fit:contain;
+        transform:none;
+    }
+
+    .magua-wave-text{
+        left:6%;
+    }
+
+    .magua-wave-fixed{
+        font-size:7px;
+        letter-spacing:2px;
+        margin-bottom:4px;
+    }
+
+    .magua-wave-changing{
+        height:26px;
+        font-size:17px;
+    }
+}
+
+/* =====================================
+   PROFILE - LOGIN DETAILS
+===================================== */
+
+#profileLoginDetails{
+    cursor:default;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:3px;
+
+    padding:11px 12px;
+
+    background:#f8f4fb;
+    color:#5e3984;
+}
+
+#profileUserMobile{
+    font-size:12px;
+    font-weight:700;
+    color:#5e3984;
+}
+
+
+/* =====================================
+   PROFILE MENU LINKS
+===================================== */
+
+#profileMenu .profile-menu-link{
+    width:100%;
+
+    min-height:44px;
+
+    display:flex;
+    align-items:center;
+
+    padding:0 12px;
+
+    border-radius:8px;
+
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:12px;
+    font-weight:600;
+
+    text-decoration:none;
+
+    color:#333333;
+
+    background:transparent;
+
+    transition:
+        background .18s ease,
+        color .18s ease;
+}
+
+#profileMenu .profile-menu-link:hover{
+    background:#f7f3fa;
+    color:#5e3984;
+}
+
+
+/* =====================================
+   LOGOUT
+===================================== */
+
+#profileLogoutBtn{
+    width:100%;
+
+    min-height:44px;
+
+    display:none;
+    align-items:center;
+
+    padding:0 12px;
+
+    border:none !important;
+    outline:none;
+
+    border-top:1px solid #eeeeee !important;
+
+    border-radius:0 0 8px 8px;
+
+    background:transparent;
+
+    color:#c43b4d !important;
+
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:12px;
+    font-weight:600;
+
+    text-align:left;
+
+    cursor:pointer;
+
+    margin-top:5px;
+}
+
+#profileLogoutBtn:hover{
+    background:#fff2f4 !important;
+    color:#b52f42 !important;
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media(max-width:480px){
+
+    #profileMenu .profile-menu-link{
+        min-height:42px;
+        padding:0 11px;
+        font-size:11px;
+    }
+
+    #profileUserMobile{
+        font-size:11px;
+    }
+
+    #profileLogoutBtn{
+        min-height:42px;
+        font-size:11px;
+    }
+
+}
+
+
+
+/* =====================================
+   PROFILE OPEN STATE - FIX
+===================================== */
+.profile-menu.active{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+    pointer-events:auto;
+}
 </style>
 <link rel="stylesheet" href="banners/style.css">
 
@@ -2556,42 +3115,97 @@ placeholder="Search for Sarees"
 <div class="nav-right">
 
     <!-- WISHLIST -->
-    <a
-        href="#"
-        class="nav-icon"
-        title="Wishlist"
-        aria-label="Wishlist"
-    >
-        <i class="fa-regular fa-heart"></i>
-    </a>
+   <a
+    href="wishlist.html"
+    class="nav-icon"
+    title="Wishlist"
+    aria-label="Wishlist"
+>
+    <i class="fa-regular fa-heart"></i>
+</a>
 
-    <!-- PROFILE -->
-    <div class="profile-wrap">
+<!-- PROFILE --> 
+<div class="profile-wrap"> 
+ 
+    <button 
+        class="nav-icon profile-btn" 
+        id="profileBtn" 
+        type="button" 
+        title="Account" 
+        aria-label="Account" 
+        aria-expanded="false" 
+    > 
+        <i class="fa-regular fa-user"></i> 
+    </button> 
+ 
+    <div class="profile-menu" id="profileMenu"> 
 
-        <button
-            class="nav-icon profile-btn"
-            id="profileBtn"
-            type="button"
-            title="Account"
-            aria-label="Account"
-            aria-expanded="false"
+
+        <!-- LOGIN USER DETAILS -->
+        <div
+            class="profile-menu-link"
+            id="profileLoginDetails"
+            style="display:none;"
         >
-            <i class="fa-regular fa-user"></i>
-        </button>
-
-        <div class="profile-menu" id="profileMenu">
-
-            <a href="#" class="profile-menu-link"><span>Sign In</span></a>
-
-            <a href="#" class="profile-menu-link"><span>Sign Up</span></a>
-
-            <a href="#" class="profile-menu-link"><span>Track an Order</span></a>
-
-            <a href="#store" class="profile-menu-link"><span>Locate a Store</span></a>
-
+            <span id="profileUserMobile">
+                +91 ----------
+            </span>
         </div>
 
-    </div>
+
+        <!-- ORIGINAL SIGN IN -->
+        <a 
+            href="testlogin.html" 
+            class="profile-menu-link"
+            id="profileSignIn"
+        >
+            <span>Sign In</span>
+        </a> 
+
+
+        <!-- ORIGINAL SIGN UP -->
+        <a 
+            href="register.html" 
+            class="profile-menu-link"
+            id="profileSignUp"
+        >
+            <span>Sign Up</span>
+        </a> 
+
+
+        <!-- ORIGINAL TRACK ORDER -->
+        <a 
+            href="orders.html" 
+            class="profile-menu-link"
+            id="profileTrackOrder"
+        >
+            <span>Track an Order</span>
+        </a> 
+
+
+        <!-- ORIGINAL LOCATE STORE -->
+        <a 
+            href="#store" 
+            class="profile-menu-link"
+            id="profileLocateStore"
+        >
+            <span>Locate a Store</span>
+        </a>
+
+
+        <!-- LOGOUT -->
+        <button
+            type="button"
+            class="profile-menu-link"
+            id="profileLogoutBtn"
+            style="display:none; width:100%; border:0; cursor:pointer;"
+        >
+            <span>Logout</span>
+        </button>
+ 
+    </div> 
+ 
+</div>
 
 </div>
 
@@ -2790,10 +3404,12 @@ placeholder="Search for Sarees"
 <!-- NEXT BANNER -->
 <section class="category-bottom-banner">
 
-    <img
-        src="banners/banner3.webp"
-        alt="Magua Ethnics Collection"
-    >
+    <a href="sarees.html" style="display:block;">
+        <img 
+            src="banners/banner3.webp" 
+            alt="Magua Ethnics Collection"
+        >
+    </a>
 
 </section>
 <section class="dress-heading-section">
@@ -2804,28 +3420,28 @@ placeholder="Search for Sarees"
 
     <div class="dress-circle-grid">
 
-        <a href="#" class="dress-circle-card">
+        <a href="sarees.html?category=kanjivaram" class="dress-circle-card">
             <div class="dress-circle-image">
                 <img src="saress/kka.webp" alt="Kanjivaram Sarees">
             </div>
             <div class="dress-circle-name">Kanjivaram Sarees</div>
         </a>
 
-        <a href="#" class="dress-circle-card">
+        <a href="sarees.html?category=banarasi" class="dress-circle-card">
             <div class="dress-circle-image">
                 <img src="saress/bana.webp" alt="Banarasi Sarees">
             </div>
             <div class="dress-circle-name">Banarasi Sarees</div>
         </a>
 
-        <a href="#" class="dress-circle-card">
+        <a href="sarees.html?category=viscos" class="dress-circle-card">
             <div class="dress-circle-image">
                 <img src="saress/silk.webp" alt="Silk Sarees">
             </div>
             <div class="dress-circle-name">Silk Sarees</div>
         </a>
 
-        <a href="#" class="dress-circle-card">
+        <a href="sarees.html?category=designer" class="dress-circle-card">
             <div class="dress-circle-image">
                 <img src="saress/desigenr.webp" alt="Designer Sarees">
             </div>
@@ -2945,16 +3561,150 @@ placeholder="Search for Sarees"
 
 </section>
 <section class="sarees-full-banner">
-    <img
-        src="banners/next.webp"
-        alt="Magua Ethnics Sarees Collection"
-    >
+
+    <a href="readmade.html" style="display:block;">
+        <img 
+            src="banners/next.webp" 
+            alt="Magua Ethnics Sarees Collection"
+        >
+    </a>
+
 </section>
 
-<!-- OUR BRANDS HEADING -->
-<section class="our-brands-heading">
-    <h2>Our Brands</h2>
+<section class="exclusive-collections-section">
+
+    <div class="exclusive-collections-heading">
+        <h2>Discover Our Signature Collections</h2>
+       
+    </div>
+
+    <div class="exclusive-collections-grid">
+
+        <!-- CARD 1 -->
+        <a href="lehengas.html?category=bridal_lehengas" class="exclusive-collection-card">
+            <div class="exclusive-card-frame">
+                <div class="exclusive-card-image">
+                    <img src="d-images/sharara_maroon3.webp" alt="Bridal Collection">
+
+                    <div class="exclusive-card-name">
+                        Bridal Collection
+                    </div>
+                </div>
+            </div>
+        </a>
+
+
+        <!-- CARD 2 -->
+        <a href="sarees.html" class="exclusive-collection-card">
+            <div class="exclusive-card-frame">
+                <div class="exclusive-card-image">
+                    <img src="sarees_images/jamdhani_skyblue3.webp" alt="Designer Sarees">
+
+                    <div class="exclusive-card-name">
+                        Designer Sarees
+                    </div>
+                </div>
+            </div>
+        </a>
+
+
+        <!-- CARD 3 -->
+        <a href="lehengas.html?category=premium_lehengas" class="exclusive-collection-card">
+            <div class="exclusive-card-frame">
+                <div class="exclusive-card-image">
+                    <img src="lehangs.webp" alt="Premium Lehengas">
+
+                    <div class="exclusive-card-name">
+                        Premium Lehengas
+                    </div>
+                </div>
+            </div>
+        </a>
+
+
+        <!-- CARD 4 -->
+        <a href="sarees.html?category=viscos" class="exclusive-collection-card">
+            <div class="exclusive-card-frame">
+                <div class="exclusive-card-image">
+                    <img src="sarees_images/viscos_liteorange1.webp" alt="Festive Edit">
+
+                    <div class="exclusive-card-name">
+                        Festive Edit
+                    </div>
+                </div>
+            </div>
+        </a>
+
+
+        <!-- CARD 5 -->
+        <a href="sarees.html?category=wedding_essentials" class="exclusive-collection-card">
+            <div class="exclusive-card-frame">
+                <div class="exclusive-card-image">
+                    <img src="sarees_images/bana_sky1.webp" alt="Wedding Essentials">
+
+                    <div class="exclusive-card-name">
+                        Wedding Essentials
+                    </div>
+                </div>
+            </div>
+        </a>
+
+
+        <!-- CARD 6 -->
+        <a href="jewlery.html" class="exclusive-collection-card">
+            <div class="exclusive-card-frame">
+                <div class="exclusive-card-image">
+                    <img src="j-images/diamondnecklace1.webp" alt="Jewellery Edit">
+
+                    <div class="exclusive-card-name">
+                        Jewellery Edit
+                    </div>
+                </div>
+            </div>
+        </a>
+
+    </div>
+
 </section>
+
+
+
+
+<!-- =====================================
+     WAVE STYLE FULL WIDTH BANNER
+     banner5.webp contains the exact top + bottom wave
+===================================== -->
+
+<section class="magua-wave-banner">
+
+    <div class="magua-wave-image">
+
+       <a href="lehengas.html" style="display:block;">
+    <img 
+        src="banners/banner5.webp" 
+        alt="Magua Ethnics Collection"
+    >
+</a>
+
+        <div class="magua-wave-text">
+
+            <div class="magua-wave-fixed">
+                MADE FOR EVERY YOU
+            </div>
+
+            <div class="magua-wave-changing">
+                <span id="maguaWaveChangingText">
+                    Timeless Sarees
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
 
 
 
@@ -2989,7 +3739,7 @@ placeholder="Search for Sarees"
                 <a href="services/makeupp3.html">Beauty &amp; Makeup</a>
                 <a href="#store">Visit Store</a>
                 <a href="#">Track an Order</a>
-                <a href="#">Wishlist</a>
+                <a href="wishlist.html">Wishlist</a>
             </div>
 
             <div class="magua-footer-col">
@@ -3426,81 +4176,76 @@ slider.addEventListener(
 
 
 /* =====================================
-   PROFILE MENU
+   PROFILE MENU + LOGIN STATE + LOGOUT
 ===================================== */
 
-const profileBtn =
-document.getElementById("profileBtn");
+const profileBtn = document.getElementById("profileBtn");
+const profileMenu = document.getElementById("profileMenu");
+const profileLoginDetails = document.getElementById("profileLoginDetails");
+const profileUserMobile = document.getElementById("profileUserMobile");
+const profileSignIn = document.getElementById("profileSignIn");
+const profileSignUp = document.getElementById("profileSignUp");
+const profileLogoutBtn = document.getElementById("profileLogoutBtn");
 
-const profileMenu =
-document.getElementById("profileMenu");
+function updateProfileMenu(){
+    const isLoggedIn = localStorage.getItem("maguaLoggedIn") === "true";
+    const mobile = localStorage.getItem("maguaUserMobile") || "";
 
-
-if(profileBtn && profileMenu){
-
-    profileBtn.addEventListener(
-        "click",
-        function(e){
-
-            e.stopPropagation();
-
-            const isOpen =
-            profileMenu.classList.toggle("active");
-
-            profileBtn.setAttribute(
-                "aria-expanded",
-                isOpen ? "true" : "false"
-            );
-
+    if(isLoggedIn){
+        if(profileLoginDetails) profileLoginDetails.style.display = "flex";
+        if(profileUserMobile){
+            profileUserMobile.textContent = mobile ? "+91 " + mobile : "Logged In";
         }
-    );
-
-
-    profileMenu.addEventListener(
-        "click",
-        function(e){
-
-            e.stopPropagation();
-
-        }
-    );
-
-
-    document.addEventListener(
-        "click",
-        function(){
-
-            profileMenu.classList.remove("active");
-
-            profileBtn.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-        }
-    );
-
-
-    window.addEventListener(
-        "resize",
-        function(){
-
-            if(window.innerWidth > 950){
-
-                profileMenu.classList.remove("active");
-
-                profileBtn.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-            }
-
-        }
-    );
-
+        if(profileSignIn) profileSignIn.style.display = "none";
+        if(profileSignUp) profileSignUp.style.display = "none";
+        if(profileLogoutBtn) profileLogoutBtn.style.display = "flex";
+    }else{
+        if(profileLoginDetails) profileLoginDetails.style.display = "none";
+        if(profileSignIn) profileSignIn.style.display = "flex";
+        if(profileSignUp) profileSignUp.style.display = "flex";
+        if(profileLogoutBtn) profileLogoutBtn.style.display = "none";
+    }
 }
 
+updateProfileMenu();
+
+if(profileBtn && profileMenu){
+    profileBtn.addEventListener("click", function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        updateProfileMenu();
+        const isOpen = profileMenu.classList.toggle("active");
+        profileBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    profileMenu.addEventListener("click", function(e){
+        e.stopPropagation();
+    });
+
+    document.addEventListener("click", function(){
+        profileMenu.classList.remove("active");
+        profileBtn.setAttribute("aria-expanded", "false");
+    });
+
+    window.addEventListener("resize", function(){
+        profileMenu.classList.remove("active");
+        profileBtn.setAttribute("aria-expanded", "false");
+    });
+}
+
+if(profileLogoutBtn){
+    profileLogoutBtn.addEventListener("click", function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        localStorage.removeItem("maguaLoggedIn");
+        localStorage.removeItem("maguaUserMobile");
+        localStorage.removeItem("maguaLoginRedirect");
+        updateProfileMenu();
+        if(profileMenu) profileMenu.classList.remove("active");
+        if(profileBtn) profileBtn.setAttribute("aria-expanded", "false");
+        window.location.href = "index.html";
+    });
+}
 
 
 /* =====================================
@@ -3861,6 +4606,94 @@ window.addEventListener(
 
 
 
+const maguaWaveWords = [
+    "Timeless Sarees",
+    "Modern Ethnic Wear",
+    "Festive Elegance",
+    "Wedding Styles",
+    "Signature Collections"
+];
+
+let maguaWaveIndex = 0;
+
+const maguaWaveChangingText =
+    document.getElementById("maguaWaveChangingText");
+
+
+function updateMaguaWaveText(){
+
+    maguaWaveChangingText.style.opacity = "0";
+
+    maguaWaveChangingText.style.transform =
+        "translateY(-25px)";
+
+
+    setTimeout(() => {
+
+        maguaWaveIndex =
+            (maguaWaveIndex + 1) % maguaWaveWords.length;
+
+        maguaWaveChangingText.textContent =
+            maguaWaveWords[maguaWaveIndex];
+
+
+        maguaWaveChangingText.style.animation = "none";
+
+        void maguaWaveChangingText.offsetWidth;
+
+        maguaWaveChangingText.style.animation =
+            "maguaWaveTextIn .55s ease forwards";
+
+    },300);
+
+}
+
+
+setInterval(updateMaguaWaveText,2200);
+
+</script>
+
+
+<script>
+/* =========================================
+   MAGUA - LOGIN BEFORE OPENING A CATEGORY/PAGE
+   Once logged in, links open normally.
+========================================= */
+(function () {
+    document.addEventListener("click", function (event) {
+        const link = event.target.closest("a[href]");
+        if (!link) return;
+
+        const href = (link.getAttribute("href") || "").trim();
+
+        if (
+            !href ||
+            href === "#" ||
+            href.startsWith("#") ||
+            href.startsWith("tel:") ||
+            href.startsWith("mailto:") ||
+            href.startsWith("javascript:") ||
+            href.startsWith("http://") ||
+            href.startsWith("https://") ||
+            href === "index.html" ||
+            href === "./index.html" ||
+            href === "/" ||
+            href.includes("testlogin.html") ||
+            href.includes("register.html") ||
+            href.includes("wishlist.html")
+        ) {
+            return;
+        }
+
+        if (localStorage.getItem("maguaLoggedIn") === "true") {
+            return;
+        }
+
+        event.preventDefault();
+        localStorage.setItem("maguaLoginRedirect", href);
+        window.location.href = "testlogin.html";
+    });
+})();
 </script>
 
 </body>
