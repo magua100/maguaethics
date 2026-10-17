@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://maguaethnics.com/sitemap.xml
+Sitemap: https://maguaethnics.com/images-sitemap.xml
