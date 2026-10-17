@@ -10,20 +10,20 @@
 
     <!-- FIRST: LOGO -->
     <image:image>
-      <image:loc>https://maguaethnics.com/seopics/logo.png</image:loc>
+      <image:loc>https://maguaethnics.com/seopics/logo1.png</image:loc>
     </image:image>
 
     <!-- ALL IMAGES -->
     <image:image>
-      <image:loc>https://maguaethnics.com/seopics/1.png</image:loc>
+      <image:loc>https://maguaethnics.com/seopics/logo2.png</image:loc>
     </image:image>
 
     <image:image>
-      <image:loc>https://maguaethnics.com/seopics/2.png</image:loc>
+      <image:loc>https://maguaethnics.com/seopics/logo1.webp</image:loc>
     </image:image>
 
     <image:image>
-      <image:loc>https://maguaethnics.com/seopics/3.png</image:loc>
+      <image:loc>https://maguaethnics.com/seopics/logo3.png</image:loc>
     </image:image>
 
     
@@ -58,7 +58,12 @@
       <video:content_loc>https://maguaethnics.com/seopics/4.mp4</video:content_loc>
     </video:video>
 
-    
+    <video:video>
+      <video:thumbnail_loc>https://maguaethnics.com/seopics/4.webp</video:thumbnail_loc>
+      <video:title>Magua Ethnics </video:title>
+      <video:description>Logo animation.</video:description>
+      <video:content_loc>https://maguaethnics.com/seopics/magualogo.webm</video:content_loc>
+    </video:video>
 
   </url>
 
