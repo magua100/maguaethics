@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Login | Magua Ethnics</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link href="https://fonts.cdnfonts.com/css/azonix" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    min-height:100%;
+}
+
+body{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    background:#ffffff;
+    color:#222;
+}
+
+
+/* =====================================
+   MAIN
+===================================== */
+
+.login-page{
+    width:100%;
+    min-height:100vh;
+
+    display:grid;
+    grid-template-columns:50% 50%;
+}
+
+
+/* =====================================
+   LEFT FASHION IMAGE
+===================================== */
+
+.login-visual{
+    min-height:100vh;
+
+    position:relative;
+    overflow:hidden;
+
+    background-image:url("testlogin.webp");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+.login-image-brand{
+    position:absolute;
+    top:35px;
+    right:150px;
+    left:auto;
+    z-index:10;
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    text-decoration:none;
+
+    /* PURPLE SHADOW */
+    filter:drop-shadow(0 3px 7px rgba(94,57,132,.38));
+}
+
+.login-image-brand img{
+    width:100px;
+    height:100px;
+    object-fit:contain;
+}
+
+.login-brand-name{
+    font-family:'Azonix', sans-serif;
+    font-size:20px;
+    letter-spacing:3px;
+    color:#5e3984;
+    line-height:1;
+}
+
+.login-brand-sub{
+    margin-top:6px;
+
+    font-family:'Azonix', sans-serif;
+    font-size:8px;
+    letter-spacing:3px;
+    color:#5e3984;
+}
+
+/* VERY LIGHT EDGE BLEND */
+
+.login-visual::after{
+    content:"";
+
+    position:absolute;
+    top:0;
+    right:0;
+
+    width:70px;
+    height:100%;
+
+    background:linear-gradient(
+        to right,
+        transparent,
+        rgba(255,255,255,.12)
+    );
+
+    pointer-events:none;
+}
+
+
+/* =====================================
+   RIGHT LOGIN SIDE
+===================================== */
+
+.login-side{
+    min-height:100vh;
+
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:70px 9%;
+
+    background:#ffffff;
+}
+
+
+/* =====================================
+   BACK HOME
+===================================== */
+
+.back-home{
+    position:absolute;
+
+    right:38px;
+    top:35px;
+
+    display:flex;
+    align-items:center;
+
+    gap:8px;
+
+    color:#5e3984;
+
+    text-decoration:none;
+
+    font-size:11px;
+    font-weight:600;
+
+    transition:opacity .2s ease;
+}
+
+.back-home:hover{
+    opacity:.7;
+}
+
+.back-home i{
+    font-size:11px;
+}
+
+
+/* =====================================
+   LOGIN CONTENT
+===================================== */
+
+.login-content{
+    width:100%;
+    max-width:410px;
+}
+
+
+/* SMALL TOP LABEL */
+
+.login-label{
+    display:flex;
+    align-items:center;
+
+    gap:9px;
+
+    margin-bottom:16px;
+
+    color:#5e3984;
+
+    font-size:10px;
+    font-weight:700;
+
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.login-label::before{
+    content:"";
+
+    width:27px;
+    height:2px;
+
+    background:#5e3984;
+}
+
+
+/* TITLE */
+
+.login-content h1{
+    margin:0;
+
+    color:#291936;
+
+    font-size:36px;
+    font-weight:700;
+
+    line-height:1.2;
+
+    letter-spacing:-1.2px;
+}
+
+
+/* DESCRIPTION */
+
+.login-desc{
+    margin-top:11px;
+
+    max-width:360px;
+
+    color:#807887;
+
+    font-size:12px;
+
+    line-height:1.7;
+}
+
+
+/* =====================================
+   FORM
+===================================== */
+
+.login-form{
+    margin-top:39px;
+}
+
+.form-group{
+    margin-bottom:25px;
+}
+
+.form-group label{
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#46384f;
+
+    font-size:11px;
+    font-weight:600;
+}
+
+
+/* INPUT LINE */
+
+.input-line{
+    width:100%;
+
+    position:relative;
+
+    border-bottom:1.5px solid #ddd4e3;
+
+    transition:border-color .2s ease;
+}
+
+.input-line:focus-within{
+    border-color:#5e3984;
+}
+
+
+/* INPUT ICON */
+
+.input-line > i{
+    position:absolute;
+
+    left:2px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#9a88a8;
+
+    font-size:13px;
+
+    pointer-events:none;
+}
+
+
+/* INPUT */
+
+.input-line input{
+    width:100%;
+    height:49px;
+
+    padding:0 42px 0 30px;
+
+    border:0;
+    outline:0;
+
+    background:transparent;
+
+    color:#222222;
+
+    font-family:'Plus Jakarta Sans',sans-serif;
+
+    font-size:13px;
+}
+
+.input-line input::placeholder{
+    color:#aaa;
+}
+
+
+/* =====================================
+   PASSWORD EYE
+===================================== */
+
+.eye-btn{
+    position:absolute;
+
+    right:2px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:35px;
+    height:35px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:0;
+    outline:0;
+
+    background:transparent;
+
+    color:#94859f;
+
+    cursor:pointer;
+
+    font-size:13px;
+}
+
+
+/* =====================================
+   REMEMBER / FORGOT
+===================================== */
+
+.login-options{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:15px;
+
+    margin:2px 0 29px;
+}
+
+.remember{
+    display:flex;
+    align-items:center;
+
+    gap:7px;
+
+    color:#777;
+
+    font-size:10px;
+
+    cursor:pointer;
+}
+
+.remember input{
+    accent-color:#5e3984;
+}
+
+.forgot{
+    color:#5e3984;
+
+    text-decoration:none;
+
+    font-size:10px;
+    font-weight:600;
+}
+
+.forgot:hover{
+    text-decoration:underline;
+}
+
+
+/* =====================================
+   SIGN IN BUTTON
+===================================== */
+
+.login-btn{
+    width:100%;
+    height:51px;
+
+    border:0;
+    outline:0;
+
+    border-radius:5px;
+
+    background:#5e3984;
+
+    color:#ffffff;
+
+    font-family:'Plus Jakarta Sans',sans-serif;
+
+    font-size:12px;
+    font-weight:700;
+
+    letter-spacing:.8px;
+
+    cursor:pointer;
+
+    transition:
+        background .2s ease,
+        transform .15s ease;
+}
+
+.login-btn:hover{
+    background:#4c2c6d;
+}
+
+.login-btn:active{
+    transform:scale(.99);
+}
+
+
+/* =====================================
+   MESSAGE
+===================================== */
+
+.login-message{
+    display:none;
+
+    margin-top:18px;
+
+    padding:11px 13px;
+
+    border-radius:5px;
+
+    font-size:11px;
+
+    line-height:1.5;
+}
+
+.login-message.error{
+    display:block;
+
+    color:#a02c3b;
+
+    background:#fff3f5;
+}
+
+.login-message.success{
+    display:block;
+
+    color:#356742;
+
+    background:#f1faf3;
+}
+
+
+/* =====================================
+   FOOTER
+===================================== */
+
+.login-footer{
+    margin-top:45px;
+
+    color:#aaa;
+
+    text-align:center;
+
+    font-size:9px;
+}
+
+
+/* =====================================
+   TABLET
+===================================== */
+
+@media(max-width:950px) and (min-width:701px){
+
+    .login-page{
+        grid-template-columns:48% 52%;
+    }
+
+    .login-side{
+        padding-left:8%;
+        padding-right:8%;
+    }
+
+    .login-content h1{
+        font-size:32px;
+    }
+
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media(max-width:700px){
+
+    body{
+        background:#ffffff;
+    }
+
+
+    /* STACK IMAGE + LOGIN */
+
+    .login-page{
+        min-height:100vh;
+
+        display:block;
+    }
+
+
+    /* IMAGE TOP */
+
+    .login-visual{
+        width:100%;
+
+        min-height:240px;
+        height:34vh;
+
+        background-size:cover;
+
+        /*
+           generated image lo woman left side undi
+           kabatti mobile lo slightly left focus
+        */
+        background-position:20% center;
+    }
+
+
+    .login-visual::after{
+        top:auto;
+        right:0;
+        bottom:0;
+
+        width:100%;
+        height:55px;
+
+        background:linear-gradient(
+            to bottom,
+            transparent,
+            rgba(255,255,255,.35)
+        );
+    }
+
+
+    /* LOGIN AREA */
+
+    .login-side{
+        width:100%;
+
+        min-height:auto;
+
+        display:block;
+
+        padding:31px 23px 38px;
+    }
+
+
+    /* MOBILE BACK BUTTON HIDE */
+
+    .back-home{
+        display:none;
+    }
+
+
+    .login-content{
+        width:100%;
+        max-width:none;
+    }
+
+
+    .login-label{
+        margin-bottom:11px;
+
+        font-size:8px;
+
+        letter-spacing:1.6px;
+    }
+
+
+    .login-label::before{
+        width:21px;
+    }
+
+
+    .login-content h1{
+        font-size:26px;
+
+        letter-spacing:-.8px;
+    }
+
+
+    .login-desc{
+        margin-top:8px;
+
+        max-width:330px;
+
+        font-size:11px;
+
+        line-height:1.6;
+    }
+
+
+    .login-form{
+        margin-top:28px;
+    }
+
+
+    .form-group{
+        margin-bottom:20px;
+    }
+
+
+    .form-group label{
+        font-size:10px;
+    }
+
+
+    .input-line input{
+        height:46px;
+
+        font-size:12px;
+    }
+
+
+    .login-options{
+        margin-bottom:24px;
+    }
+
+
+    .login-btn{
+        height:49px;
+    }
+
+
+    .login-footer{
+        margin-top:35px;
+    }
+
+}
+
+
+/* =====================================
+   SMALL MOBILE
+===================================== */
+
+@media(max-width:380px){
+
+    .login-visual{
+        height:30vh;
+        min-height:220px;
+
+        background-position:18% center;
+    }
+
+
+    .login-side{
+        padding-left:19px;
+        padding-right:19px;
+    }
+
+
+    .login-content h1{
+        font-size:24px;
+    }
+
+}
+
+/* MOBILE ONLY */
+@media(max-width:700px){
+
+    .login-image-brand{
+        top:18px;
+        right:18px;
+        left:auto;
+        gap:8px;
+    }
+
+    .login-image-brand img{
+        width:38px;
+        height:38px;
+    }
+
+    .login-brand-name{
+        font-size:14px;
+    }
+
+    .login-brand-sub{
+        font-size:6px;
+        margin-top:4px;
+    }
+
+}
+
+/* =====================================
+   FASHION TEXT - ONE AFTER ONE
+===================================== */
+
+.fashion-image-text{
+    position:absolute;
+
+    top:260px;
+    right:65px;
+
+    width:280px;
+
+    z-index:5;
+
+    text-align:center;
+
+    color:#5e3984;
+}
+
+
+/* ALL LINES */
+
+.fashion-line{
+    opacity:0;
+
+    transform:translateY(12px);
+
+    animation:fashionTextReveal .8s ease forwards;
+}
+
+
+/* TRADITION */
+
+.fashion-line-1{
+    font-family:'Plus Jakarta Sans',sans-serif;
+
+    font-size:15px;
+    font-weight:700;
+
+    letter-spacing:3px;
+
+    line-height:1.4;
+
+    animation-delay:.3s;
+}
+
+
+/* REIMAGINED */
+
+.fashion-line-2{
+    margin-top:2px;
+
+    font-family:'Plus Jakarta Sans',sans-serif;
+
+    font-size:15px;
+    font-weight:700;
+
+    letter-spacing:3px;
+
+    line-height:1.4;
+
+    animation-delay:1.1s;
+}
+
+
+/* SUBTITLE */
+
+.fashion-line-3{
+    margin-top:10px;
+
+    font-family:'Plus Jakarta Sans',sans-serif;
+
+    font-size:10px;
+    font-weight:500;
+
+    letter-spacing:.5px;
+
+    line-height:1.6;
+
+    color:#765a91;
+
+    animation-delay:1.9s;
+}
+
+
+/* ANIMATION */
+
+@keyframes fashionTextReveal{
+
+    0%{
+        opacity:0;
+        transform:translateY(12px);
+        filter:blur(3px);
+    }
+
+    100%{
+        opacity:1;
+        transform:translateY(0);
+        filter:blur(0);
+    }
+
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media(max-width:700px){
+
+    .fashion-image-text{
+        top:72px;
+        right:12px;
+
+        width:180px;
+    }
+
+
+    .fashion-line-1,
+    .fashion-line-2{
+        font-size:10px;
+        letter-spacing:1.7px;
+    }
+
+
+    .fashion-line-3{
+        margin-top:6px;
+
+        font-size:7px;
+
+        line-height:1.5;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+
+<div class="login-page">
+
+
+    <!-- =====================================
+         LEFT GENERATED FASHION IMAGE
+    ====================================== -->
+
+    <section
+    class="login-visual"
+    aria-label="Magua Ethnics Fashion"
+>
+
+    <a href="index.html" class="login-image-brand">
+
+        <img src="logo.webp" alt="Magua Ethnics">
+
+        <div>
+            <div class="login-brand-name">MAGUA</div>
+            <div class="login-brand-sub">ETHNICS</div>
+        </div>
+
+    </a>
+    <div class="fashion-image-text">
+
+    <div class="fashion-line fashion-line-1">
+        TRADITION, REIMAGINED
+    </div>
+
+    <div class="fashion-line fashion-line-2">
+        TIMELESS ELEGANCE
+    </div>
+
+    <div class="fashion-line fashion-line-3">
+        Made for your most beautiful moments.
+    </div>
+
+</div>
+
+</section>
+
+
+    <!-- =====================================
+         RIGHT LOGIN
+    ====================================== -->
+
+    <section class="login-side">
+
+
+        <!-- BACK HOME -->
+
+        <a
+            href="index.html"
+            class="back-home"
+        >
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Back to Home
+
+        </a>
+        <!-- LOGIN CONTENT -->
+
+        <div class="login-content">
+
+            <h1>
+                Sign in to Magua
+            </h1>
+            <!-- =====================================
+                 LOGIN FORM
+            ====================================== -->
+
+            <form
+                class="login-form"
+                id="loginForm"
+            >
+
+
+                <!-- MOBILE -->
+
+                <div class="form-group">
+
+                    <label for="mobile">
+                        Mobile Number
+                    </label>
+
+                    <div class="input-line">
+
+                        <i class="fa-solid fa-phone"></i>
+
+                        <input
+                            type="tel"
+                            id="mobile"
+                            maxlength="10"
+                            inputmode="numeric"
+                            autocomplete="tel"
+                            placeholder="Enter mobile number"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="input-line">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="password"
+                            autocomplete="current-password"
+                            placeholder="Enter password"
+                            required
+                        >
+
+
+                        <button
+                            type="button"
+                            class="eye-btn"
+                            id="eyeBtn"
+                            aria-label="Show password"
+                        >
+
+                            <i class="fa-regular fa-eye"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- REMEMBER / FORGOT -->
+
+                <div class="login-options">
+
+
+                    <label class="remember">
+
+                        <input
+                            type="checkbox"
+                            id="remember"
+                        >
+
+                        Remember me
+
+                    </label>
+
+
+                    <a
+                        href="#"
+                        class="forgot"
+                        id="forgotPassword"
+                    >
+                        Forgot Password?
+                    </a>
+
+
+                </div>
+
+
+
+                <!-- SIGN IN -->
+
+                <button
+                    type="submit"
+                    class="login-btn"
+                >
+                    SIGN IN
+                </button>
+
+
+
+                <!-- MESSAGE -->
+
+                <div
+                    class="login-message"
+                    id="loginMessage"
+                ></div>
+
+
+            </form>
+
+
+
+            <!-- FOOTER -->
+
+            <div class="login-footer">
+                © 2026 Magua Ethnics. All rights reserved.
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+
+<script>
+const SUPABASE_URL = "https://xqeocomldniqropjclgi.supabase.co";
+const SUPABASE_KEY = "sb_publishable_i8aZYKNw__iQIktNSr3gbw_fMjWIqLa";
+
+const supabaseClient = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+const loginForm = document.getElementById("loginForm");
+const mobileInput = document.getElementById("mobile");
+const passwordInput = document.getElementById("password");
+const eyeBtn = document.getElementById("eyeBtn");
+const loginMessage = document.getElementById("loginMessage");
+const forgotPassword = document.getElementById("forgotPassword");
+
+mobileInput.addEventListener("input", function(){
+
+    this.value =
+        this.value
+        .replace(/\D/g, "")
+        .slice(0, 10);
+});
+
+eyeBtn.addEventListener("click", function(){
+
+    const hidden =
+        passwordInput.type === "password";
+
+    passwordInput.type =
+        hidden ? "text" : "password";
+
+    this.innerHTML =
+        hidden
+        ? '<i class="fa-regular fa-eye-slash"></i>'
+        : '<i class="fa-regular fa-eye"></i>';
+});
+
+function showMessage(message, type){
+
+    loginMessage.className =
+        "login-message " + type;
+
+    loginMessage.textContent = message;
+}
+
+function getAuthEmail(mobile){
+    return "user" + mobile + "@gmail.com";
+}
+
+loginForm.addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    const mobile =
+        mobileInput.value.trim();
+
+    const password =
+        passwordInput.value;
+
+    if(!/^[0-9]{10}$/.test(mobile)){
+
+        showMessage(
+            "Please enter a valid 10 digit mobile number.",
+            "error"
+        );
+
+        return;
+    }
+
+    if(!password){
+
+        showMessage(
+            "Please enter your password.",
+            "error"
+        );
+
+        return;
+    }
+
+    const button =
+        loginForm.querySelector(".login-btn");
+
+    button.disabled = true;
+    button.textContent = "SIGNING IN...";
+
+    try{
+
+        const { data, error } =
+        await supabaseClient.auth.signInWithPassword({
+
+            email: getAuthEmail(mobile),
+
+            password: password
+        });
+
+        if(error){
+            throw error;
+        }
+
+        localStorage.setItem(
+            "maguaLoggedIn",
+            "true"
+        );
+
+        localStorage.setItem(
+            "maguaUserMobile",
+            mobile
+        );
+
+        const fullName =
+            data.user?.user_metadata?.full_name || "";
+
+        if(fullName){
+
+            localStorage.setItem(
+                "maguaUserName",
+                fullName
+            );
+        }
+
+        showMessage(
+            "Login successful.",
+            "success"
+        );
+
+        const redirectPage =
+            localStorage.getItem(
+                "maguaLoginRedirect"
+            );
+
+        setTimeout(function(){
+
+            if(redirectPage){
+
+                localStorage.removeItem(
+                    "maguaLoginRedirect"
+                );
+
+                window.location.href =
+                    redirectPage;
+
+            }else{
+
+                window.location.href =
+                    "index.html";
+            }
+
+        }, 700);
+
+    }catch(error){
+
+        console.error(error);
+
+        let message =
+            error.message ||
+            "Unable to sign in.";
+
+        if(
+            message
+            .toLowerCase()
+            .includes("invalid login credentials")
+        ){
+            message =
+                "Mobile number or password is incorrect.";
+        }
+
+        showMessage(
+            message,
+            "error"
+        );
+
+        button.disabled = false;
+        button.textContent = "SIGN IN";
+    }
+
+});
+
+forgotPassword.addEventListener("click", function(e){
+
+    e.preventDefault();
+
+    alert(
+        "Forgot Password will be added next."
+    );
+});
+</script>
+
+
+</body>
+</html>

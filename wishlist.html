@@ -1,0 +1,1133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Wishlist | Magua Ethnics</title>
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    background:#ffffff;
+    color:#222;
+}
+
+
+/* ==============================
+   HEADER
+============================== */
+
+.wishlist-header{
+    width:100%;
+    min-height:64px;
+
+    display:flex;
+    align-items:center;
+
+    padding:0 5%;
+
+    background:#5e3984;
+    color:#ffffff;
+
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    box-shadow:0 4px 16px rgba(0,0,0,.10);
+}
+
+.back-btn{
+    width:40px;
+    height:40px;
+
+    border:none;
+    background:transparent;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#ffffff;
+
+    font-size:18px;
+
+    cursor:pointer;
+}
+
+.wishlist-title{
+    margin-left:8px;
+
+    font-size:18px;
+    font-weight:700;
+}
+
+.wishlist-count{
+    margin-left:8px;
+
+    font-size:12px;
+    font-weight:500;
+
+    color:rgba(255,255,255,.75);
+}
+
+
+/* ==============================
+   MAIN
+============================== */
+
+.wishlist-main{
+    width:100%;
+    max-width:1450px;
+
+    margin:0 auto;
+
+    padding:40px 5% 70px;
+}
+
+.heading-row{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+
+    gap:20px;
+
+    margin-bottom:28px;
+}
+
+.heading-row h1{
+    margin:0;
+
+    color:#5e3984;
+
+    font-size:27px;
+    font-weight:700;
+}
+
+.heading-row p{
+    margin-top:6px;
+
+    color:#777;
+
+    font-size:12px;
+}
+
+
+/* ==============================
+   GRID
+============================== */
+
+.wishlist-grid{
+    width:100%;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,minmax(0,1fr));
+
+    gap:18px 14px;
+}
+
+
+/* ==============================
+   PRODUCT CARD
+============================== */
+
+.wishlist-card{
+    min-width:0;
+
+    background:#ffffff;
+
+    border:1px solid #eeeeee;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+.wishlist-card:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 10px 28px rgba(94,57,132,.10);
+}
+
+
+/* IMAGE */
+
+.wishlist-image-wrap{
+    width:100%;
+
+    aspect-ratio:1 / 1.25;
+
+    background:#fafafa;
+
+    position:relative;
+
+    overflow:hidden;
+
+    cursor:pointer;
+}
+
+.wishlist-image-wrap img{
+    width:100%;
+    height:100%;
+
+    display:block;
+
+    object-fit:cover;
+}
+
+
+/* REMOVE HEART */
+
+.remove-wishlist{
+    width:38px;
+    height:38px;
+
+    position:absolute;
+
+    top:10px;
+    right:10px;
+
+    z-index:5;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#ffffff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#5e3984;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 3px 12px rgba(0,0,0,.14);
+
+    transition:.2s ease;
+}
+
+.remove-wishlist:hover{
+    transform:scale(1.06);
+}
+
+.remove-wishlist i{
+    color:#5e3984;
+}
+
+
+/* DETAILS */
+
+.wishlist-info{
+    padding:13px 13px 15px;
+}
+
+.wishlist-category{
+    margin-bottom:5px;
+
+    color:#9278a8;
+
+    font-size:10px;
+    font-weight:600;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+}
+
+.wishlist-name{
+    margin:0;
+
+    min-height:38px;
+
+    color:#292929;
+
+    font-size:13px;
+    font-weight:600;
+
+    line-height:1.45;
+
+    display:-webkit-box;
+
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+
+    overflow:hidden;
+}
+
+
+/* PRICE */
+
+.wishlist-price-row{
+    margin-top:10px;
+
+    display:flex;
+    align-items:center;
+
+    gap:7px;
+
+    flex-wrap:wrap;
+}
+
+.wishlist-price{
+    color:#5e3984;
+
+    font-size:15px;
+    font-weight:800;
+}
+
+.wishlist-original-price{
+    color:#999999;
+
+    font-size:11px;
+
+    text-decoration:line-through;
+}
+
+
+/* VIEW BUTTON */
+
+.view-product-btn{
+    width:100%;
+    height:38px;
+
+    margin-top:13px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#5e3984;
+
+    color:#ffffff;
+
+    font-family:inherit;
+
+    font-size:11px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+}
+
+.view-product-btn:hover{
+    opacity:.92;
+}
+
+
+/* ==============================
+   EMPTY STATE
+============================== */
+
+.empty-wishlist{
+    min-height:420px;
+
+    display:none;
+
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    padding:50px 20px;
+}
+
+.empty-icon{
+    width:84px;
+    height:84px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#f7f3fa;
+
+    color:#5e3984;
+
+    font-size:32px;
+
+    margin-bottom:20px;
+}
+
+.empty-wishlist h2{
+    margin:0;
+
+    color:#5e3984;
+
+    font-size:21px;
+    font-weight:700;
+}
+
+.empty-wishlist p{
+    margin:8px 0 0;
+
+    max-width:360px;
+
+    color:#777777;
+
+    font-size:12px;
+
+    line-height:1.7;
+}
+
+.continue-shopping{
+    margin-top:22px;
+
+    min-width:160px;
+    height:42px;
+
+    padding:0 20px;
+
+    border:none;
+
+    border-radius:9px;
+
+    background:#5e3984;
+
+    color:#ffffff;
+
+    font-family:inherit;
+
+    font-size:12px;
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+
+/* ==============================
+   TABLET
+============================== */
+
+@media(max-width:1250px){
+
+    .wishlist-grid{
+        grid-template-columns:
+            repeat(4,minmax(0,1fr));
+    }
+
+}
+
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media(max-width:950px){
+
+    .wishlist-main{
+        padding:
+            25px 12px 50px;
+    }
+
+    .heading-row{
+        margin-bottom:20px;
+    }
+
+    .heading-row h1{
+        font-size:21px;
+    }
+
+    .wishlist-grid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+
+        gap:10px 20px;
+    }
+
+}
+
+
+@media(max-width:480px){
+
+    .wishlist-header{
+        min-height:58px;
+
+        padding:0 9px;
+    }
+
+    .back-btn{
+        width:36px;
+        height:36px;
+
+        font-size:16px;
+    }
+
+    .wishlist-title{
+        font-size:15px;
+    }
+
+    .wishlist-main{
+        padding:
+            22px 8px 45px;
+    }
+
+    .heading-row h1{
+        font-size:19px;
+    }
+
+    .heading-row p{
+        font-size:10px;
+    }
+
+    .wishlist-card{
+        border-radius:9px;
+    }
+
+    .wishlist-info{
+        padding:10px;
+    }
+
+    .wishlist-name{
+        min-height:34px;
+
+        font-size:11px;
+    }
+
+    .wishlist-price{
+        font-size:13px;
+    }
+
+    .wishlist-original-price{
+        font-size:10px;
+    }
+
+    .remove-wishlist{
+        width:34px;
+        height:34px;
+
+        top:7px;
+        right:7px;
+
+        font-size:15px;
+    }
+
+    .view-product-btn{
+        height:35px;
+
+        font-size:10px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header class="wishlist-header">
+
+    <button
+        class="back-btn"
+        type="button"
+        onclick="goBack()"
+        aria-label="Back"
+    >
+        <i class="fa-solid fa-arrow-left"></i>
+    </button>
+
+    <div class="wishlist-title">
+        My Wishlist
+    </div>
+
+    <div
+        class="wishlist-count"
+        id="wishlistCount"
+    >
+        0 items
+    </div>
+
+</header>
+
+
+
+<!-- MAIN -->
+
+<main class="wishlist-main">
+
+
+    <div
+        class="heading-row"
+        id="wishlistHeading"
+    >
+
+        <div>
+
+            <h1>Saved For You</h1>
+
+            <p>
+                Your favourite Magua Ethnics collections
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- PRODUCTS -->
+
+    <div
+        class="wishlist-grid"
+        id="wishlistGrid"
+    ></div>
+
+
+
+    <!-- EMPTY -->
+
+    <div
+        class="empty-wishlist"
+        id="emptyWishlist"
+    >
+
+        <div class="empty-icon">
+
+            <i class="fa-regular fa-heart"></i>
+
+        </div>
+
+        <h2>Your wishlist is empty</h2>
+
+        <p>
+            Save your favourite sarees by tapping
+            the heart icon.
+        </p>
+
+        <button
+            class="continue-shopping"
+            type="button"
+            onclick="continueShopping()"
+        >
+            Continue Shopping
+        </button>
+
+    </div>
+
+
+</main>
+
+
+
+<script>
+
+/* =========================================
+   WISHLIST STORAGE
+========================================= */
+
+const WISHLIST_KEY =
+    "magua_wishlist";
+
+
+function getWishlist(){
+
+    try{
+
+        const saved =
+            localStorage.getItem(
+                WISHLIST_KEY
+            );
+
+        return saved
+            ? JSON.parse(saved)
+            : [];
+
+    }
+    catch(error){
+
+        console.error(
+            "Wishlist read error:",
+            error
+        );
+
+        return [];
+
+    }
+
+}
+
+
+
+function saveWishlist(list){
+
+    localStorage.setItem(
+        WISHLIST_KEY,
+        JSON.stringify(list)
+    );
+
+}
+
+
+
+/* =========================================
+   SAFE VALUE
+========================================= */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+
+/* =========================================
+   PRODUCT IMAGE
+========================================= */
+
+function getProductImage(product){
+
+    if(
+        Array.isArray(product.images) &&
+        product.images.length
+    ){
+
+        return (
+            product.images[0] ||
+            product.images[1] ||
+            product.images[2] ||
+            ""
+        );
+
+    }
+
+
+    return (
+        product.image1 ||
+        product.image ||
+        ""
+    );
+
+}
+
+
+
+/* =========================================
+   PRODUCT NAME
+========================================= */
+
+function getProductName(product){
+
+    return (
+        product.product_name ||
+        product.name ||
+        "Magua Ethnics Product"
+    );
+
+}
+
+
+
+/* =========================================
+   PRODUCT PRICE
+========================================= */
+
+function getPrice(product){
+
+    const value =
+        product.price ??
+        product.discount_price ??
+        0;
+
+    return Number(value) || 0;
+
+}
+
+
+function getOriginalPrice(product){
+
+    const value =
+        product.original_price ??
+        product.originalPrice ??
+        0;
+
+    return Number(value) || 0;
+
+}
+
+
+
+/* =========================================
+   RENDER
+========================================= */
+
+function renderWishlist(){
+
+    const grid =
+        document.getElementById(
+            "wishlistGrid"
+        );
+
+    const empty =
+        document.getElementById(
+            "emptyWishlist"
+        );
+
+    const heading =
+        document.getElementById(
+            "wishlistHeading"
+        );
+
+    const count =
+        document.getElementById(
+            "wishlistCount"
+        );
+
+
+    const wishlist =
+        getWishlist();
+
+
+    count.textContent =
+        wishlist.length +
+        (
+            wishlist.length === 1
+            ? " item"
+            : " items"
+        );
+
+
+    /* EMPTY */
+
+    if(!wishlist.length){
+
+        grid.innerHTML = "";
+
+        grid.style.display =
+            "none";
+
+        heading.style.display =
+            "none";
+
+        empty.style.display =
+            "flex";
+
+        return;
+
+    }
+
+
+    /* PRODUCTS EXIST */
+
+    empty.style.display =
+        "none";
+
+    heading.style.display =
+        "flex";
+
+    grid.style.display =
+        "grid";
+
+
+    grid.innerHTML =
+        wishlist
+        .map(function(product){
+
+
+            const id =
+                escapeHTML(
+                    product.id
+                );
+
+
+            const name =
+                escapeHTML(
+                    getProductName(product)
+                );
+
+
+            const category =
+                escapeHTML(
+                    product.category ||
+                    "Sarees"
+                );
+
+
+            const image =
+                escapeHTML(
+                    getProductImage(product)
+                );
+
+
+            const price =
+                getPrice(product);
+
+
+            const originalPrice =
+                getOriginalPrice(product);
+
+
+            return `
+
+            <article
+                class="wishlist-card"
+                data-product-id="${id}"
+            >
+
+
+                <div
+                    class="wishlist-image-wrap"
+                    onclick="openProduct('${id}')"
+                >
+
+
+                    ${
+                        image
+                        ?
+                        `
+                        <img
+                            src="${image}"
+                            alt="${name}"
+                            loading="lazy"
+                        >
+                        `
+                        :
+                        `
+                        <div
+                            style="
+                                width:100%;
+                                height:100%;
+                                display:flex;
+                                align-items:center;
+                                justify-content:center;
+                                color:#aaa;
+                                font-size:12px;
+                            "
+                        >
+                            No Image
+                        </div>
+                        `
+                    }
+
+
+                    <button
+                        type="button"
+                        class="remove-wishlist"
+                        aria-label="Remove from wishlist"
+                        onclick="
+                            event.stopPropagation();
+                            removeWishlist('${id}');
+                        "
+                    >
+
+                        <i class="fa-solid fa-heart"></i>
+
+                    </button>
+
+
+                </div>
+
+
+
+                <div class="wishlist-info">
+
+
+                    <div class="wishlist-category">
+
+                        ${category}
+
+                    </div>
+
+
+                    <h3 class="wishlist-name">
+
+                        ${name}
+
+                    </h3>
+
+
+                    <div class="wishlist-price-row">
+
+
+                        
+
+
+                        ${
+                            originalPrice > price
+                            ?
+                            `
+                            <span
+                                class="wishlist-original-price"
+                            >
+                                ₹${originalPrice.toLocaleString("en-IN")}
+                            </span>
+                            `
+                            :
+                            ""
+                        }
+
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="view-product-btn"
+                        onclick="openProduct('${id}')"
+                    >
+
+                        View Product
+
+                    </button>
+
+
+                </div>
+
+
+            </article>
+
+            `;
+
+        })
+        .join("");
+
+}
+
+
+
+/* =========================================
+   REMOVE
+========================================= */
+
+function removeWishlist(productId){
+
+    let wishlist =
+        getWishlist();
+
+
+    wishlist =
+        wishlist.filter(function(product){
+
+            return (
+                String(product.id) !==
+                String(productId)
+            );
+
+        });
+
+
+    saveWishlist(
+        wishlist
+    );
+
+
+    renderWishlist();
+
+}
+
+
+
+/* =========================================
+   OPEN PRODUCT
+========================================= */
+
+function openProduct(productId){
+
+    /*
+       Sarees page ki product ID pampisthunnam.
+       sarees.html lo later direct product popup
+       open cheyyadaniki kuda use cheyyachu.
+    */
+
+    window.location.href =
+        "sarees.html?product=" +
+        encodeURIComponent(productId);
+
+}
+
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+function goBack(){
+
+    if(
+        document.referrer &&
+        history.length > 1
+    ){
+
+        history.back();
+
+    }
+    else{
+
+        window.location.href =
+            "index.html";
+
+    }
+
+}
+
+
+function continueShopping(){
+
+    window.location.href =
+        "sarees.html";
+
+}
+
+
+
+/* =========================================
+   INITIAL LOAD
+========================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    renderWishlist
+);
+
+</script>
+
+
+</body>
+</html>
