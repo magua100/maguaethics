@@ -1,34 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-  xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://maguaethnics.com/</loc>
 
-    <!-- FIRST: LOGO -->
+    <!-- LOGO AND SEO IMAGES -->
     <image:image>
       <image:loc>https://maguaethnics.com/seopics/logo1.png</image:loc>
     </image:image>
-
-    <!-- ALL IMAGES -->
     <image:image>
       <image:loc>https://maguaethnics.com/seopics/logo2.png</image:loc>
     </image:image>
-
     <image:image>
       <image:loc>https://maguaethnics.com/seopics/logo1.webp</image:loc>
     </image:image>
-
     <image:image>
       <image:loc>https://maguaethnics.com/seopics/logo3.png</image:loc>
     </image:image>
 
-    
-
-    <!-- ALL VIDEOS -->
-
+    <!-- SAREES VIDEO -->
     <video:video>
       <video:thumbnail_loc>https://maguaethnics.com/seopics/1.webp</video:thumbnail_loc>
       <video:title>Magua Ethnics Sarees Collection</video:title>
@@ -36,6 +27,7 @@
       <video:content_loc>https://maguaethnics.com/seopics/1.mp4</video:content_loc>
     </video:video>
 
+    <!-- DRESSES VIDEO -->
     <video:video>
       <video:thumbnail_loc>https://maguaethnics.com/seopics/2.webp</video:thumbnail_loc>
       <video:title>Magua Ethnics Dresses Collection</video:title>
@@ -43,6 +35,7 @@
       <video:content_loc>https://maguaethnics.com/seopics/2.mp4</video:content_loc>
     </video:video>
 
+    <!-- LEHENGAS VIDEO -->
     <video:video>
       <video:thumbnail_loc>https://maguaethnics.com/seopics/3.webp</video:thumbnail_loc>
       <video:title>Magua Ethnics Lehengas Collection</video:title>
@@ -50,6 +43,7 @@
       <video:content_loc>https://maguaethnics.com/seopics/3.mp4</video:content_loc>
     </video:video>
 
+    <!-- BOUTIQUE VIDEO -->
     <video:video>
       <video:thumbnail_loc>https://maguaethnics.com/seopics/4.webp</video:thumbnail_loc>
       <video:title>Magua Ethnics Boutique Collection</video:title>
@@ -57,13 +51,13 @@
       <video:content_loc>https://maguaethnics.com/seopics/4.mp4</video:content_loc>
     </video:video>
 
+    <!-- LOGO ANIMATION -->
     <video:video>
       <video:thumbnail_loc>https://maguaethnics.com/seopics/4.webp</video:thumbnail_loc>
-      <video:title>Magua Ethnics </video:title>
-      <video:description>Logo animation.</video:description>
+      <video:title>Magua Ethnics Logo Animation</video:title>
+      <video:description>Official Magua Ethnics logo animation.</video:description>
       <video:content_loc>https://maguaethnics.com/seopics/magualogo.webm</video:content_loc>
     </video:video>
 
   </url>
-
 </urlset>
